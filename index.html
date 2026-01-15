@@ -41,60 +41,64 @@
 
     <style>
         body { background-color: #fdfaf7; color: #3f3835; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); }
+        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); }
         .reveal { opacity: 0; transform: translateY(20px); }
+        .hero-overlay { background: linear-gradient(to bottom, rgba(253, 250, 247, 0.7) 0%, rgba(253, 250, 247, 0.95) 100%); }
         .gradient-text {
             background: linear-gradient(to right, #8d514a, #d9c58c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        /* Mobile Table Style */
         .table-container { -webkit-overflow-scrolling: touch; overflow-x: auto; }
         table { width: 100%; min-width: 300px; border-collapse: collapse; font-size: 0.75rem; }
-        th, td { border: 1px solid rgba(141, 81, 74, 0.1); padding: 8px; text-align: left; }
-        th { background: rgba(141, 81, 74, 0.05); color: #8d514a; }
+        th, td { border: 1px solid rgba(141, 81, 74, 0.1); padding: 10px; text-align: left; }
+        th { background: rgba(141, 81, 74, 0.05); color: #8d514a; font-weight: bold; }
     </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden text-[14px] leading-relaxed">
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass border-b border-primary/5">
-        <div class="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-1.5">
                 <i data-lucide="flower-2" class="text-primary w-5 h-5"></i>
                 <span class="font-serif font-bold tracking-tighter text-xs uppercase">Neuro Body Hack</span>
             </div>
-            <a href="#overview" class="bg-primary text-white text-[10px] px-3 py-1.5 rounded-full font-bold">
-                目次
+            <a href="https://forms.gle/GkDyyvJfsYm6yPQN8" target="_blank" class="bg-primary text-white text-[10px] px-4 py-2 rounded-full font-bold shadow-md active:scale-95 transition-transform">
+                オイルマッサージ依頼する
             </a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="relative pt-24 pb-12 px-5 overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+    <!-- First View (FV) -->
+    <header class="relative min-h-[90vh] flex flex-col items-center justify-center px-5 pt-16 overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 -z-20">
+            <img src="https://images.unsplash.com/photo-1544161515-4ae6ce6ea858?auto=format&fit=crop&q=80&w=1200" alt="Healing Background" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 hero-overlay -z-10"></div>
+
         <div class="max-w-md mx-auto text-center relative z-10">
-            <div class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold tracking-[0.15em] uppercase mb-4 reveal">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[11px] font-bold tracking-[0.2em] uppercase mb-6 reveal shadow-sm">
                 Body Development Master Guide
             </div>
             <h1 class="font-serif text-2xl md:text-4xl font-medium leading-tight mb-4 reveal">
                 「感じる身体」を育てる<br>
-                <span class="gradient-text text-3xl md:text-5xl font-bold">体質改善マスターガイド</span>
+                <span class="gradient-text text-4xl md:text-6xl font-black">体質改善マスターガイド</span>
             </h1>
-            <p class="text-xs font-medium text-foreground/60 mb-6 tracking-widest reveal">
+            <p class="text-xs font-bold text-foreground/70 mb-8 tracking-[0.1em] reveal leading-loose">
                 生理・骨格・脳の仕組みを整え、<br>一生ものの感受性を手に入れる：完全保存版
             </p>
             
-            <div class="relative w-full h-48 rounded-2xl overflow-hidden mb-8 reveal shadow-2xl">
-                <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=800" alt="Self Care" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            <!-- Hero Center Image (Oil Bottle) -->
+            <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-10 reveal shadow-2xl border-4 border-white">
+                <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&q=80&w=800" alt="Essential Oil" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
 
-            <div class="flex flex-col gap-3 reveal">
-                <a href="#intro" class="w-full bg-primary text-white py-4 rounded-xl shadow-xl font-bold text-sm tracking-widest">
-                    序論から読む
-                </a>
-                <p class="text-[10px] text-muted-foreground italic">Scroll to Start Your Journey</p>
+            <div class="reveal">
+                <p class="text-[11px] text-primary font-black tracking-widest animate-bounce">Scroll to Start Your Journey</p>
+                <i data-lucide="chevron-down" class="mx-auto text-primary w-5 h-5"></i>
             </div>
         </div>
     </header>
