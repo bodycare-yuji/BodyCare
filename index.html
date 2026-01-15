@@ -44,46 +44,37 @@
         .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); }
         .reveal { opacity: 0; transform: translateY(20px); }
         
-        /* Hero Section Styling */
+        /* Hero Section Overlay */
         .hero-scrim {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 70%, rgba(253, 250, 247, 1) 100%);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 60%, rgba(253, 250, 247, 1) 100%);
         }
+
         .gradient-text-hero {
             background: linear-gradient(to right, #ffffff, #d9c58c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Mosaic / Gated Content Styling */
-        #gated-area {
-            position: relative;
-            min-height: 400px;
-        }
-        .is-locked {
+        /* アンロック機能のモザイク設定 */
+        .locked-content {
             filter: blur(20px);
             pointer-events: none;
             user-select: none;
-            transition: filter 1s ease;
+            transition: filter 1.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .is-unlocked {
+        .unlocked {
             filter: blur(0);
             pointer-events: auto;
             user-select: auto;
         }
-        #gate-overlay {
-            position: absolute;
-            top: 100px;
-            left: 0;
-            width: 100%;
-            z-index: 40;
-            display: flex;
-            justify-content: center;
-            padding: 0 20px;
+        #unlock-gate {
+            transition: all 0.8s ease;
         }
 
-        /* Utility */
+        /* ユーティリティ */
         .br-sp { display: block; }
         @media (min-width: 768px) { .br-sp { display: inline; } }
+
         .table-container { -webkit-overflow-scrolling: touch; overflow-x: auto; }
         table { width: 100%; min-width: 320px; border-collapse: collapse; font-size: 0.75rem; }
         th, td { border: 1px solid rgba(141, 81, 74, 0.1); padding: 12px 8px; text-align: left; }
@@ -93,22 +84,23 @@
 <body class="font-sans antialiased overflow-x-hidden text-[14px] leading-relaxed">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass border-b border-primary/5">
+    <nav class="fixed top-0 w-full z-[100] glass border-b border-primary/5">
         <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-1.5">
                 <i data-lucide="flower-2" class="text-primary w-5 h-5"></i>
                 <span class="font-serif font-bold tracking-tighter text-xs uppercase">Neuro Body Hack</span>
             </div>
             <a href="https://forms.gle/92rN3obmELxtDM5M9" target="_blank" class="bg-primary text-white text-[10px] px-3 py-2 rounded-full font-bold shadow-md active:scale-95 transition-transform leading-tight text-center">
-                性感オイルマッサージを依頼する
+                性感の依頼をする
             </a>
         </div>
     </nav>
 
     <!-- First View (Hero Section) -->
-    <header class="relative min-h-[95vh] flex flex-col items-center justify-start px-6 text-white text-center">
+    <header class="relative min-h-[90vh] flex flex-col items-center justify-start px-6 text-white text-center">
+        <!-- Background Image Container -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&q=80&w=1200" alt="Healing Hand" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1646941836303-12a0a6bff9b6?q=80&w=1104&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&q=80&w=1200" alt="Healing Hand" class="w-full h-full object-cover">
             <div class="absolute inset-0 hero-scrim"></div>
         </div>
 
@@ -117,18 +109,18 @@
                 Body Development Master Guide
             </div>
             
-            <h1 class="font-serif text-2xl md:text-5xl font-medium leading-[1.4] mb-6 reveal px-2">
+            <h1 class="font-serif text-2xl md:text-5xl font-medium leading-[1.5] mb-6 reveal">
                 「感じる身体」を育てる<br class="br-sp">
-                <span class="gradient-text-hero text-4xl md:text-6xl font-black italic">体質改善マスターガイド</span>
+                <span class="gradient-text-hero text-4xl md:text-6xl font-black italic">体質改善<br class="br-sp">マスターガイド</span>
             </h1>
             
-            <p class="text-[13px] font-bold text-white/90 mb-16 tracking-[0.05em] reveal leading-loose drop-shadow-md px-4">
+            <p class="text-[13px] font-bold text-white/90 mb-16 tracking-[0.05em] reveal leading-loose drop-shadow-md">
                 生理・骨格・脳の仕組みを整え、<br>
                 一生ものの感受性を手に入れる：完全保存版
             </p>
 
             <div class="reveal pt-12">
-                <p class="text-[11px] text-accent font-black tracking-[0.3em] animate-bounce mb-3 uppercase">Scroll to Open Your Potential</p>
+                <p class="text-[11px] text-accent font-black tracking-[0.3em] animate-bounce mb-3 uppercase italic">Scroll to Reveal the Truth</p>
                 <i data-lucide="chevron-down" class="mx-auto text-accent w-6 h-6"></i>
             </div>
         </div>
@@ -142,7 +134,7 @@
                     <p class="text-[10px] tracking-[0.3em] text-primary font-black uppercase">Introduction</p>
                     <div class="h-px flex-1 bg-primary/20"></div>
                 </div>
-                <h2 class="font-serif text-2xl font-bold mb-6 leading-snug">
+                <h2 class="font-serif text-2xl font-bold mb-6 italic leading-snug">
                     序論：快感は「才能」ではなく、<br class="br-sp">育てることができる「体質」
                 </h2>
                 <div class="space-y-5 text-foreground/80 leading-relaxed text-sm">
@@ -154,10 +146,10 @@
             </div>
 
             <!-- Flower Metaphor Card -->
-            <div class="bg-secondary/40 p-8 rounded-[2.5rem] reveal relative border border-white shadow-inner">
+            <div class="bg-secondary/40 p-8 rounded-[2.5rem] reveal relative border border-white shadow-inner mb-8">
                 <h3 class="font-bold text-base mb-6 flex items-center gap-2">
                     <i data-lucide="sun" class="text-primary w-5 h-5"></i>
-                    お花を咲かせるための4つの要素
+                    お花を咲かせるための4つの段階
                 </h3>
                 <div class="grid grid-cols-1 gap-4 text-[13px] mb-8">
                     <div class="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm">
@@ -177,39 +169,37 @@
                         <p>光をエネルギーに<strong class="text-primary">変える（接続）</strong></p>
                     </div>
                 </div>
-                <p class="text-xs italic leading-relaxed text-foreground/60 px-2 border-t border-primary/10 pt-4">
+                <p class="text-xs italic leading-relaxed text-foreground/60 px-2 border-t border-primary/10 pt-4 text-justify text-center">
                     本ガイドでは、情緒的な例え話に留まらず、科学的根拠に基づいた「身体の取説」として、あなたの感受性を根本から作り変える方法を解説します。
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Gated Content Wrapper Start -->
-    <div id="gated-area">
-        
-        <!-- Keyword Input Overlay -->
-        <div id="gate-overlay">
-            <div class="bg-white/95 p-8 rounded-[2rem] shadow-2xl border border-primary/10 text-center max-w-sm w-full backdrop-blur-md">
-                <i data-lucide="lock" class="mx-auto text-primary w-8 h-8 mb-4"></i>
-                <h3 class="font-serif font-bold text-lg mb-2 italic text-primary underline decoration-accent">Master Guide Unlock</h3>
-                <p class="text-[11px] text-foreground/60 mb-6 leading-relaxed italic">
-                    これより先は「快感のサイクル」を網羅した核心的な内容となります。お手元のキーワードを入力してアンロックしてください。
-                </p>
-                <div class="space-y-3">
-                    <input type="text" id="keyword-input" placeholder="キーワードを入力 (例: bloom)" 
-                        class="w-full px-4 py-3 rounded-xl border border-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/50 text-center text-sm font-bold tracking-widest bg-secondary/20">
-                    <button onclick="unlockContent()" 
-                        class="w-full bg-primary text-white py-3.5 rounded-xl font-black text-xs tracking-widest uppercase shadow-lg active:scale-95 transition-all">
-                        アンロックする
-                    </button>
-                    <p id="error-msg" class="text-red-400 text-[10px] font-bold hidden">キーワードが正しくありません。</p>
-                </div>
+    <!-- Unlock Gate UI (Visible over the blurred content) -->
+    <div id="unlock-gate" class="relative z-[90] py-12 px-6 bg-white border-y border-primary/10">
+        <div class="max-w-md mx-auto text-center">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="lock" class="w-8 h-8 text-primary"></i>
+            </div>
+            <h3 class="font-serif text-xl font-bold mb-4 italic">メソッドの核心をアンロック</h3>
+            <p class="text-xs text-foreground/60 mb-8 leading-relaxed px-4">
+                これより先は「快感のサイクル」を網羅した、体質改善の具体的な5段階ステップになります。正しいキーワードを入力して続きをお読みください。
+            </p>
+            <div class="flex flex-col gap-4">
+                <input type="text" id="keyword-input" placeholder="キーワードを入力" 
+                    class="w-full px-6 py-4 rounded-2xl border-2 border-secondary focus:border-primary outline-none text-center font-bold tracking-widest text-primary bg-secondary/10 transition-all shadow-inner text-base">
+                <button onclick="checkUnlock()" class="w-full bg-primary text-white py-4 rounded-2xl font-black text-sm tracking-widest shadow-xl active:scale-95 transition-all">
+                    ガイドをアンロックする
+                </button>
+                <p id="error-msg" class="text-red-500 text-[11px] font-bold opacity-0 transition-opacity">※キーワードが正しくありません</p>
             </div>
         </div>
+    </div>
 
-        <!-- This div will be blurred -->
-        <div id="protected-content" class="is-locked">
-            <!-- Overview Section -->
+    <!-- The Gated Area (Blurred until keyword matches) -->
+    <div id="locked-area" class="locked-content">
+        <!-- Overview Section -->
         <section id="overview" class="py-16 px-6 bg-white">
             <div class="max-w-md mx-auto text-center">
                 <div class="mb-12">
@@ -224,7 +214,7 @@
                         各ステップは独立しているのではなく、円を描くように繋がっています。このサイクルが回り始めることで、あなたの感度は「らせん状」に高まっていきます。
                     </p>
                     
-                    <div class="space-y-3">
+                    <div class="space-y-3 px-2">
                         <div class="bg-[#fdfaf7] p-5 rounded-2xl border border-primary/5 flex gap-4 items-start shadow-sm transition-all active:bg-secondary/30">
                             <span class="text-primary font-bold text-sm h-6 flex items-center shrink-0 italic">1.</span>
                             <div>
@@ -267,7 +257,7 @@
                             <i data-lucide="infinity" class="w-24 h-24 text-accent"></i>
                         </div>
                         <p class="text-xs font-bold leading-relaxed italic text-center relative z-10">
-                            この<strong class="text-accent underline decoration-accent decoration-2 underline-offset-4">「心地よい循環」</strong>を作ることこそが、本プログラムの目的です。一度このサイクルが完成すれば、あなたは自ら快感を生み出し、増幅させることができるようになります。
+                            この<strong class="text-accent underline decoration-accent decoration-2 underline-offset-4 font-black italic">「心地よい循環」</strong>を作ることこそが、本プログラムの目的です。一度このサイクルが完成すれば、あなたは自ら快感を生み出し、増幅させることができるようになります。
                         </p>
                     </div>
                 </div>
@@ -286,12 +276,12 @@
                     </div>
 
                     <div class="p-6 bg-white rounded-3xl mb-8 shadow-sm border border-primary/5">
-                        <h3 class="text-[15px] font-bold text-primary mb-4 flex items-center gap-2 italic leading-relaxed">
+                        <h3 class="text-[15px] font-bold text-primary mb-4 flex items-center gap-2 italic leading-relaxed text-justify">
                             <i data-lucide="help-circle" class="w-5 h-5 shrink-0"></i>
                             「あなたは、手足やお腹の奥に『冷え』を感じていませんか？」
                         </h3>
                         <p class="text-xs text-foreground/70 leading-loose text-justify px-2">
-                            「不感」の最大の敵は、身体の冷えです。特に足元は血液が滞りやすく、まるで「冷たい氷水」が骨盤周りの神経を冷やし続けているようなもの。これでは、どんなに刺激を与えても神経のスイッチは入りません。まずは核心部である「子宮」を温め、感覚の冬眠を解くことから始めます。
+                            「不感」の最大の敵は、身体の冷えです。特に足元は血液が滞りやすく、冷えが進行しやすい場所。冷え切った血液がふくらはぎに停滞していると、それはまるで「冷たい氷水」が骨盤周りの神経を冷やし続けているようなもの。まずは核心部である「子宮」を温め、感覚の冬眠を解くことから始めます。
                         </p>
                     </div>
                 </div>
@@ -302,13 +292,11 @@
                             <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0 italic shadow-md">1.1</div>
                             <h4 class="font-bold text-[15px]">最優先：仙骨（せんこつ）シャワー</h4>
                         </div>
-                        <div class="space-y-4">
-                            <p class="text-[11px] bg-primary text-white px-3 py-1.5 rounded-lg inline-block font-bold leading-none">方法</p>
-                            <p class="text-[12px] leading-relaxed italic text-foreground/80 font-medium">
-                                お尻の真ん中にある平らな骨（仙骨）に、40〜42℃の少し熱めのシャワーを垂直に当てます（1分間以上）。
-                            </p>
-                            <p class="text-[11px] text-foreground/60 italic p-4 bg-secondary/30 rounded-2xl leading-relaxed text-justify">
-                                <strong class="text-primary font-bold italic">理由：最も重要かつインパクトが大きいのがこの仙骨です。</strong> 仙骨は副交感神経（リラックスと快感の神経）の大きな出口。ここを直接温めることで、骨盤内の血管が一気に広がり、子宮や膣の深部まで熱が届きます。
+                        <div class="space-y-4 text-justify px-1">
+                            <p class="text-[11px] bg-primary text-white px-3 py-1.5 rounded-lg inline-block font-bold">方法</p>
+                            <p class="text-[12px] leading-relaxed italic text-foreground/80 font-medium">お尻の真ん中にある平らな骨（仙骨）に、40〜42℃の少し熱めのシャワーを垂直に当てます（1分間以上）。</p>
+                            <p class="text-[11px] text-foreground/60 italic p-4 bg-secondary/30 rounded-2xl leading-relaxed">
+                                <strong class="text-primary font-bold italic">理由：最も重要かつインパクトが大きいのがこの「仙骨」です。</strong> 仙骨は、リラックスと快感を司る副交感神経の大きな出口です。ここを直接温めることで、骨盤内の血管が一気に広がり、子宮や膣の深部まで熱が届きます。
                             </p>
                         </div>
                     </div>
@@ -318,11 +306,11 @@
                             <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0 italic shadow-md">1.2</div>
                             <h4 class="font-bold text-[15px]">補強：内くるぶしシャワー</h4>
                         </div>
-                        <div class="space-y-4">
-                            <p class="text-[11px] bg-primary text-white px-3 py-1.5 rounded-lg inline-block font-bold leading-none">方法</p>
+                        <div class="space-y-4 text-justify px-1">
+                            <p class="text-[11px] bg-primary text-white px-3 py-1.5 rounded-lg inline-block font-bold">方法</p>
                             <p class="text-[12px] leading-relaxed italic text-foreground/80 font-medium">両足の内くるぶしを左右1分ずつ、丁寧に温めます。</p>
-                            <p class="text-[11px] text-foreground/60 italic p-4 bg-secondary/30 rounded-2xl leading-relaxed text-justify">
-                                <strong class="text-primary font-bold italic">理由：</strong> 内くるぶし周辺には子宮や卵巣に直結する重要な血管やツボが集中しています。ここを温めることで、足元から「温かい血流」のルートが完全に開通します。
+                            <p class="text-[11px] text-foreground/60 italic p-4 bg-secondary/30 rounded-2xl leading-relaxed">
+                                <strong class="text-primary font-bold italic">理由：</strong> 内くるぶし周辺には、子宮や卵巣に直結する重要な血管やツボが集中しています。ここを1分かけて温めることで、足元から「温かい血流」のルートが完全に開通します。
                             </p>
                         </div>
                     </div>
@@ -332,11 +320,11 @@
                             <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0 italic shadow-md">1.3</div>
                             <h4 class="font-bold text-[15px]">循環：かかとの上げ下げ</h4>
                         </div>
-                        <div class="space-y-4">
-                            <p class="text-[11px] bg-primary text-white px-3 py-1.5 rounded-lg inline-block font-bold leading-none">方法</p>
-                            <p class="text-[12px] leading-relaxed italic text-foreground/80 font-medium">お風呂上がりに、ふくらはぎを意識して、ゆっくりと30回上げ下げします。</p>
-                            <p class="text-[11px] text-foreground/60 italic p-4 bg-secondary/30 rounded-2xl leading-relaxed text-justify">
-                                <strong class="text-primary font-bold italic">理由：</strong> 「第二の心臓」ふくらはぎを動かし、得た熱をポンプのように押し上げます。巡らせることで、身体を感じやすい状態で安定させます。
+                        <div class="space-y-4 text-justify px-1">
+                            <p class="text-[11px] bg-primary text-white px-3 py-1.5 rounded-lg inline-block font-bold">方法</p>
+                            <p class="text-[12px] leading-relaxed italic text-foreground/80 font-medium">お風呂上がりにゆっくりと30回上げ下げ。ふくらはぎを意識します。</p>
+                            <p class="text-[11px] text-foreground/60 italic p-4 bg-secondary/30 rounded-2xl leading-relaxed">
+                                <strong class="text-primary font-bold italic">理由：</strong> 「第二の心臓」であるふくらはぎを動かし、得た熱をポンプのように押し上げます。巡らせることで、身体を感じやすい状態で安定させます。
                             </p>
                         </div>
                     </div>
@@ -360,12 +348,12 @@
                                 <tr>
                                     <td class="font-bold">内くるぶし</td>
                                     <td>40-42℃/各1分</td>
-                                    <td>足元からの冷えを遮断し血流開通</td>
+                                    <td>足元からの冷えを遮断</td>
                                 </tr>
                                 <tr>
                                     <td class="font-bold">かかと上げ下げ</td>
-                                    <td>風呂上がり/30回</td>
-                                    <td>温血液を脳と骨盤に効率よく巡らす</td>
+                                    <td>風呂上がり30回</td>
+                                    <td>血液を脳と骨盤に効率よく巡らす</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -375,23 +363,23 @@
         </section>
 
         <!-- Phase 2: 整える -->
-        <section id="phase2" class="py-16 bg-white px-6">
+        <section id="phase2" class="py-16 bg-white px-6 border-t border-primary/5">
             <div class="max-w-md mx-auto">
                 <div class="mb-10 text-center">
                     <span class="text-primary font-black text-[11px] tracking-[0.4em] block mb-3 uppercase italic">Phase 02</span>
                     <h2 class="font-serif text-3xl font-bold mb-6 italic leading-tight gradient-text-hero !bg-gradient-to-r !from-primary !to-accent">【整える】<br>構造学による「伝送路の構築」</h2>
                     
                     <div class="w-full h-56 rounded-[2.5rem] overflow-hidden mb-8 shadow-2xl ring-4 ring-[#fdfaf7]">
-                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800" alt="Alignment" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800" alt="Body Alignment" class="w-full h-full object-cover">
                     </div>
 
-                    <div class="p-6 bg-[#fdfaf7] rounded-3xl mb-10 border border-primary/5 shadow-inner">
-                        <h3 class="text-[15px] font-bold text-primary mb-4 flex items-center gap-2 italic leading-relaxed text-justify px-2">
+                    <div class="p-6 bg-[#fdfaf7] rounded-3xl mb-10 border border-primary/5 shadow-inner italic shadow-sm">
+                        <h3 class="text-[15px] font-bold text-primary mb-4 flex items-center gap-2 text-justify px-2">
                             <i data-lucide="alert-circle" class="w-5 h-5 shrink-0"></i>
-                            「その反り腰と猫背、感度の通行止めかも？」
+                            「あなたは、無意識に腰が反ってしまう『反り腰』や『猫背』が気になりませんか？」
                         </h3>
-                        <p class="text-xs text-foreground/70 leading-loose text-justify px-2">
-                            情報の通り道である「背骨・骨盤」が物理的に圧迫されていると、信号は脳まで届きません。骨格をリセットすることが、感覚のメインパイプを開通させる鍵です。
+                        <p class="text-xs text-foreground/70 leading-loose text-justify px-2 italic font-medium">
+                            快感の信号を運ぶ「通り道（背骨・骨盤）」が物理的に圧迫されていると、脳まで感覚が届きません。情報の通り道である「骨格」をリセットすることが開通作業です。
                         </p>
                     </div>
                 </div>
@@ -401,14 +389,14 @@
                         <i data-lucide="minus-circle" class="text-primary w-6 h-6 shrink-0 mt-1"></i>
                         <div>
                             <h4 class="font-bold text-[14px] mb-1 italic">反り腰の弊害</h4>
-                            <p class="text-[11px] leading-relaxed text-foreground/60 text-justify">骨盤が前に倒れすぎ腰の神経を圧迫。感覚が脳へ登る際の「通行止め」の原因に。</p>
+                            <p class="text-[11px] leading-relaxed text-foreground/60 text-justify">骨盤が前に倒れすぎ腰の神経を圧迫。感覚が脳へ登る際の「通行止め」の原因になります。</p>
                         </div>
                     </div>
                     <div class="p-6 bg-secondary/20 rounded-3xl flex items-start gap-4 border border-white">
                         <i data-lucide="minus-circle" class="text-primary w-6 h-6 shrink-0 mt-1"></i>
                         <div>
                             <h4 class="font-bold text-[14px] mb-1 italic">猫背の弊害</h4>
-                            <p class="text-[11px] leading-relaxed text-foreground/60 text-justify">メインパイプを途中で折り曲げている状態。せっかくの興奮が脳に届くのを邪魔します。</p>
+                            <p class="text-[11px] leading-relaxed text-foreground/60 text-justify">胸が閉じ情報のメインパイプを途中で折り曲げている状態。興奮が脳に届くのを邪魔します。</p>
                         </div>
                     </div>
                 </div>
@@ -417,16 +405,16 @@
                     <div class="p-8 bg-[#fdfaf7] rounded-[2.5rem] shadow-xl border border-white">
                         <div class="flex items-center gap-3 mb-6">
                             <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0 italic shadow-md">2.1</div>
-                            <h4 class="font-bold text-[15px] italic">自己修正：かかと出し切りリセット</h4>
+                            <h4 class="font-bold text-[15px] italic">骨格の自己修正「かかと出し切り」</h4>
                         </div>
                         <ol class="text-[12px] space-y-4 mb-6 list-decimal pl-5 leading-relaxed text-foreground/80 font-medium text-justify">
                             <li>仰向けに寝て脚を伸ばします。</li>
-                            <li>片方のかかとを、<strong class="text-primary underline decoration-2 italic">「これ以上は1ミリも動かない」限界まで</strong>、グーッと遠くに突き出してください。</li>
+                            <li>片方のかかとを、<strong class="text-primary underline decoration-2 italic font-black underline-offset-4">「これ以上は1ミリも動かない」限界まで</strong>、グーッと遠くに突き出してください。</li>
                             <li>同時に反対側の腰を引き上げます（骨格を上下に揺らす）。</li>
-                            <li>これを左右交互に<span class="font-bold text-primary italic underline underline-offset-2">50回</span>行います。</li>
+                            <li>これを左右交互に<span class="font-bold text-primary italic font-black text-[14px]">50回</span>行います。</li>
                         </ol>
-                        <p class="text-[11px] text-foreground/60 bg-white p-5 rounded-2xl italic leading-relaxed border border-primary/5 text-justify">
-                            <strong class="text-primary font-bold italic">理由：</strong> 反り腰の原因となる大腰筋を正常に働かせ、ゆがんだ骨盤を物理的に正しい位置へリセットし、情報の道をまっすぐにします。
+                        <p class="text-[11px] text-foreground/60 bg-white p-5 rounded-2xl italic leading-relaxed border border-primary/5 shadow-inner">
+                            <strong class="text-primary font-bold italic font-black">理由：</strong> かかとを出し切ることで大腰筋を正常に働かせ、骨盤を正しい位置へリセット。「情報を運ぶ道」をまっすぐにします。
                         </p>
                     </div>
 
@@ -437,10 +425,10 @@
                         </div>
                         <ol class="text-[12px] space-y-4 mb-6 list-decimal pl-5 leading-relaxed text-foreground/80 font-medium text-justify">
                             <li>うつ伏せで肘を立て、片膝をカエル足のように横に曲げます。</li>
-                            <li>上体を左右に大きく捻って、肩を床に近づけるように沈み込みます（<span class="font-bold text-primary italic underline underline-offset-2">30往復</span>）。</li>
+                            <li>上体を左右に大きく捻って、肩を床に近づけるように沈み込みます（<span class="font-bold text-primary italic font-black text-[14px]">30往復</span>）。</li>
                         </ol>
-                        <p class="text-[11px] text-foreground/60 bg-white p-5 rounded-2xl italic leading-relaxed border border-primary/5 text-justify">
-                            <strong class="text-primary font-bold italic">理由：</strong> 仙腸関節から背中全体の硬直を解き、情報のパイプを完全に「開通」させます。しなやかな身体こそが快感の土台です。
+                        <p class="text-[11px] text-foreground/60 bg-white p-5 rounded-2xl italic leading-relaxed border border-primary/5 shadow-inner text-justify">
+                            <strong class="text-primary font-bold italic font-black">理由：</strong> 仙腸関節から背中全体の硬直を解き、情報の通り道を「開通」させます。しなやかな身体こそが快感の土台です。
                         </p>
                     </div>
                 </div>
@@ -453,16 +441,16 @@
                 <div class="mb-10 text-center">
                     <span class="text-primary font-black text-[11px] tracking-[0.4em] block mb-3 uppercase italic">Phase 03</span>
                     <h2 class="font-serif text-2xl font-bold mb-6 italic leading-tight gradient-text-hero !bg-gradient-to-r !from-primary !to-accent">【鍛える】<br>自発的に反応する「快感のエンジン」作り</h2>
-                    <div class="w-full h-56 rounded-[2.5rem] overflow-hidden mb-8 shadow-2xl ring-4 ring-[#fdfaf7]">
-                        <img src="https://images.unsplash.com/photo-1518611012118-2969c63702b6?auto=format&fit=crop&q=80&w=800" alt="Draw-in Exercise" class="w-full h-full object-cover">
+                    <div class="w-full h-56 rounded-[2.5rem] overflow-hidden mb-8 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1518611012118-2969c63702b6?auto=format&fit=crop&q=80&w=800" alt="Habitual Training" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-[15px] font-bold text-primary p-6 bg-[#fdfaf7] rounded-3xl mb-8 italic shadow-inner leading-relaxed px-4">
-                        「あなたは、気持ちが高まっているはずなのに、身体の奥が静まり返っていませんか？」
+                    <h3 class="text-[15px] font-bold text-primary p-6 bg-primary/5 rounded-3xl mb-8 italic shadow-inner leading-relaxed px-4">
+                        「あなたは、気持ちが高まっているはずなのに、身体の奥が他人事のように静まり返っていませんか？」
                     </h3>
                 </div>
 
                 <div class="space-y-6 text-xs leading-loose text-foreground/70 mb-12 text-justify px-2">
-                    <p>いざという時に身体が反応してくれないのは、あなたのエンジン（骨盤底筋群）が眠っていて、スイッチが入っても動かない状態だからです。このトレーニングは、<strong class="text-primary font-bold italic underline">「脳が興奮した時に、身体の奥が自発的に脈打つ体質」</strong>を作るために不可欠です。</p>
+                    <p>いざという時に身体が反応してくれないのは、エンジン（骨盤底筋群）が眠っていて、スイッチが入っても動かない状態だからです。このトレーニングは行為中に頑張るためではなく、<strong class="text-primary font-black italic underline decoration-accent underline-offset-2">「脳が興奮した時に身体の奥が自発的に脈打ち快感を受け止められる状態」</strong>を体質として作っておくための大切なケアです。</p>
                 </div>
 
                 <div class="space-y-4 mb-12">
@@ -470,22 +458,38 @@
                         <i data-lucide="zap" class="text-primary w-4 h-4"></i>
                         3.1 ステップ・バイ・ステップ：膣トレ
                     </h4>
-                    <div class="space-y-3">
+                    <div class="space-y-4">
                         <div class="p-5 bg-white rounded-2xl border border-secondary shadow-sm">
-                            <h5 class="font-bold text-primary text-xs mb-1 italic">ステップ1：お腹の凹ませ（基礎）</h5>
-                            <p class="text-[11px] text-foreground/60 leading-relaxed italic text-justify">息を8秒以上かけて吐ききり、おへそを背中にくっつけるイメージでお腹をペタンコにします。骨盤深層の筋肉が目覚めます。</p>
+                            <h5 class="font-bold text-primary text-xs mb-1 italic uppercase tracking-widest">ステップ1：お腹の凹ませ（基礎）</h5>
+                            <p class="text-[11px] text-foreground/60 leading-relaxed italic text-justify">息を8秒以上かけて最後まで吐ききり、おへそを背中にくっつけるイメージでお腹をペタンコにします。骨盤の深層筋肉が目覚めます。</p>
                         </div>
                         <div class="p-5 bg-white rounded-2xl border border-secondary shadow-sm">
-                            <h5 class="font-bold text-primary text-xs mb-1 italic">ステップ2：前側の引き上げ（膣締め）</h5>
-                            <p class="text-[11px] text-foreground/60 leading-relaxed italic text-justify">お腹を凹ませながら、ストローでお水を吸い上げるように膣を上（脳の方向）へギュッと引き上げます。前から後ろへファスナーを閉める感覚です。</p>
+                            <h5 class="font-bold text-primary text-xs mb-1 italic uppercase tracking-widest">ステップ2：前側の引き上げ（膣締め）</h5>
+                            <p class="text-[11px] text-foreground/60 leading-relaxed italic text-justify">お腹を凹ませながら、ストローでお水を吸い上げるように膣を上（脳の方向）へギュッと引き上げます。ファスナーを閉める感覚です。</p>
                         </div>
-                        <div class="p-5 bg-primary/5 rounded-2xl border border-primary/20 shadow-md">
-                            <h5 class="font-bold text-primary text-[11px] mb-1 italic uppercase tracking-tighter decoration-accent underline">ステップ3：後ろ側の引き上げ（仙骨締め）</h5>
-                            <p class="text-[10px] text-foreground/70 leading-relaxed italic text-justify font-medium">しっぽの骨（尾骨）を前に巻き込むように、仙骨を内側へ引き込みます。左右の坐骨を中央に寄せる。ここが感度を逃さない最重要ポイントです。</p>
+                        <div class="p-5 bg-primary/5 rounded-2xl border border-primary/20 shadow-md ring-2 ring-primary/5">
+                            <h5 class="font-bold text-primary text-[11px] mb-1 italic uppercase tracking-tighter decoration-accent underline underline-offset-4 font-black">ステップ3：後ろ側の引き上げ（仙骨締め）</h5>
+                            <p class="text-[10px] text-foreground/70 leading-relaxed italic text-justify font-black">
+                                しっぽの骨（尾骨）を前に巻き込むように、仙骨を内側へ引き込みます。左右の坐骨を中央に寄せるイメージ。ここが快感を逃さない最重要ポイントです。
+                            </p>
                         </div>
-                        <div class="p-5 bg-foreground text-white rounded-2xl shadow-xl">
-                            <h5 class="font-bold text-accent text-xs mb-1 italic">ステップ4：360度密閉（統合）</h5>
-                            <p class="text-[10px] text-white/70 leading-relaxed italic text-justify font-bold tracking-wider uppercase">「お腹」「膣」「仙骨」の3点を同時に。骨盤内が密閉され、脳へ送られる電気信号の強度が最大化されます。</p>
+                        <div class="p-5 bg-foreground text-white rounded-2xl shadow-xl border-b-4 border-primary">
+                            <h5 class="font-bold text-accent text-xs mb-1 italic uppercase tracking-widest">ステップ4：360度密閉（統合）</h5>
+                            <p class="text-[10px] text-white/70 leading-relaxed text-justify font-black uppercase tracking-wider italic">「お腹」「膣」「仙骨」の3点を同時。骨盤内が密閉され、脳へ送られる電気信号の強度が最大化されます。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <div class="p-6 bg-secondary rounded-[2.5rem] border-2 border-white shadow-xl italic font-medium">
+                        <h4 class="font-bold text-xs text-primary mb-4 flex items-center gap-2 italic">
+                            <i data-lucide="help-circle" class="w-4 h-4 shrink-0"></i>
+                            3.2 呼吸は「吸う時？吐く時？」どちらが正解？
+                        </h4>
+                        <div class="space-y-4 text-[10px] leading-relaxed text-foreground/80 italic text-justify">
+                            <p><span class="text-primary font-black underline">● 吐きながら:</span> 解剖学的に最も自然。最も強く締められるため、まずはこの「トレーニング向き」の方法で筋肉を動かす感覚を掴んでください。</p>
+                            <p><span class="text-primary font-black underline">● 吸いながら:</span> 外部のエネルギーを吸い込む感覚と一致。性的興奮とリンクしやすい「実戦・応用向き」の方法です。</p>
+                            <p class="bg-white/80 p-4 rounded-xl font-black text-center border-2 border-primary/5 text-primary text-[11px] shadow-sm">結論：どちらも正解。あなたが試してみて、力が入りやすい方をあなたの「正解」にしてください。</p>
                         </div>
                     </div>
                 </div>
@@ -494,30 +498,30 @@
                     <div class="absolute -top-4 -right-4 opacity-5">
                         <i data-lucide="check-circle" class="w-24 h-24 text-primary"></i>
                     </div>
-                    <h4 class="text-xs font-black text-primary text-center mb-6 uppercase tracking-widest italic underline decoration-white underline-offset-4">3.3 日常を「自分磨き」に変える</h4>
+                    <h4 class="text-xs font-black text-primary text-center mb-6 uppercase tracking-widest italic underline decoration-white underline-offset-8">3.3 【日常編】あらゆるシーンを自分磨きに</h4>
                     <div class="space-y-4 mb-8">
                         <div class="flex gap-4 items-center bg-white/60 p-4 rounded-xl shadow-sm border border-white">
                             <i data-lucide="footprints" class="text-primary w-5 h-5 shrink-0"></i>
-                            <p class="text-[10px] leading-relaxed italic"><strong class="text-primary">立ち姿勢：</strong>一本の筒を吸い上げるイメージで膣と仙骨を軽く引き上げる。</p>
+                            <p class="text-[11px] leading-relaxed italic font-medium"><strong class="text-primary font-black">立ち姿勢：</strong>頭のてっぺんが吊られているように立ち、一本の筒を吸い上げるイメージで軽く引き上げ。</p>
                         </div>
                         <div class="flex gap-4 items-center bg-white/60 p-4 rounded-xl shadow-sm border border-white">
                             <i data-lucide="armchair" class="text-primary w-5 h-5 shrink-0"></i>
-                            <p class="text-[10px] leading-relaxed italic"><strong class="text-primary">座り姿勢：</strong>坐骨で座面を捉え、膣と仙骨を「1ミリ浮かす」イメージ。</p>
+                            <p class="text-[11px] leading-relaxed italic font-medium"><strong class="text-primary font-black">座り姿勢：</strong>左右の坐骨で座面を捉え、膣と仙骨を「座面から1ミリ浮かす」イメージ。</p>
                         </div>
                     </div>
-                    <div class="space-y-2">
-                        <p class="text-[9px] font-black text-foreground/40 text-center mb-2 uppercase italic tracking-widest">My Daily Routine Check</p>
-                        <label class="flex items-center gap-3 bg-white/80 p-3 rounded-xl cursor-pointer active:scale-95 transition-all">
+                    <div class="space-y-3">
+                        <p class="text-[9px] font-black text-foreground/40 text-center mb-1 uppercase italic tracking-widest leading-none">My Daily Routine Checklist</p>
+                        <label class="flex items-center gap-3 bg-white/80 p-3.5 rounded-2xl cursor-pointer active:scale-95 transition-all shadow-sm border border-primary/5">
                             <input type="checkbox" class="w-4 h-4 accent-primary">
-                            <span class="text-[11px] font-bold italic">朝、歯を磨いている時</span>
+                            <span class="text-[11px] font-black italic">朝、歯を磨いている時</span>
                         </label>
-                        <label class="flex items-center gap-3 bg-white/80 p-3 rounded-xl cursor-pointer active:scale-95 transition-all">
+                        <label class="flex items-center gap-3 bg-white/80 p-3.5 rounded-2xl cursor-pointer active:scale-95 transition-all shadow-sm border border-primary/5">
                             <input type="checkbox" class="w-4 h-4 accent-primary">
-                            <span class="text-[11px] font-bold italic">電車を待っている時</span>
+                            <span class="text-[11px] font-black italic">電車を待っている時</span>
                         </label>
-                        <label class="flex items-center gap-3 bg-white/80 p-3 rounded-xl cursor-pointer active:scale-95 transition-all">
+                        <label class="flex items-center gap-3 bg-white/80 p-3.5 rounded-2xl cursor-pointer active:scale-95 transition-all shadow-sm border border-primary/5">
                             <input type="checkbox" class="w-4 h-4 accent-primary">
-                            <span class="text-[11px] font-bold italic">デスクワークの一区切り</span>
+                            <span class="text-[11px] font-black italic">デスクワークの一区切り</span>
                         </label>
                     </div>
                 </div>
@@ -527,7 +531,7 @@
         <!-- Phase 4: 興奮する -->
         <section id="phase4" class="py-16 bg-foreground text-white px-6 relative overflow-hidden border-t border-white/5">
             <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                <img src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?auto=format&fit=crop&q=80&w=1200" alt="Passion Heat" class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?auto=format&fit=crop&q=80&w=1200" alt="Heat and Energy" class="w-full h-full object-cover">
             </div>
             <div class="max-w-md mx-auto relative z-10">
                 <div class="mb-10 text-center">
@@ -540,33 +544,33 @@
                     </div>
                 </div>
 
-                <div class="space-y-10 text-xs leading-loose text-white/70 text-justify px-2 mb-12">
-                    <p>過去の成功体験をなぞるだけの<strong class="text-accent font-bold italic">「再現作業」</strong>に入ってはいませんか？脳という発電所が「今」発電していないのにスイッチを連打しても、身体に新しい光が灯ることはありません。</p>
+                <div class="space-y-10 text-xs leading-loose text-white/70 text-justify px-2 mb-12 italic">
+                    <p>過去の成功体験をなぞるだけの<strong class="text-accent font-black italic underline decoration-white/30 decoration-2">「再現作業」</strong>に入ってはいませんか？脳という発電所が「今」発電していないのにスイッチを連打しても、身体に新しい光が灯ることはありません。</p>
                     
                     <div>
-                        <h4 class="text-sm font-bold text-accent mb-4 italic underline decoration-white/20 underline-offset-4">4.1 「触れて興奮する」のではなく「興奮して触れる」</h4>
+                        <h4 class="text-sm font-black text-accent mb-4 italic underline decoration-white/20 underline-offset-8">4.1 「触れて興奮する」のではなく「興奮して触れる」</h4>
                         <p class="text-[11px] leading-relaxed mb-6 italic text-white/90">
-                            順番は、<span class="text-white font-black underline italic decoration-accent decoration-2 tracking-widest bg-accent/10 px-1">「まず脳を興奮に放り込み、溢れたエネルギーを自分の身体で確認する」</span>です。身体がそれを切望し始めた時こそが、神経が最も研ぎ澄まされる瞬間です。
+                            順番は、<span class="text-white font-black underline italic decoration-accent decoration-2 tracking-widest bg-accent/20 px-2 py-1 leading-loose rounded-sm">「まず脳を興奮の状態に放り込み、その溢れたエネルギーを自分の身体で確認する」</span>です。想像力で熱を十分に作り、身体が「切望」し始めた時こそが、神経が最も研ぎ澄まされる瞬間です。
                         </p>
                     </div>
 
-                    <div class="bg-white/10 p-8 rounded-[2.5rem] space-y-6 border border-white/20 shadow-2xl backdrop-blur-sm">
-                        <h4 class="font-bold text-xs border-b border-accent/40 pb-3 flex items-center gap-2 italic uppercase tracking-[0.2em] text-accent">
-                            <i data-lucide="flame" class="w-4 h-4"></i>
-                            4.2 脳の予熱：着火プロセス
+                    <div class="bg-white/10 p-8 rounded-[3rem] space-y-8 border border-white/10 shadow-2xl backdrop-blur-md">
+                        <h4 class="font-black text-xs border-b-2 border-accent/40 pb-3 flex items-center gap-2 italic uppercase tracking-widest text-accent italic">
+                            <i data-lucide="flame" class="w-5 h-5 text-accent animate-pulse"></i>
+                            4.2 脳の予熱：今この瞬間に着火する
                         </h4>
-                        <div class="space-y-8">
-                            <div class="flex gap-4">
-                                <span class="text-accent font-black italic text-xl leading-none">1.</span>
-                                <p class="text-[11px] leading-relaxed italic"><strong class="text-white">記憶を燃料にする：</strong>過去に最高に気持ちよかった情景や感触を思い出し「ガソリン」にします。</p>
+                        <div class="space-y-10">
+                            <div class="flex gap-4 items-start">
+                                <span class="text-accent font-black italic text-2xl leading-none pt-1">1.</span>
+                                <p class="text-[11px] leading-relaxed italic"><strong class="text-white font-black">記憶を燃料にする：</strong>過去に最高に気持ちよかった情景や感触を思い出し「ガソリン」にします。</p>
                             </div>
-                            <div class="flex gap-4">
-                                <span class="text-accent font-black italic text-xl leading-none">2.</span>
-                                <p class="text-[11px] leading-relaxed italic"><strong class="text-white">今に反映させる：</strong>記憶を「今起きていること」として再生。喉が渇いたり、下腹部がじわっと熱くなるのを待ちます。</p>
+                            <div class="flex gap-4 items-start">
+                                <span class="text-accent font-black italic text-2xl leading-none pt-1">2.</span>
+                                <p class="text-[11px] leading-relaxed italic"><strong class="text-white font-black">今に反映させる：</strong>その記憶を「今起きていること」として再生。呼吸が深くなったり下腹部が熱くなるのを待ちます（これが興奮です）。</p>
                             </div>
-                            <div class="flex gap-4">
-                                <span class="text-accent font-black italic text-xl leading-none">3.</span>
-                                <p class="text-[11px] leading-relaxed italic"><strong class="text-white">飢餓感を待つ：</strong>再現したい義務感ではなく、今の興奮を開放したい欲求が勝るまで、あえて触れません。</p>
+                            <div class="flex gap-4 items-start">
+                                <span class="text-accent font-black italic text-2xl leading-none pt-1">3.</span>
+                                <p class="text-[11px] leading-relaxed italic"><strong class="text-white font-black">飢餓感を待つ：</strong>義務感ではなく、今の興奮を「開放したい」という欲求が勝るまで、あえて身体には触れません。</p>
                             </div>
                         </div>
                     </div>
@@ -581,59 +585,59 @@
                     <span class="text-primary font-black text-[11px] tracking-[0.4em] block mb-3 uppercase italic">Phase 05</span>
                     <h2 class="font-serif text-3xl font-bold mb-6 italic leading-tight gradient-text-hero !bg-gradient-to-r !from-primary !to-accent">【つなぐ】<br>脳と感覚を一致させ増幅させる</h2>
                     <div class="w-full h-56 rounded-[2.5rem] overflow-hidden mb-8 shadow-2xl ring-4 ring-secondary/20">
-                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800" alt="Meditation" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=1200" alt="Mind Body Connection" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 bg-primary/5 border-l-8 border-primary rounded-r-3xl mb-8 shadow-sm backdrop-blur-sm italic">
-                        <p class="text-[13px] font-bold text-primary leading-relaxed text-justify px-2">
-                            「快感の最中に『明日の仕事』を思い出したり無意識に歯を食いしばっていませんか？」
+                        <p class="text-[13px] font-bold text-primary leading-relaxed text-justify px-2 italic font-black">
+                            「あなたは、快感の最中に『明日の仕事』を思い出したり無意識に歯を食いしばっていませんか？」
                         </p>
                     </div>
                 </div>
 
-                <div class="space-y-10 text-xs leading-loose text-foreground/70 text-justify px-2 mb-12">
-                    <p>脳が身体と「接続」されていないと、感覚を脳がキャンセルしてしまいます。脳を「快感の増幅器（アンプ）」として機能させるための最終技術です。</p>
+                <div class="space-y-10 text-xs leading-loose text-foreground/70 text-justify px-2 mb-12 italic font-medium">
+                    <p>脳が身体と「接続」されていないと、せっかくの感覚を脳がキャンセルしてしまいます。太陽の光を浴びても、花びらが光を吸収できなければ花はただ焼けるだけ。脳を「増幅器（アンプ）」にするための最終技術です。</p>
 
-                    <div class="p-6 bg-secondary/30 rounded-3xl border border-primary/10 shadow-inner">
-                        <h4 class="font-bold text-[14px] mb-3 italic text-primary underline decoration-primary/10 decoration-4">5.1 実戦：実戦ドローイン</h4>
-                        <p class="text-[11px] leading-relaxed text-foreground/80 italic font-medium">
-                            興奮を感じている最中に、第3段階の<strong class="text-primary font-black italic underline underline-offset-2 decoration-accent">「引き上げ（膣・仙骨）」</strong>を自然な呼吸で行います。神経信号の密度が一気に高まり、脳へ鮮烈な情報を届けます。
+                    <div class="p-8 bg-secondary/40 rounded-[2.5rem] border border-primary/10 shadow-inner">
+                        <h4 class="font-black text-[14px] mb-4 italic text-primary underline decoration-primary/10 decoration-8 underline-offset-0">5.1 実戦：脳と筋肉を連動させる</h4>
+                        <p class="text-[11px] leading-relaxed text-foreground/80 italic font-black">
+                            興奮を感じている最中に、第3段階の<strong class="text-primary italic underline underline-offset-4 decoration-accent font-black italic">「引き上げ（お腹・膣・仙骨）」</strong>を、自分が自然だと感じる呼吸のタイミングで行います。これにより神経信号の密度が一気に高まり、快感を何倍にも増幅させます。
                         </p>
                     </div>
 
-                    <div class="space-y-4">
-                        <h4 class="text-sm font-black italic mb-6 border-b-2 border-primary/10 pb-2 uppercase tracking-widest text-primary text-center">5.2 脳と身体を直結させる「3つの動作」</h4>
+                    <div class="space-y-5">
+                        <h4 class="text-sm font-black italic mb-8 border-b-2 border-primary/10 pb-2 uppercase tracking-[0.2em] text-primary text-center italic">5.2 脳と身体を直結させる「3つの動作」</h4>
                         
-                        <div class="flex items-start gap-5 p-6 bg-white border border-primary/10 rounded-[2rem] shadow-xl relative overflow-hidden">
-                            <div class="absolute -right-2 top-0 opacity-5"><i data-lucide="smile" class="w-12 h-12"></i></div>
-                            <div class="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center shrink-0 shadow-inner">
-                                <i data-lucide="smile" class="w-6 h-6"></i>
+                        <div class="flex items-start gap-5 p-6 bg-white border border-primary/10 rounded-[2.5rem] shadow-xl relative overflow-hidden active:bg-secondary/20 transition-all">
+                            <div class="absolute -right-2 top-0 opacity-5"><i data-lucide="smile" class="w-16 h-16 text-primary"></i></div>
+                            <div class="w-11 h-11 bg-primary/10 text-primary rounded-full flex items-center justify-center shrink-0 shadow-inner">
+                                <i data-lucide="smile" class="w-7 h-7"></i>
                             </div>
                             <div>
-                                <h5 class="font-bold text-xs mb-1 italic underline decoration-accent underline-offset-4">1. 顎（あご）の力を抜く</h5>
-                                <p class="text-[10px] text-foreground/60 leading-relaxed italic text-justify">アゴを脱力させ上下の歯を離すと、連動して骨盤周りも開き、脳の警戒モードが解除されます。</p>
+                                <h5 class="font-black text-xs mb-1 italic underline decoration-accent underline-offset-4 decoration-2 italic">1. 顎（あご）の力を抜く</h5>
+                                <p class="text-[10px] text-foreground/60 leading-relaxed italic text-justify font-medium">アゴを脱力させ上下の歯を離すと、連動して骨盤周りも開き、脳の警戒モード（交感神経）が完全に解除されます。</p>
                             </div>
                         </div>
                         
-                        <div class="flex items-start gap-5 p-6 bg-white border border-primary/10 rounded-[2rem] shadow-xl relative overflow-hidden">
-                            <div class="absolute -right-2 top-0 opacity-5"><i data-lucide="eye" class="w-12 h-12"></i></div>
-                            <div class="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center shrink-0 shadow-inner">
-                                <i data-lucide="eye" class="w-6 h-6"></i>
+                        <div class="flex items-start gap-5 p-6 bg-white border border-primary/10 rounded-[2.5rem] shadow-xl relative overflow-hidden active:bg-secondary/20 transition-all">
+                            <div class="absolute -right-2 top-0 opacity-5"><i data-lucide="eye" class="w-16 h-16 text-primary"></i></div>
+                            <div class="w-11 h-11 bg-primary/10 text-primary rounded-full flex items-center justify-center shrink-0 shadow-inner">
+                                <i data-lucide="eye" class="w-7 h-7"></i>
                             </div>
                             <div>
-                                <h5 class="font-bold text-xs mb-1 italic underline decoration-accent underline-offset-4">2. 目を閉じ、上を見る</h5>
-                                <p class="text-[10px] text-foreground/60 leading-relaxed italic text-justify">視線をまぶたの裏（上方向）に向け固定。これにより脳が特殊なトランス状態へ導かれ、微細な感覚を拾いやすくなります。</p>
+                                <h5 class="font-black text-xs mb-1 italic underline decoration-accent underline-offset-4 decoration-2 italic">2. 目を閉じ、上を見る</h5>
+                                <p class="text-[10px] text-foreground/60 leading-relaxed italic text-justify font-medium">視線をまぶたの裏（上方向）に向け固定。これにより脳が特殊なトランス状態へ導かれ、内側の微細な感覚を拾いやすくなります。</p>
                             </div>
                         </div>
                         
-                        <div class="flex items-start gap-5 p-6 bg-white border-2 border-primary/30 rounded-[2rem] shadow-2xl relative overflow-hidden ring-4 ring-primary/5">
-                            <div class="absolute -right-2 top-0 opacity-5"><i data-lucide="radio" class="w-12 h-12 text-primary"></i></div>
-                            <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center shrink-0 shadow-xl">
-                                <i data-lucide="radio" class="w-6 h-6"></i>
+                        <div class="flex items-start gap-5 p-6 bg-white border-4 border-primary/10 rounded-[2.5rem] shadow-2xl relative overflow-hidden ring-8 ring-primary/5">
+                            <div class="absolute -right-2 top-0 opacity-5"><i data-lucide="radio" class="w-16 h-16 text-primary"></i></div>
+                            <div class="w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center shrink-0 shadow-xl">
+                                <i data-lucide="radio" class="w-7 h-7 text-accent"></i>
                             </div>
                             <div>
-                                <h5 class="font-bold text-[12px] mb-2 italic uppercase text-primary tracking-widest underline decoration-accent">3. 能動的感覚サーチ</h5>
+                                <h5 class="font-black text-[13px] mb-2 italic uppercase text-primary tracking-widest italic decoration-accent underline underline-offset-4 decoration-2">3. 能動的感覚サーチ</h5>
                                 <p class="text-[10px] text-foreground/80 leading-relaxed italic text-justify font-black">
-                                    「仙骨（根元）から湧き上がった波が背骨を通り脳天まで突き抜ける瞬間」を自分から探しに行きます。脳天の「ゾワッ」を見つけたら、イメージの中で大きく鮮やかに育てます。これが「接続」の完成です。
+                                    刺激を待つのではなく、脳のアンテナで自分から探しに行きます。「仙骨（根元）から湧き上がった波が背骨を通り脳天まで突き抜ける瞬間」を探し脳内で鮮やかに育てます。これが「接続」の完成です。
                                 </p>
                             </div>
                         </div>
@@ -643,50 +647,50 @@
         </section>
 
         <!-- Conclusion Section -->
-        <section class="py-20 bg-background px-6 text-center relative overflow-hidden border-t-4 border-primary/10">
+        <section class="py-20 bg-background px-6 text-center relative overflow-hidden border-t-8 border-primary/10">
             <div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
             <div class="max-w-md mx-auto relative z-10 reveal">
-                <i data-lucide="heart" class="text-primary w-12 h-12 mx-auto mb-10 animate-pulse"></i>
-                <h2 class="font-serif text-3xl font-bold mb-8 italic text-primary underline decoration-accent underline-offset-8 decoration-4">結論：自ら咲く力を手に入れる</h2>
-                <div class="space-y-8 text-sm text-foreground/80 leading-[2.2] mb-14 text-justify italic font-medium px-2 border-l-2 border-primary/20">
+                <i data-lucide="heart" class="text-primary w-14 h-14 mx-auto mb-10 animate-pulse"></i>
+                <h2 class="font-serif text-3xl font-bold mb-8 italic text-primary underline decoration-accent underline-offset-[12px] decoration-4 italic">結論：自ら咲く力を手に入れる</h2>
+                <div class="space-y-8 text-sm text-foreground/80 leading-[2.2] mb-16 text-justify italic font-black px-3 border-l-4 border-primary/30">
                     <p>適切な環境（血流）、正しい通り道（骨格）、自発的に動くエンジン（習慣）、心理的な着火（興奮）、そして脳の正しい使いかた（接続）。</p>
-                    <p>この5段階が揃ったとき、あなたの身体は無限の快感を生み出す存在へと変わります。あなたはもはや刺激を待つだけの存在ではなく、快感という名の彩りを自ら放つ自由な<strong class="text-primary underline decoration-accent decoration-4 font-black">「開拓者」</strong>なのです。</p>
+                    <p>この5段階が揃ったとき、あなたの身体は無限の快感を生み出す存在へと変わります。もはやあなたは刺激を待つだけの存在ではなく、彩りを自ら放つ自由な<strong class="text-primary underline decoration-accent decoration-8 font-black italic">「開拓者」</strong>なのです。</p>
                 </div>
                 
-                <div class="bg-white p-12 rounded-[3.5rem] shadow-2xl border border-primary/10 mb-16 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-primary via-accent to-primary"></div>
-                    <h3 class="font-serif text-2xl text-primary font-bold mb-4 italic tracking-tighter italic">「気持ちいい！楽しい！が大正解」</h3>
-                    <p class="text-xs text-foreground/40 leading-relaxed italic font-bold">この理念を胸に、あなた自身の可能性を<br class="br-sp">今、この瞬間から解放してください。</p>
+                <div class="bg-white p-12 rounded-[4rem] shadow-2xl border-2 border-primary/10 mb-20 relative overflow-hidden ring-4 ring-white">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-accent to-primary"></div>
+                    <h3 class="font-serif text-2xl text-primary font-black mb-4 italic tracking-tighter italic shadow-sm leading-tight">「気持ちいい！楽しい！が大正解」</h3>
+                    <p class="text-xs text-foreground/40 leading-relaxed italic font-black uppercase tracking-widest">この理念を胸に、あなた自身の可能性を<br class="br-sp">今、この瞬間から解放してください。</p>
                 </div>
 
                 <a href="https://forms.gle/92rN3obmELxtDM5M9" target="_blank" 
-                    class="w-full bg-primary text-white py-6 rounded-[2.5rem] shadow-2xl font-black text-[15px] tracking-[0.2em] uppercase transition-all active:scale-95 inline-block text-center hover:bg-primary/90 border-b-8 border-primary/30">
+                    class="w-full bg-primary text-white py-6 rounded-[2.5rem] shadow-2xl font-black text-[16px] tracking-[0.2em] uppercase transition-all active:scale-95 inline-block text-center hover:bg-primary/90 border-b-8 border-primary/40 ring-4 ring-primary/10">
                     性感オイルマッサージを依頼する
                 </a>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="bg-foreground text-white pt-20 pb-10 px-8 border-t border-white/5">
+        <footer class="bg-foreground text-white pt-24 pb-12 px-8 border-t border-white/5">
             <div class="max-w-md mx-auto">
-                <div class="flex flex-col items-center mb-12 text-center">
-                    <div class="flex items-center gap-2 mb-6">
-                        <i data-lucide="flower-2" class="text-accent w-7 h-7"></i>
-                        <span class="font-serif font-black text-lg tracking-tighter uppercase italic">Neuro Body Hack</span>
+                <div class="flex flex-col items-center mb-16 text-center">
+                    <div class="flex items-center gap-3 mb-8">
+                        <i data-lucide="flower-2" class="text-accent w-8 h-8"></i>
+                        <span class="font-serif font-black text-xl tracking-tighter uppercase italic drop-shadow-md">Neuro Body Hack</span>
                     </div>
-                    <p class="text-white/30 text-[10px] leading-loose italic px-6 mb-8">
+                    <p class="text-white/30 text-[10px] leading-loose italic px-6 mb-10 font-medium">
                         生理学・構造学・脳科学・心理学に基づく体質改善マスターガイド。<br>
                         身体を調律し、一生ものの感受性を開発するためのセルフケアメソッド。
                     </p>
-                    <div class="w-12 h-px bg-white/20 mb-8"></div>
-                    <div class="flex justify-center gap-10 text-[10px] font-black text-white/40 tracking-[0.3em] uppercase">
-                        <a href="#" class="hover:text-accent transition-colors">Privacy</a>
-                        <a href="#" class="hover:text-accent transition-colors">Terms</a>
-                        <a href="#" class="hover:text-accent transition-colors">Contact</a>
+                    <div class="w-16 h-1 bg-white/10 mb-10 rounded-full"></div>
+                    <div class="flex justify-center gap-12 text-[10px] font-black text-white/50 tracking-[0.3em] uppercase italic">
+                        <a href="#" class="hover:text-accent transition-colors border-b border-transparent hover:border-accent">Privacy</a>
+                        <a href="#" class="hover:text-accent transition-colors border-b border-transparent hover:border-accent">Terms</a>
+                        <a href="#" class="hover:text-accent transition-colors border-b border-transparent hover:border-accent">Contact</a>
                     </div>
                 </div>
 
-                <div class="text-[9px] text-white/10 text-center tracking-[0.2em] italic font-medium uppercase border-t border-white/5 pt-10">
+                <div class="text-[9px] text-white/10 text-center tracking-[0.3em] italic font-black uppercase border-t border-white/5 pt-12">
                     © 2026 BODY DEVELOPMENT MASTER GUIDE.<br>ALL RIGHTS RESERVED.
                 </div>
             </div>
@@ -717,10 +721,10 @@
             });
         });
 
-        // Floating effect for hero and other decorative images
+        // Floating effect for images
         gsap.to('img', {
-            y: -8,
-            duration: 4,
+            y: -10,
+            duration: 5,
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut"
@@ -729,58 +733,71 @@
         // GATE LOGIC: Keyword to unlock content
         function checkUnlock() {
             const input = document.getElementById('keyword-input');
-            const keyword = input.value.trim().toLowerCase();
+            const keyword = input.value.trim();
             const errorMsg = document.getElementById('error-msg');
             const gateUI = document.getElementById('unlock-gate');
             const lockedArea = document.getElementById('locked-area');
 
-            // CORRECT KEYWORD: bloom
-            if (keyword === 'bloom') {
-                // Play Success Sound/Haptic if needed, or just visual
+            // 正解: Yuji_bodycare
+            if (keyword === 'Yuji_bodycare') {
+                // Success visual feedback
                 gsap.to(gateUI, {
                     opacity: 0,
-                    y: -50,
-                    duration: 0.8,
-                    ease: "power4.in",
+                    y: -100,
+                    scale: 0.9,
+                    duration: 1.2,
+                    ease: "expo.in",
                     onComplete: () => {
                         gateUI.style.display = 'none';
                         lockedArea.classList.remove('locked-content');
                         lockedArea.classList.add('unlocked');
                         
-                        // Refresh ScrollTrigger to detect new section positions
+                        // Recalculate GSAP trigger points for newly visible content
                         ScrollTrigger.refresh();
                         
-                        // Smoothly scroll down to the content
-                        window.scrollBy({ top: 100, behavior: 'smooth' });
+                        // New animations for the unlocked sections
+                        const unlockedElements = lockedArea.querySelectorAll('section');
+                        unlockedElements.forEach((sec, i) => {
+                            gsap.from(sec, {
+                                opacity: 0,
+                                y: 30,
+                                duration: 1,
+                                delay: i * 0.1,
+                                ease: "power3.out"
+                            });
+                        });
+                        
+                        // Smoothly scroll down slightly
+                        window.scrollBy({ top: 120, behavior: 'smooth' });
                     }
                 });
             } else {
-                // Vibration/Shake effect on error
+                // Shake and Error display
                 errorMsg.style.opacity = '1';
-                gsap.to(input, {
+                gsap.fromTo(input, {x: -10}, {
                     x: 10,
                     duration: 0.1,
                     repeat: 5,
                     yoyo: true,
-                    ease: "power1.inOut",
+                    ease: "none",
                     onComplete: () => { gsap.set(input, {x: 0}); }
                 });
             }
         }
 
-        // Checklist Background change
+        // Checklist styling on toggle
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(cb => {
             cb.addEventListener('change', function() {
                 if (this.checked) {
-                    gsap.to(this.parentElement, {backgroundColor: 'rgba(217, 197, 140, 0.2)', duration: 0.3});
+                    gsap.to(this.parentElement, {backgroundColor: 'rgba(217, 197, 140, 0.3)', scale: 1.02, duration: 0.3});
                 } else {
-                    gsap.to(this.parentElement, {backgroundColor: 'rgba(255, 255, 255, 0.8)', duration: 0.3});
+                    gsap.to(this.parentElement, {backgroundColor: 'rgba(255, 255, 255, 0.8)', scale: 1.0, duration: 0.3});
                 }
             });
         });
 
-        // Prevent enter key from reloading page in input
+        // Trigger unlock with Enter key
         document.getElementById('keyword-input').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 checkUnlock();
