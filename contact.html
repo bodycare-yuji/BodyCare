@@ -47,7 +47,7 @@
             letter-spacing: 0.02em;
         }
 
-        /* 質感のある背景 */
+        /* 質感のある紙背景 */
         .bg-texture {
             background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
         }
@@ -60,8 +60,8 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
         }
         
-        /* コンテンツ幅固定 */
-        .content-width { width: 100%; max-width: 500px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+        /* コンテンツ幅固定（入れ子余白の解消） */
+        .content-width { width: 100%; max-width: 500px; margin: 0 auto; padding-left: 12px; padding-right: 12px; }
 
         .reveal { opacity: 0; transform: translateY(15px); }
 
@@ -81,52 +81,48 @@
             line-height: 1.3;
         }
 
-        /* ヘッダー境界線の処理 */
+        /* ヘッダー境界線を「溶かす」特大グラデーション */
         .header-gradient-end {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 150px;
-            background: linear-gradient(to bottom, transparent, rgba(253, 250, 247, 0.8) 70%, #fdfaf7 100%);
+            height: 250px; /* 長く取ることで自然に溶け込む */
+            background: linear-gradient(to bottom, transparent 0%, rgba(253, 250, 247, 0.6) 40%, rgba(253, 250, 247, 0.95) 80%, #fdfaf7 100%);
             z-index: 20;
         }
         
         #vibrate-target { will-change: transform; }
 
-        /* チェックリストアニメーション */
+        /* チェックリストアニメーション：真ん中でチェックされる */
         .check-item {
             background: white;
-            border-radius: 14px;
-            padding: 16px 18px;
+            border-radius: 12px;
+            padding: 14px 16px;
             border: 1px solid rgba(141, 81, 74, 0.08);
             display: flex;
             align-items: center;
             gap: 12px;
             font-size: 14px;
-            box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.03);
-            transform: scale(0.92);
+            transform: scale(0.95);
             opacity: 0;
-            transition: border-color 0.4s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
         }
         .check-item i {
-            color: #e5e7eb;
+            color: #d1d5db;
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            transform: scale(0.5) rotate(-20deg);
+            transform: scale(0.5);
         }
         .check-item.active {
             transform: scale(1);
             opacity: 1;
-            border-color: rgba(141, 81, 74, 0.2);
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-color: rgba(141, 81, 74, 0.15);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .check-item.active i {
             color: #8d514a;
-            transform: scale(1) rotate(0deg);
+            transform: scale(1);
         }
-
-        .br-sp { display: block; }
-        @media (min-width: 768px) { .br-sp { display: inline; } }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden bg-texture">
@@ -140,66 +136,68 @@
             </div>
             <div class="flex items-center gap-2">
                 <a href="https://body-care-orpin.vercel.app/" target="_blank" class="text-white text-[9px] font-bold border border-white/30 px-3 py-2 rounded-full">自分で開発する</a>
-                <a href="#form" class="bg-primary text-white text-[10px] px-4 py-2 rounded-lg font-bold">連絡する</a>
+                <a href="#form" class="bg-primary text-white text-[10px] px-4 py-2 rounded-lg font-bold">予約する</a>
             </div>
         </div>
     </nav>
 
     <!-- 1. Main Visual (Header) -->
-    <header class="relative min-h-screen flex flex-col items-center justify-center bg-darkNav overflow-hidden">
-        <!-- 多重レイヤー背景（ぼかし） -->
-        <img src="https://images.unsplash.com/photo-1534120247760-c44c3e4a62f1?q=80&w=1500&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-25 blur-3xl scale-110">
+    <header class="relative min-h-[100dvh] flex flex-col items-center justify-center bg-darkNav overflow-hidden">
+        <!-- ぼかし多重背景 -->
+        <img src="https://images.unsplash.com/photo-1534120247760-c44c3e4a62f1?q=80&w=1500&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-20 blur-3xl scale-110">
         <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-transparent z-10"></div>
         
-        <div class="relative z-30 w-full text-center px-6">
-            <!-- メインメッセージ：画面中央付近に配置 -->
-            <div class="reveal mb-12">
-                <p class="font-serif text-accent tracking-[0.4em] text-[11px] mb-6 uppercase font-black">Beyond Sensibility</p>
-                <h1 class="font-serif text-white text-[28px] md:text-5xl font-bold leading-[1.8] tracking-widest">
+        <!-- ナビ高さを考慮したパディング + 中央寄せコンテンツ -->
+        <div class="relative z-30 w-full text-center px-6 pt-16 flex flex-col items-center justify-center">
+            
+            <div class="reveal mb-6">
+                <p class="font-serif text-accent tracking-[0.4em] text-[11px] mb-3 uppercase font-bold">Beyond Experience</p>
+                <!-- メインコピー：すべて白文字・改行 -->
+                <h1 class="font-serif text-white text-[28px] md:text-5xl font-bold leading-[1.6]">
                     貴方がまだ知らない<br>
                     身体のうずき<br>
-                    <span class="text-[42px] md:text-6xl mt-4 block italic text-white drop-shadow-2xl">その先へ。</span>
+                    <span class="text-[36px] md:text-6xl mt-1 block italic opacity-95">その先へ。</span>
                 </h1>
             </div>
 
-            <!-- 震える画像：脊髄反射アニメーション -->
-            <div class="relative mb-12 reveal max-w-[280px] mx-auto">
-                <div class="rounded-[3rem] overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.8)] border border-white/10 aspect-[4/5] bg-black">
-                    <img id="vibrate-target" src="https://images.unsplash.com/photo-1516575150278-77180fe215a7?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-80">
+            <!-- 震える画像：コピーとの距離を短縮 -->
+            <div class="relative mb-8 reveal max-w-[260px] w-full">
+                <div class="rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-white/10 aspect-[4/5] bg-black">
+                    <img id="vibrate-target" src="https://images.unsplash.com/photo-1516575150278-77180fe215a7?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-90">
                 </div>
             </div>
 
-            <div class="reveal space-y-4">
-                <p class="text-[15px] leading-relaxed text-white/70 font-medium">
+            <div class="reveal space-y-2">
+                <p class="text-[14px] leading-relaxed text-white/80 font-medium">
                     画面越しに見た「あの感覚」は、<br>
                     貴女の中にも実在する。
                 </p>
-                <p class="text-[17px] font-bold text-accent tracking-[0.15em] drop-shadow-md">
+                <p class="text-[16px] font-bold text-accent tracking-[0.1em]">
                     思考を止め、ただの歓喜に還る180分。
                 </p>
             </div>
         </div>
 
-        <!-- 下部セクションへのスムーズなフェードアウト -->
-        <div class="header-end-scrim"></div>
+        <!-- セクション境界を溶かすグラデーション -->
+        <div class="header-gradient-end"></div>
     </header>
 
     <!-- 2. 共感セクション -->
-    <section class="py-12 bg-background relative z-30">
+    <section class="py-12 bg-background relative z-30 -mt-1">
         <div class="content-width">
-            <div class="section-header text-center mb-10 reveal">
+            <div class="section-header text-center mb-8 reveal">
                 <span class="tag">Release</span>
                 <h2>身体の「奥のむらむら」を<br>解放してあげて</h2>
             </div>
             
             <div class="space-y-6">
                 <div class="text-center mb-6 reveal">
-                    <p class="text-[15px] font-bold text-primary italic">もう、心と身体を解放してあげてください。</p>
+                    <p class="text-[15px] font-bold text-primary italic leading-relaxed">もう、心と身体を解放してあげてください。</p>
                     <p class="text-[14px] text-foreground/50 mt-1">こんな「物足りなさ」を、感じていませんか？</p>
                 </div>
 
-                <!-- スクロールで中央に来た時にチェックされるリスト -->
-                <div class="space-y-3" id="check-list-container">
+                <!-- スクロールでチェックが入るリスト -->
+                <div class="space-y-2.5" id="check-list-container">
                     <div class="check-item"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>パートナーが出したいだけのエッチに不満</div>
                     <div class="check-item"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>前戯が短すぎて、不完全燃焼</div>
                     <div class="check-item"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>パートナーの「気持ちいい？」がプレッシャー</div>
@@ -215,16 +213,16 @@
     <!-- 3. メッセージセクション -->
     <section class="py-16 bg-secondary/30 relative overflow-hidden">
         <div class="content-width text-center">
-            <h3 class="font-serif text-xl text-primary font-bold leading-relaxed mb-8 reveal">
+            <h3 class="font-serif text-[20px] text-primary font-bold leading-relaxed mb-8 reveal px-2">
                 その「物足りなさ」は、<br>
                 貴女が自分の身体を<br>
                 大切に想っている証拠。
             </h3>
             
-            <div class="text-[15px] leading-loose text-foreground/80 space-y-6 text-justify reveal">
+            <div class="text-[15px] leading-loose text-foreground/80 space-y-6 text-justify px-4 reveal">
                 <p>貴女の感受性が足りないのではありません。むしろ逆で、貴女の身体の、<span class="font-bold border-b-2 border-primary text-foreground">満たされる準備</span>、が整った状態です。</p>
                 <p>100人以上の施術実践と物理法則と解剖学に基づき、眠っていた神経の通り道を、一つひとつ丁寧に拓いていきます。</p>
-                <div class="bg-white/90 p-6 rounded-2xl border border-primary/10 shadow-sm text-center mt-10">
+                <div class="bg-white/80 p-5 rounded-2xl border border-primary/10 shadow-sm text-center mt-10">
                     <p class="font-bold text-primary text-[17px]">難しいことは、すべて私に任せてください。</p>
                 </div>
             </div>
