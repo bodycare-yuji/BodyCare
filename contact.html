@@ -50,24 +50,21 @@
          CUSTOM CSS (スマホ閲覧特化・余白改善)
     =========================================== -->
     <style>
-        /* 全体設定 */
         body { 
             background-color: #fdfaf7; 
             color: #3f3835; 
             -webkit-text-size-adjust: 100%;
             line-height: 1.8;
-            font-size: 16px; /* スマホ視認性重視 */
+            font-size: 16px; 
             letter-spacing: 0.03em;
             word-break: break-all;
         }
 
-        /* 質感のある紙背景テクスチャ */
         .bg-texture {
             background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
             background-attachment: fixed;
         }
         
-        /* ナビゲーション */
         .glass-dark { 
             background: rgba(26, 22, 20, 0.98); 
             backdrop-filter: blur(15px); 
@@ -75,23 +72,17 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
         }
         
-        /* 
-           余白の改善（重要）: 
-           入れ子になってもコンテンツ幅が削られないよう左右パディングを最小限に固定。
-           スマホ画面の横幅を最大限に活用します。
-        */
+        /* 余白の改善: スマホ画面の横幅を最大限に活用 */
         .content-safe-area {
             width: 100%;
             max-width: 500px;
             margin: 0 auto;
-            padding-left: 14px;  /* 必要最低限の余白 */
+            padding-left: 14px; 
             padding-right: 14px;
         }
 
-        /* スクロールアニメーション用 */
         .reveal { opacity: 0; transform: translateY(20px); }
 
-        /* セクションタイトルの装飾 */
         .section-header {
             text-align: center;
             margin-bottom: 2rem;
@@ -113,7 +104,7 @@
             color: #3f3835;
         }
 
-        /* ヘッダー多重構造 */
+        /* ヘッダー新構造：クリア背景 */
         .header-viewport {
             position: relative;
             min-height: 100dvh;
@@ -124,25 +115,37 @@
             background: #1a1614;
             overflow: hidden;
         }
-        .header-bg-shimmer {
+        .header-bg-clear {
             position: absolute;
             inset: 0;
             z-index: 1;
-            opacity: 0.2;
-            filter: blur(50px);
-            transform: scale(1.1);
         }
-        .header-scrim {
+        .header-bg-clear img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6; /* 文字を読みやすくするために少しだけ暗く */
+        }
+        
+        /* 文字ブロックの背面の薄い背景ベール */
+        .text-readable-veil {
+            background: rgba(0, 0, 0, 0.35); /* 極薄の黒 */
+            backdrop-filter: blur(2px); /* ほんの少しだけ質感を出す */
+            padding: 2.5rem 1.5rem;
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-scrim-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 60%, #fdfaf7 100%);
+            background: linear-gradient(to bottom, transparent 60%, #fdfaf7 100%);
             z-index: 5;
         }
         
-        /* 脊髄反射（微振動）ターゲット */
-        #vibrate-target { will-change: transform; }
+        /* 震えるテキスト用設定 */
+        #vibrate-text-target { will-change: transform; display: inline-block; }
 
-        /* チェックリスト（画面中央発火） */
         .animated-check-card {
             background: white;
             border-radius: 14px;
@@ -156,7 +159,7 @@
             transform: scale(0.95);
             opacity: 0;
             margin-bottom: 10px;
-            width: 100%; /* 横幅いっぱい */
+            width: 100%;
         }
         .animated-check-card i {
             color: #e5e7eb;
@@ -174,12 +177,6 @@
             transform: scale(1);
         }
 
-        /* 改行制御 */
-        .sp-br { display: block; }
-        @media (min-width: 768px) { .sp-br { display: inline; } }
-
-        /* 装飾用スペーサー */
-        .spacer-10 { height: 10px; }
         .spacer-20 { height: 20px; }
         .spacer-40 { height: 40px; }
     </style>
@@ -196,8 +193,8 @@
                 <span class="font-serif font-black text-[12px] uppercase tracking-widest text-accent">Neuro Body Hack</span>
             </div>
             <div class="flex items-center gap-2">
-                <a href="https://body-care-orpin.vercel.app/" target="_blank" class="text-white text-[10px] font-bold border border-white/30 px-3 py-2 rounded-full">自分で開発する</a>
-                <a href="#form" class="bg-primary text-white text-[10px] px-4 py-2 rounded-lg font-black">連絡する</a>
+                <a href="https://body-care-orpin.vercel.app/" target="_blank" class="text-white text-[10px] font-bold border border-white/20 px-4 py-2 rounded-full active:bg-white/10 transition-colors">自分で開発する</a>
+                <a href="#form" class="bg-primary text-white text-[10px] px-5 py-2 rounded-lg font-black shadow-lg">予約する</a>
             </div>
         </div>
     </nav>
@@ -206,44 +203,39 @@
          1. MAIN VISUAL (HEADER)
     =========================================== -->
     <header class="header-viewport">
-        <!-- ぼかし多重構造背景 -->
-        <div class="header-bg-shimmer">
-            <img src="https://images.unsplash.com/photo-1540365118882-946449a2ce17?q=80&w=1227&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=1227&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=1500&auto=format&fit=crop" class="w-full h-full object-cover">
+        <!-- クリアな背景画像（ぼかしなし） -->
+        <div class="header-bg-clear">
+            <img src="https://images.unsplash.com/photo-1540365118882-946449a2ce17?q=80&w=1227&auto=format&fit=crop" alt="">
         </div>
-        <div class="header-scrim"></div>
+        <div class="header-scrim-overlay"></div>
         
-        <div class="relative z-30 w-full flex flex-col items-center justify-center px-6 pt-12">
-            
-            <!-- 震える画像レイヤー（16:9） -->
-            <div class="reveal w-full max-w-md mb-8">
-                <div class="rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-white/10 aspect-[16/9] bg-black">
-                    <img id="vibrate-target" src="https://images.unsplash.com/photo-1540365118882-946449a2ce17?q=80&w=1227&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-90" alt="Healing Art">
+        <div class="relative z-30 w-full px-4">
+            <!-- 視認性向上のための薄いベール -->
+            <div class="text-readable-veil max-w-md mx-auto text-center reveal">
+                
+                <div id="vibrate-text-target">
+                    <p class="font-serif text-accent tracking-[0.5em] text-[11px] mb-4 uppercase font-black italic">The New Reality</p>
+                    <h1 class="font-serif text-white text-[28px] md:text-5xl font-black leading-[1.6]">
+                        貴方がまだ知らない<br>
+                        身体のうずき<br>
+                        <span class="text-[38px] md:text-6xl mt-2 block italic opacity-95">その先へ。</span>
+                    </h1>
+                </div>
+
+                <div class="spacer-40"></div>
+
+                <!-- サブコピー -->
+                <div class="space-y-4 px-2">
+                    <p class="text-[16px] md:text-xl leading-relaxed text-white/80 font-medium">
+                        画面越しに見た「あの感覚」は、<br>
+                        貴女の中にも実在する。
+                    </p>
+                    <div class="h-px w-8 bg-accent/30 mx-auto"></div>
+                    <p class="text-[19px] md:text-2xl font-black text-accent tracking-[0.1em] drop-shadow-xl">
+                        思考を止め、ただの歓喜に還る180分。
+                    </p>
                 </div>
             </div>
-
-            <!-- メインメッセージ（白文字） -->
-            <div class="reveal text-center mb-8">
-                <p class="font-serif text-accent tracking-[0.5em] text-[11px] mb-4 uppercase font-black italic">The New Reality</p>
-                <h1 class="font-serif text-white text-[28px] md:text-5xl font-black leading-[1.6]">
-                    貴方がまだ知らない<br>
-                    身体のうずき<br>
-                    <span class="text-[38px] md:text-6xl mt-2 block italic opacity-95">その先へ。</span>
-                </h1>
-            </div>
-
-            <!-- サブコピー（視認性向上） -->
-            <div class="reveal text-center space-y-4 px-2">
-                <p class="text-[16px] md:text-xl leading-relaxed text-white/80 font-medium">
-                    画面越しに見た「あの感覚」は、<br>
-                    貴女の中にも実在する。
-                </p>
-                <div class="spacer-10"></div>
-                <p class="text-[19px] md:text-2xl font-black text-accent tracking-[0.1em] drop-shadow-xl">
-                    思考を止め、ただの歓喜に還る180分。
-                </p>
-            </div>
-            
-            <div class="spacer-40"></div>
         </div>
     </header>
 
@@ -260,7 +252,7 @@
             <div class="reveal space-y-6">
                 <div class="text-center mb-6">
                     <p class="text-[16px] font-black text-primary italic leading-relaxed">もう、心と身体を解放してあげてください。</p>
-                    <div class="spacer-10"></div>
+                    <div class="h-4"></div>
                     <p class="text-[14px] text-foreground/50 font-medium">こんな「物足りなさ」を、感じていませんか？</p>
                 </div>
 
@@ -296,15 +288,12 @@
                 
                 <p>100人以上の施術実践と物理法則と解剖学に基づき、眠っていた神経の通り道を、一つひとつ丁寧に拓いていきます。</p>
                 
-                <!-- 強調パーツ -->
                 <div class="bg-white/90 p-7 rounded-2xl border border-primary/10 shadow-lg text-center mt-10">
                     <p class="font-black text-primary text-[18px]">難しいことは、すべて私に任せてください。</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <div class="spacer-20"></div>
     <!-- ==========================================
          4. 術者プロフィール (PROFILE)
     =========================================== -->
@@ -397,7 +386,7 @@
                         <i data-lucide="map-pin" class="text-primary w-4 h-4"></i>
                         <span class="text-[11px] font-black text-primary uppercase tracking-widest">Area</span>
                     </div>
-                    <p class="text-[15px] font-bold text-foreground">大阪市内・堺</p>
+                    <p class="text-[14px] font-bold text-foreground">大阪市内・堺</p>
                     <p class="text-[12px] text-foreground/40 mt-1 leading-snug">
                         大阪市内（十三・梅田・難波・京橋・天王寺などJR環状線沿線）・堺
                     </p>
@@ -408,21 +397,20 @@
                         <i data-lucide="coins" class="text-primary w-4 h-4"></i>
                         <span class="text-[11px] font-black text-primary uppercase tracking-widest">Cost</span>
                     </div>
-                    <p class="text-[15px] font-bold text-foreground">費用は一切頂きません</p>
+                    <p class="text-[14px] font-bold text-foreground">費用は一切頂きません</p>
                     <p class="text-[12px] text-foreground/40 mt-1 leading-snug italic">
                         ※施術費、材料（オイル）代などは無料です。場所代をご負担頂ける場合はお申し出ください。
                     </p>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-white p-5 rounded-2xl border border-primary/5 shadow-sm">
+                    <div class="bg-white p-5 rounded-2xl border border-primary/5 shadow-sm text-center">
                         <p class="text-[10px] text-primary font-black uppercase tracking-widest mb-1">Duration</p>
                         <p class="text-[14px] font-bold">2〜3時間</p>
-                        <p class="text-[9px] text-foreground/30 mt-0.5 italic">の非日常体験</p>
                     </div>
-                    <div class="bg-white p-5 rounded-2xl border border-primary/5 shadow-sm">
+                    <div class="bg-white p-5 rounded-2xl border border-primary/5 shadow-sm text-center">
                         <p class="text-[10px] text-primary font-black uppercase tracking-widest mb-1">Stance</p>
-                        <p class="text-[13px] font-bold leading-tight">貴女のペース、<br>貴女の願望で</p>
+                        <p class="text-[13px] font-bold leading-tight">貴女のペースで</p>
                     </div>
                 </div>
             </div>
@@ -441,7 +429,7 @@
                     「私、ゾクゾク、ビクビクが<br class="md:hidden">止まらない」<br>
                     180分の非日常。
                 </h3>
-                <div class="text-[15px] leading-loose text-foreground/70 space-y-6 text-justify px-2">
+                <div class="text-[15px] leading-loose text-foreground/70 space-y-6 text-justify px-2 font-medium">
                     <p>やさしく触れられ、貴女の身体の奥に眠った感覚を呼び起こされる。<br>これからの性体験のきっかけに。</p>
                     <p class="text-center font-black text-accent italic">一度しかないイマ、このまま過ごしますか？</p>
                     <p class="text-[12px] text-foreground/40 text-center italic border-t border-primary/5 pt-6">会って良かったと思って貰えるような<br>出会いになれればと思います。</p>
@@ -460,9 +448,9 @@
                     </p>
                 </div>
                 
-                <div class="spacer-20"></div>
+                <div class="h-8"></div>
 
-                <a href="https://body-care-orpin.vercel.app/" target="_blank" class="block text-[12px] font-black text-foreground/30 underline underline-offset-8 decoration-primary/40 active:text-primary">
+                <a href="https://body-care-orpin.vercel.app/" target="_blank" class="block text-[12px] font-black text-foreground/30 underline underline-offset-8 decoration-primary/40 active:text-primary transition-all">
                     自分で身体を開発してみたい方はこちら
                 </a>
             </div>
@@ -493,11 +481,12 @@
         // 1. Lucideアイコンの初期化
         lucide.createIcons();
 
-        // 2. 脊髄反射（微細な震動）アニメーション
-        gsap.to("#vibrate-target", {
-            x: () => (Math.random() - 0.5) * 6,
-            y: () => (Math.random() - 0.5) * 6,
-            rotation: () => (Math.random() - 0.5) * 1,
+        // 2. メインテキストの「ビクビク（微震動）」アニメーション
+        // GSAPを使用してテキストターゲットを極小範囲で高速ランダム振動させる
+        gsap.to("#vibrate-text-target", {
+            x: () => (Math.random() - 0.5) * 5,
+            y: () => (Math.random() - 0.5) * 5,
+            rotation: () => (Math.random() - 0.5) * 0.8,
             duration: 0.05,
             repeat: -1,
             yoyo: true,
@@ -507,7 +496,7 @@
         // 3. GSAP & ScrollTrigger プラグイン登録
         gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-        // 4. 基本のフェードイン表示 (reveal)
+        // 4. 標準的なフェードイン表示 (reveal)
         document.querySelectorAll('.reveal').forEach((el) => {
             gsap.to(el, {
                 scrollTrigger: {
@@ -522,23 +511,27 @@
             });
         });
 
-        // 5. チェックリストのアニメーション：【画面の中央付近(50-60%)】で発火
+        // 5. チェックリストのアニメーション：【画面の中央付近】で発火
         const checkItems = document.querySelectorAll('.animated-check-card');
         checkItems.forEach((item) => {
             gsap.to(item, {
                 scrollTrigger: {
                     trigger: item,
-                    start: "top 65%", // 画面の真ん中より少し下に来た時に「ドン」と出現
+                    start: "top 65%", // 画面の真ん中より少し下に来た時にアクション
                     onEnter: () => item.classList.add('active'),
                     toggleActions: "play none none none"
                 }
             });
         });
 
-        // 6. スマホ向けインタラクション
+        // 6. スマホ向けインタラクション（タップ時の触感）
         document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('touchstart', () => { el.style.opacity = '0.7'; });
-            el.addEventListener('touchend', () => { el.style.opacity = '1'; });
+            el.addEventListener('touchstart', () => { 
+                gsap.to(el, { scale: 0.98, opacity: 0.8, duration: 0.1 });
+            });
+            el.addEventListener('touchend', () => { 
+                gsap.to(el, { scale: 1, opacity: 1, duration: 0.2 });
+            });
         });
     </script>
 </body>
