@@ -42,7 +42,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- ==========================================
-         CUSTOM CSS (スマホ閲覧特化・ガタつき防止)
+         CUSTOM CSS
     =========================================== -->
     <style>
         body { 
@@ -67,7 +67,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
         }
         
-        /* 余白改善：ネストによる減少を防ぐ */
+        /* 余白改善 */
         .content-safe-area {
             width: 100%;
             max-width: 500px;
@@ -89,7 +89,7 @@
             color: #8d514a;
             text-transform: uppercase;
             display: block;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
         }
         .section-header h2 {
             font-family: 'Noto Serif JP', serif;
@@ -99,10 +99,10 @@
             color: #3f3835;
         }
 
-        /* FV背景：ガタつき防止のため高さを100vhに固定 */
+        /* FV背景：ガタつき防止 */
         .header-viewport {
             position: relative;
-            height: 100vh; /* アドレスバー変動の影響を受けにくいvhを採用 */
+            height: 100vh; 
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -115,20 +115,20 @@
             position: absolute;
             inset: 0;
             z-index: 1;
-            will-change: transform; /* パフォーマンス向上 */
+            will-change: transform;
         }
         .header-bg-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
-            opacity: 0.7;
+            opacity: 0.65;
         }
         
         /* テキストブロック背面のベール */
         .readable-veil {
-            background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.25) 70%, transparent 100%);
-            padding: 2rem 1rem;
+            background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 75%, transparent 100%);
+            padding: 1.5rem 1rem;
             width: 100%;
             max-width: 90%;
             margin: 0 auto;
@@ -216,16 +216,14 @@
     </nav>
 
     <!-- ==========================================
-         1. MAIN VISUAL (HEADER) - 高さを安定化
+         1. MAIN VISUAL (HEADER)
     =========================================== -->
     <header class="header-viewport">
-        <!-- 背景画像：クリア表示（パララックス最適化） -->
         <div class="header-bg-img">
             <img src="https://images.unsplash.com/photo-1540365118882-946449a2ce17?q=80&w=1227&auto=format&fit=crop" alt="">
         </div>
         <div class="header-scrim-overlay"></div>
         
-        <!-- コンテンツエリア -->
         <div class="relative z-30 w-full px-4">
             <div class="readable-veil text-center">
                 
@@ -238,16 +236,25 @@
                     </h1>
                 </div>
 
-                <div class="h-10"></div>
+                <div class="h-8"></div>
 
-                <div class="space-y-4 px-2 reveal">
-                    <p class="text-[15px] md:text-xl leading-relaxed text-white/90 font-medium tracking-wide">
+                <!-- 1. スマホを触る手 画像挿入 -->
+                <div class="reveal flex justify-center mb-6">
+                    <div class="w-20 h-20 rounded-2xl overflow-hidden border border-white/20 shadow-lg rotate-3">
+                        <img src="https://images.unsplash.com/photo-1556656793-062ff98782a1?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Smartphone Use">
+                    </div>
+                </div>
+
+                <!-- サブコピー：サイズ強化と改行修正 -->
+                <div class="space-y-5 px-2 reveal">
+                    <p class="text-[16px] md:text-xl leading-relaxed text-white/95 font-medium tracking-wide">
                         画面越しに見た「あの感覚」は、<br>
                         貴女の中にも実在する。
                     </p>
                     <div class="h-[1px] w-8 bg-accent/40 mx-auto"></div>
-                    <p class="text-[18px] md:text-2xl font-black text-accent tracking-widest drop-shadow-lg">
-                        思考を止め、ただの歓喜に還る180分。
+                    <p class="text-[19px] md:text-[24px] font-black text-accent tracking-widest drop-shadow-lg leading-snug">
+                        思考を止め、<br><!-- 2. 改行挿入 -->
+                        ただの歓喜に還る180分。
                     </p>
                 </div>
             </div>
@@ -271,7 +278,6 @@
                     <p class="text-[14px] text-foreground/50 font-medium">こんな「物足りなさ」を、感じていませんか？</p>
                 </div>
 
-                <!-- チェックリスト -->
                 <div class="space-y-2" id="check-list-container">
                     <div class="animated-check-card"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>パートナーが出したいだけのエッチに不満</div>
                     <div class="animated-check-card"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>前戯が短すぎて、不完全燃焼</div>
@@ -291,7 +297,8 @@
     <section class="py-14 bg-secondary/30 relative overflow-hidden border-y border-primary/5">
         <div class="content-safe-area text-center relative z-10">
             <div class="reveal">
-                <h3 class="font-serif text-[20px] md:text-2xl text-primary font-black leading-relaxed mb-8 px-2">
+                <!-- 3. 文字サイズ拡大 -->
+                <h3 class="font-serif text-[24px] md:text-[32px] text-primary font-black leading-relaxed mb-10 px-2">
                     その「物足りなさ」は、<br>
                     貴女が自分の身体を<br>
                     大切に想っている証拠。
@@ -303,8 +310,12 @@
                 
                 <p>100人以上の施術実践と物理法則と解剖学に基づき、眠っていた神経の通り道を、一つひとつ丁寧に拓いていきます。</p>
                 
-                <div class="bg-white/80 p-6 rounded-2xl border border-primary/10 shadow-sm text-center mt-8">
-                    <p class="font-black text-primary text-[17px]">難しいことは、すべて私に任せてください。</p>
+                <!-- 4. 改行、配色反転、パディング調整 -->
+                <div class="bg-primary p-4 rounded-2xl shadow-lg text-center mt-10 border border-white/20">
+                    <p class="font-black text-white text-[17px] leading-snug">
+                        難しいことは<br>
+                        すべて私に任せてください。
+                    </p>
                 </div>
             </div>
         </div>
@@ -321,9 +332,9 @@
             
             <div class="bg-white p-6 rounded-[2rem] shadow-xl shadow-primary/5 border border-primary/5 reveal">
                 <div class="flex items-center gap-4 mb-6">
-                    <!-- SNSアイコンスタイル：コンパクトで視認性の良い円形 -->
+                    <!-- SNSアイコンスタイル：コンパクトな円形 -->
                     <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shrink-0 shadow-md">
-                        <img src="https://pbs.twimg.com/profile_images/1994203775465345025/4IVfrt_Z.jpg?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover" alt="Therapist Yuji">
+                        <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover" alt="Therapist Yuji">
                     </div>
                     <div class="min-w-0">
                         <h3 class="font-serif text-xl font-black tracking-widest text-foreground">Yuji</h3>
@@ -332,7 +343,7 @@
                 </div>
 
                 <div class="space-y-5">
-                    <!-- スペック：スマホで視認性の高いタグ形式 -->
+                    <!-- スペック表示 -->
                     <div class="flex flex-wrap gap-2 pb-4 border-b border-primary/5">
                         <span class="bg-secondary/50 px-3 py-1.5 rounded-lg text-primary font-black text-[12px]">身長 177cm</span>
                         <span class="bg-secondary/50 px-3 py-1.5 rounded-lg text-primary font-black text-[12px]">体重 64kg</span>
@@ -430,18 +441,22 @@
     </section>
 
     <!-- ==========================================
-         7. CLOSING / CALL TO ACTION
+         7. CLOSING / CALL TO ACTION (修正版)
     =========================================== -->
     <section id="form" class="py-20 px-6 bg-background text-center relative border-t border-primary/10">
         <div class="absolute inset-0 bg-primary/[0.02] pointer-events-none"></div>
         <div class="content-safe-area relative z-10">
             <div class="reveal mb-10 space-y-6">
                 <i data-lucide="heart" class="text-primary w-10 h-10 mx-auto mb-4 animate-pulse opacity-40"></i>
-                <h3 class="serif-title text-[22px] md:text-3xl font-black leading-relaxed">
-                    「私、ゾクゾク、ビクビクが<br class="md:hidden">止まらない」<br>
+                
+                <!-- 5. 文字サイズ拡大 -->
+                <h3 class="serif-title text-[24px] md:text-[32px] font-black leading-relaxed">
+                    「私、ゾクゾク、ビクビクが<br>
+                    止まらない」<br>
                     180分の非日常。
                 </h3>
-                <div class="text-[15px] leading-loose text-foreground/70 space-y-6 text-justify px-2 font-medium">
+
+                <div class="text-[15px] md:text-[16px] leading-loose text-foreground/70 space-y-6 text-justify px-2 font-medium">
                     <p>やさしく触れられ、貴女の身体の奥に眠った感覚を呼び起こされる。<br>これからの性体験のきっかけに。</p>
                     <p class="text-center font-black text-accent italic">一度しかないイマ、このまま過ごしますか？</p>
                     <p class="text-[12px] text-foreground/40 text-center italic border-t border-primary/5 pt-6">会って良かったと思って貰えるような<br>出会いになれればと思います。</p>
@@ -488,14 +503,14 @@
     </footer>
 
     <!-- ==========================================
-         SCRIPTS (修正版)
+         SCRIPTS
     =========================================== -->
     <script>
         // 1. Lucideアイコンの初期化
         lucide.createIcons();
 
         // 2. メインコピーの「ビクビク（微震動）」アニメーション
-        // モバイル負荷を抑えるため、振幅を最小限に設定
+        // モバイルの描画負荷を考慮しつつ、生命力を感じる震えを演出
         gsap.to("#vibrate-text-target", {
             x: () => (Math.random() - 0.5) * 4,
             y: () => (Math.random() - 0.5) * 4,
@@ -506,24 +521,23 @@
             ease: "none"
         });
 
-        // 3. GSAP & ScrollTrigger プラグイン登録
+        // 3. GSAP & ScrollTrigger 登録
         gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-        // 4. 背景画像のパララックス（ガタつき防止版）
-        // scale移動を削除し、スムーズなY移動のみに限定
+        // 4. 背景画像のパララックス（ガタつき防止：Y軸のみ）
         gsap.to(".header-bg-img", {
             scrollTrigger: {
                 trigger: "header",
                 start: "top top",
                 end: "bottom top",
-                scrub: 0.5, // 追従を少し遅らせて滑らかにする
+                scrub: 0.5,
                 invalidateOnRefresh: true
             },
-            y: "15%", // 移動量を抑えてガタつきを防止
+            y: "15%",
             ease: "none"
         });
 
-        // 5. 標準的なフェードイン表示 (reveal)
+        // 5. 基本のフェードイン表示 (reveal)
         document.querySelectorAll('.reveal').forEach((el) => {
             gsap.to(el, {
                 scrollTrigger: {
@@ -544,14 +558,14 @@
             gsap.to(item, {
                 scrollTrigger: {
                     trigger: item,
-                    start: "top 65%", // 画面の真ん中より少し下に来た時にアクション
+                    start: "top 65%",
                     onEnter: () => item.classList.add('active'),
                     toggleActions: "play none none none"
                 }
             });
         });
 
-        // 7. スマホ向けインタラクション（タップ時の触感）
+        // 7. スマホ向けインタラクション
         document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('touchstart', () => { 
                 gsap.to(el, { scale: 0.98, opacity: 0.8, duration: 0.1 });
