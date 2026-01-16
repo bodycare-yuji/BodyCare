@@ -42,7 +42,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- ==========================================
-         CUSTOM CSS
+         CUSTOM CSS (スマホ閲覧特化・ガタつき防止)
     =========================================== -->
     <style>
         body { 
@@ -67,7 +67,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
         }
         
-        /* 余白改善: スマホ横幅の最大活用 */
+        /* 余白改善：ネストによる減少を防ぐ */
         .content-safe-area {
             width: 100%;
             max-width: 500px;
@@ -99,10 +99,10 @@
             color: #3f3835;
         }
 
-        /* FV背景画像の固定と最適化 */
+        /* FV背景：ガタつき防止のため高さを100vhに固定 */
         .header-viewport {
             position: relative;
-            height: 100dvh; /* 動的高さを採用 */
+            height: 100vh; /* アドレスバー変動の影響を受けにくいvhを採用 */
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -115,18 +115,19 @@
             position: absolute;
             inset: 0;
             z-index: 1;
+            will-change: transform; /* パフォーマンス向上 */
         }
         .header-bg-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
-            opacity: 0.7; /* 視認性向上のためのベース透過 */
+            opacity: 0.7;
         }
         
-        /* テキストブロック背面のベール：極薄のグラデーション */
+        /* テキストブロック背面のベール */
         .readable-veil {
-            background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 70%, transparent 100%);
+            background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.25) 70%, transparent 100%);
             padding: 2rem 1rem;
             width: 100%;
             max-width: 90%;
@@ -143,7 +144,11 @@
         }
         
         /* 震えるテキスト */
-        #vibrate-text-target { will-change: transform; display: block; }
+        #vibrate-text-target { 
+            will-change: transform; 
+            display: block; 
+            transform-origin: center;
+        }
 
         .animated-check-card {
             background: white;
@@ -176,7 +181,6 @@
             transform: scale(1);
         }
 
-        /* 統一CTA */
         .cta-action-btn {
             display: block;
             width: 100%;
@@ -198,7 +202,7 @@
     <!-- ==========================================
          NAVIGATION
     =========================================== -->
-    <nav class="fixed top-0 w-full z-[100] glass-dark h-14 flex items-center px-4">
+    <nav class="fixed top-0 w-full z-[100] glass-dark h-16 flex items-center px-4">
         <div class="w-full flex justify-between items-center max-w-screen-md mx-auto">
             <div class="flex items-center gap-2">
                 <i data-lucide="sparkles" class="text-primary w-5 h-5"></i>
@@ -212,16 +216,16 @@
     </nav>
 
     <!-- ==========================================
-         1. MAIN VISUAL (HEADER)
+         1. MAIN VISUAL (HEADER) - 高さを安定化
     =========================================== -->
     <header class="header-viewport">
-        <!-- 背景画像：クリア表示（ぼかしなし） -->
+        <!-- 背景画像：クリア表示（パララックス最適化） -->
         <div class="header-bg-img">
-            <img src="https://images.unsplash.com/photo-1540365118882-946449a2ce17?q=80&w=1227&auto=format&fit=crop" alt="Healing Background">
+            <img src="https://images.unsplash.com/photo-1540365118882-946449a2ce17?q=80&w=1227&auto=format&fit=crop" alt="">
         </div>
         <div class="header-scrim-overlay"></div>
         
-        <!-- コンテンツエリア：視認性ベール -->
+        <!-- コンテンツエリア -->
         <div class="relative z-30 w-full px-4">
             <div class="readable-veil text-center">
                 
@@ -236,7 +240,6 @@
 
                 <div class="h-10"></div>
 
-                <!-- サブコピー：サイズとコントラストを強化 -->
                 <div class="space-y-4 px-2 reveal">
                     <p class="text-[15px] md:text-xl leading-relaxed text-white/90 font-medium tracking-wide">
                         画面越しに見た「あの感覚」は、<br>
@@ -406,7 +409,7 @@
                         <i data-lucide="coins" class="text-primary w-4 h-4"></i>
                         <span class="text-[11px] font-black text-primary uppercase tracking-widest">Cost</span>
                     </div>
-                    <p class="text-[15px] font-bold text-foreground">費用は一切頂きません</p>
+                    <p class="text-[14px] font-bold text-foreground">費用は一切頂きません</p>
                     <p class="text-[12px] text-foreground/40 mt-1 leading-snug italic">
                         ※施術費、材料（オイル）代などは無料です。場所代をご負担頂ける場合はお申し出ください。
                     </p>
@@ -485,19 +488,19 @@
     </footer>
 
     <!-- ==========================================
-         SCRIPTS
+         SCRIPTS (修正版)
     =========================================== -->
     <script>
         // 1. Lucideアイコンの初期化
         lucide.createIcons();
 
         // 2. メインコピーの「ビクビク（微震動）」アニメーション
-        // GSAPを使用してテキストターゲットを極小範囲で高速ランダム振動させる
+        // モバイル負荷を抑えるため、振幅を最小限に設定
         gsap.to("#vibrate-text-target", {
-            x: () => (Math.random() - 0.5) * 5,
-            y: () => (Math.random() - 0.5) * 5,
-            rotation: () => (Math.random() - 0.5) * 0.8,
-            duration: 0.05,
+            x: () => (Math.random() - 0.5) * 4,
+            y: () => (Math.random() - 0.5) * 4,
+            rotation: () => (Math.random() - 0.5) * 0.5,
+            duration: 0.06,
             repeat: -1,
             yoyo: true,
             ease: "none"
@@ -506,7 +509,21 @@
         // 3. GSAP & ScrollTrigger プラグイン登録
         gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-        // 4. 基本のフェードイン表示 (reveal)
+        // 4. 背景画像のパララックス（ガタつき防止版）
+        // scale移動を削除し、スムーズなY移動のみに限定
+        gsap.to(".header-bg-img", {
+            scrollTrigger: {
+                trigger: "header",
+                start: "top top",
+                end: "bottom top",
+                scrub: 0.5, // 追従を少し遅らせて滑らかにする
+                invalidateOnRefresh: true
+            },
+            y: "15%", // 移動量を抑えてガタつきを防止
+            ease: "none"
+        });
+
+        // 5. 標準的なフェードイン表示 (reveal)
         document.querySelectorAll('.reveal').forEach((el) => {
             gsap.to(el, {
                 scrollTrigger: {
@@ -521,20 +538,20 @@
             });
         });
 
-        // 5. チェックリストのアニメーション：【画面の中央付近】でドンと発火
+        // 6. チェックリストのアニメーション：【画面の中央付近】で発火
         const checkItems = document.querySelectorAll('.animated-check-card');
         checkItems.forEach((item) => {
             gsap.to(item, {
                 scrollTrigger: {
                     trigger: item,
-                    start: "top 65%", // 画面の真ん中より少し下に来た時に出現
+                    start: "top 65%", // 画面の真ん中より少し下に来た時にアクション
                     onEnter: () => item.classList.add('active'),
                     toggleActions: "play none none none"
                 }
             });
         });
 
-        // 6. スマホ向けインタラクション（タップ時のフィードバック）
+        // 7. スマホ向けインタラクション（タップ時の触感）
         document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('touchstart', () => { 
                 gsap.to(el, { scale: 0.98, opacity: 0.8, duration: 0.1 });
