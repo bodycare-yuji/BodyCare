@@ -42,215 +42,217 @@
             background-color: #fdfaf7; 
             color: #3f3835; 
             -webkit-text-size-adjust: 100%;
-            line-height: 1.7;
+            line-height: 1.6;
             font-size: 16px;
             letter-spacing: 0.02em;
         }
 
-        /* 質感のための背景テクスチャ */
-        .bg-paper {
+        /* 質感のある背景（ペッチャリ感を解消） */
+        .bg-texture {
             background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
         }
         
-        /* ナビゲーション（ダーク） */
+        /* ナビゲーション（白文字ボタン） */
         .glass-dark { 
             background: rgba(26, 22, 20, 0.98); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px); 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
         }
         
-        .full-width-container { width: 100%; max-width: 500px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+        /* 左右余白の適正化 */
+        .content-width { width: 100%; max-width: 500px; margin: 0 auto; padding-left: 12px; padding-right: 12px; }
 
-        .reveal { opacity: 0; transform: translateY(20px); }
+        .reveal { opacity: 0; transform: translateY(15px); }
 
         .section-header .tag {
             font-size: 11px;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.2em;
             font-weight: 800;
             color: #8d514a;
             text-transform: uppercase;
             display: block;
-            margin-bottom: 0.5rem;
-            text-align: center;
+            margin-bottom: 0.25rem;
         }
         .section-header h2 {
             font-family: 'Noto Serif JP', serif;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            line-height: 1.4;
-            text-align: center;
+            line-height: 1.3;
         }
 
-        /* ヘッダー多重・震動 */
-        .header-scrim {
+        /* ヘッダー多重構造 */
+        .header-gradient-end {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(26, 22, 20, 0.7) 70%, rgba(26, 22, 20, 1) 100%);
-            z-index: 5;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, #fdfaf7);
+            z-index: 20;
         }
         
-        /* FVからボディへの滑らかな繋ぎ */
-        .header-transition {
-            height: 80px;
-            background: linear-gradient(to bottom, #1a1614 0%, #fdfaf7 100%);
-        }
-
         #vibrate-target { will-change: transform; }
 
+        /* チェックリストアニメーション用 */
         .check-item {
             background: white;
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 14px 16px;
             border: 1px solid rgba(141, 81, 74, 0.08);
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 12px;
             font-size: 14px;
-            box-shadow: 0 4px 12px rgba(141, 81, 74, 0.03);
-            width: 100%;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+            transform: scale(0.95);
+            opacity: 0;
         }
-
-        /* プロフィールアイコン */
-        .profile-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 2px solid #8d514a;
-            object-fit: cover;
-            flex-shrink: 0;
+        .check-item i {
+            color: #d1d5db; /* 初期状態はグレー */
+            transition: color 0.5s ease;
+        }
+        .check-item.active {
+            transform: scale(1);
+            opacity: 1;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .check-item.active i {
+            color: #8d514a; /* アクティブでプライマリーカラーに */
         }
     </style>
 </head>
-<body class="bg-paper antialiased overflow-x-hidden">
+<body class="antialiased overflow-x-hidden bg-texture">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-[100] glass-dark h-20 flex items-center px-4">
-        <div class="w-full flex justify-between items-center">
+    <nav class="fixed top-0 w-full z-[100] glass-dark h-16 flex items-center px-4">
+        <div class="w-full flex justify-between items-center max-w-screen-md mx-auto">
             <div class="flex items-center gap-2">
                 <i data-lucide="sparkles" class="text-primary w-5 h-5"></i>
-                <span class="font-serif font-bold text-[12px] uppercase tracking-widest text-accent">Neuro Body Hack</span>
+                <span class="font-serif font-bold text-[11px] uppercase tracking-widest text-accent">Neuro Body Hack</span>
             </div>
-            <div class="flex items-center gap-3">
-                <a href="https://body-care-orpin.vercel.app/" target="_blank" class="text-[10px] font-bold text-white/80 border border-white/20 px-3 py-2 rounded-full">自分で開発</a>
-                <a href="#form" class="bg-primary text-white text-[10px] px-4 py-2 rounded-lg font-bold shadow-lg">連絡する</a>
+            <div class="flex items-center gap-2">
+                <a href="https://body-care-orpin.vercel.app/" target="_blank" class="text-white text-[9px] font-bold border border-white/30 px-3 py-2 rounded-full">自分で開発する</a>
+                <a href="#form" class="bg-primary text-white text-[10px] px-4 py-2 rounded-lg font-bold">連絡する</a>
             </div>
         </div>
     </nav>
 
     <!-- 1. Main Visual (Header) -->
-    <header class="relative min-h-[90vh] flex flex-col items-center justify-center pt-24 bg-darkNav overflow-hidden">
-        <!-- 多重画像構造 -->
-        <img src="https://images.unsplash.com/photo-1534120247760-c44c3e4a62f1?q=80&w=1500&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-20 blur-xl scale-110">
-        <div class="header-scrim"></div>
+    <header class="relative min-h-[95vh] flex flex-col items-center justify-center bg-darkNav overflow-hidden">
+        <!-- 多重レイヤー背景 -->
+        <img src="https://images.unsplash.com/photo-1534120247760-c44c3e4a62f1?q=80&w=1500&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-20 blur-3xl scale-110">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent z-10"></div>
         
-        <div class="relative z-10 w-full text-center px-6">
+        <div class="relative z-30 w-full text-center px-6 mt-12">
+            <!-- メインメッセージ（白文字・改行） -->
             <div class="reveal mb-10">
-                <p class="font-serif text-accent tracking-[0.5em] text-[13px] mb-4 uppercase font-black">Beyond Experience</p>
-                <h1 class="font-serif text-white text-3xl font-bold leading-tight">
-                    貴女がまだ知らない、<br>
-                    身体のうずき。<br>
-                    <span class="text-4xl mt-3 block text-white italic drop-shadow-xl">「その先」へ。</span>
+                <p class="font-serif text-accent tracking-[0.4em] text-[11px] mb-4 uppercase font-bold">Beyond Experience</p>
+                <h1 class="font-serif text-white text-2xl md:text-4xl font-bold leading-[1.8]">
+                    貴方がまだ知らない<br>
+                    身体のうずき<br>
+                    <span class="text-4xl md:text-5xl mt-2 block italic drop-shadow-lg">その先へ。</span>
                 </h1>
             </div>
 
-            <!-- 脊髄反射アニメーション画像 -->
-            <div class="relative mb-12 reveal max-w-xs mx-auto">
-                <div class="rounded-[3rem] overflow-hidden shadow-2xl border-2 border-white/10 aspect-[4/5] bg-black">
+            <!-- 震えるメイン画像（脊髄反射） -->
+            <div class="relative mb-10 reveal max-w-[280px] mx-auto">
+                <div class="rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 aspect-[4/5] bg-black">
                     <img id="vibrate-target" src="https://images.unsplash.com/photo-1516575150278-77180fe215a7?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-90">
                 </div>
             </div>
 
-            <div class="reveal space-y-4 pb-12">
-                <p class="text-[15px] leading-relaxed text-white/90 font-medium">
+            <div class="reveal space-y-3">
+                <p class="text-[14px] leading-relaxed text-white/70 font-medium">
                     画面越しに見た「あの感覚」は、<br>
                     貴女の中にも実在する。
                 </p>
-                <p class="text-[18px] font-bold text-accent tracking-[0.1em]">
+                <p class="text-[16px] font-bold text-accent tracking-[0.1em]">
                     思考を止め、ただの歓喜に還る180分。
                 </p>
             </div>
         </div>
+
+        <!-- 下部セクションへの自然な繋ぎ -->
+        <div class="header-gradient-end"></div>
     </header>
-    
-    <!-- 滑らかな繋ぎのレイヤー -->
-    <div class="header-transition"></div>
 
     <!-- 2. 共感セクション -->
-    <section class="py-12 bg-background px-4">
-        <div class="full-width-container">
-            <div class="section-header mb-10 reveal">
+    <section class="py-12 bg-background relative z-30">
+        <div class="content-width">
+            <div class="section-header text-center mb-10 reveal">
                 <span class="tag">Release</span>
                 <h2>身体の「奥のむらむら」を<br>解放してあげて</h2>
             </div>
             
-            <div class="space-y-6 reveal">
-                <div class="text-center mb-6 px-4">
-                    <p class="text-[16px] font-bold text-primary italic">もう、心と身体を解放してあげてください。</p>
-                    <p class="text-[14px] text-foreground/50 mt-2">こんな「物足りなさ」を、感じていませんか？</p>
+            <div class="space-y-6">
+                <div class="text-center mb-6 reveal">
+                    <p class="text-[15px] font-bold text-primary italic">もう、心と身体を解放してあげてください。</p>
+                    <p class="text-[14px] text-foreground/50 mt-1">こんな「物足りなさ」を、感じていませんか？</p>
                 </div>
 
-                <div class="space-y-2.5">
-                    <div class="check-item"><i data-lucide="check" class="text-primary w-5 h-5 shrink-0 mt-1"></i>パートナーが出したいだけのエッチに不満</div>
-                    <div class="check-item"><i data-lucide="check" class="text-primary w-5 h-5 shrink-0 mt-1"></i>前戯が短すぎて、不完全燃焼</div>
-                    <div class="check-item"><i data-lucide="check" class="text-primary w-5 h-5 shrink-0 mt-1"></i>パートナーの「気持ちいい？」がプレッシャー</div>
-                    <div class="check-item"><i data-lucide="check" class="text-primary w-5 h-5 shrink-0 mt-1"></i>自分でシても気持ちよくなれない</div>
-                    <div class="check-item"><i data-lucide="check" class="text-primary w-5 h-5 shrink-0 mt-1"></i>「イケる」感覚が、いまいち分からない</div>
-                    <div class="check-item"><i data-lucide="check" class="text-primary w-5 h-5 shrink-0 mt-1"></i>終わった後も、むらむらが昇華しきれず残っている</div>
-                    <div class="check-item"><i data-lucide="check" class="text-primary w-5 h-5 shrink-0 mt-1"></i>動画や漫画のようにオカしくなりたい</div>
+                <!-- スクロールでドン、と出るチェックリスト -->
+                <div class="space-y-2.5" id="check-list-container">
+                    <div class="check-item"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>パートナーが出したいだけのエッチに不満</div>
+                    <div class="check-item"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>前戯が短すぎて、不完全燃焼</div>
+                    <div class="check-item"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>パートナーの「気持ちいい？」がプレッシャー</div>
+                    <div class="check-item"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>自分でシても気持ちよくなれない</div>
+                    <div class="check-item"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>「イケる」感覚が、いまいち分からない</div>
+                    <div class="check-item"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>終わった後も、むらむらが昇華しきれず残っている</div>
+                    <div class="check-item"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>動画や漫画のようにオカしくなりたい</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 3. メッセージセクション -->
-    <section class="py-16 px-4 bg-secondary/30 relative overflow-hidden">
-        <div class="full-width-container relative z-10 text-center reveal">
-            <h3 class="font-serif text-xl text-primary font-bold leading-relaxed mb-10 px-2">
+    <section class="py-16 bg-secondary/30 relative overflow-hidden">
+        <div class="content-width text-center">
+            <h3 class="font-serif text-xl text-primary font-bold leading-relaxed mb-8 reveal px-4">
                 その「物足りなさ」は、<br>
                 貴女が自分の身体を<br>
                 大切に想っている証拠。
             </h3>
             
-            <div class="space-y-8 text-[15px] leading-[2.0] text-foreground/80 text-justify px-2">
+            <div class="text-[15px] leading-loose text-foreground/80 space-y-6 text-justify px-4 reveal">
                 <p>貴女の感受性が足りないのではありません。むしろ逆で、貴女の身体の、<span class="font-bold border-b-2 border-primary text-foreground">満たされる準備</span>、が整った状態です。</p>
                 <p>100人以上の施術実践と物理法則と解剖学に基づき、眠っていた神経の通り道を、一つひとつ丁寧に拓いていきます。</p>
-                <div class="bg-white p-5 rounded-2xl border border-primary/10 shadow-sm text-center">
+                <div class="bg-white/80 p-5 rounded-2xl border border-primary/10 shadow-sm text-center mt-8">
                     <p class="font-bold text-primary">難しいことは、すべて私に任せてください。</p>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- 4. 術者プロフィール -->
-    <section class="py-14 bg-background px-4">
-        <div class="full-width-container">
-            <div class="section-header mb-8 reveal">
-                <span class="tag">Profile</span>
+    <section class="py-12 bg-background relative z-30">
+        <div class="content-width">
+            <div class="section-header text-center mb-8 reveal">
+                <span class="tag">Therapist</span>
                 <h2>術者について</h2>
             </div>
             
             <div class="bg-white p-6 rounded-[2.5rem] shadow-sm border border-primary/5 reveal">
-                <div class="flex items-center gap-4 mb-6">
-                    <!-- SNSアイコンスタイル（極小化） -->
-                    <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=200&auto=format&fit=crop" class="profile-icon shadow-md">
+                <div class="flex items-center gap-4 mb-5">
+                    <!-- SNSアイコンスタイル（幅を取らない） -->
+                    <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shrink-0 shadow-md">
+                        <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
                     <div class="min-w-0">
                         <h3 class="font-serif text-xl font-bold tracking-widest text-foreground">Yuji</h3>
-                        <p class="text-[10px] text-primary font-black uppercase tracking-widest">Body Therapist</p>
+                        <p class="text-[10px] text-primary font-bold uppercase tracking-widest leading-none">Body Development Specialist</p>
                     </div>
                 </div>
 
-                <div class="space-y-5">
-                    <div class="flex flex-wrap gap-2 text-[12px]">
-                        <span class="bg-secondary px-3 py-1.5 rounded-full text-primary font-bold border border-primary/5">身長 177cm</span>
-                        <span class="bg-secondary px-3 py-1.5 rounded-full text-primary font-bold border border-primary/5">体重 64kg</span>
-                        <span class="bg-secondary px-3 py-1.5 rounded-full text-primary font-bold border border-primary/5">細マッチョ体型</span>
+                <div class="space-y-4">
+                    <div class="flex flex-wrap gap-2 text-[12px] pb-3 border-b border-primary/5">
+                        <span class="bg-secondary px-2 py-1 rounded text-primary font-bold shrink-0">身長 177cm</span>
+                        <span class="bg-secondary px-2 py-1 rounded text-primary font-bold shrink-0">体重 64kg</span>
+                        <span class="bg-secondary px-2 py-1 rounded text-primary font-bold shrink-0">細マッチョ体型</span>
                     </div>
                     
-                    <div class="text-[14px] leading-loose text-foreground/70 space-y-4">
-                        <p><span class="font-bold text-primary">【特徴】</span><br>人と話すことには慣れていますので、人見知りさんでもご安心ください。</p>
-                        <p class="italic text-[13px] text-primary/80 border-t border-primary/5 pt-4">
-                            <span class="font-bold not-italic text-primary block mb-1">【ポリシー】</span>
+                    <div class="text-[14px] leading-relaxed text-foreground/80 space-y-4">
+                        <p>人と話すことには慣れていますので、人見知りさんでもご安心ください。</p>
+                        <p class="italic text-[13px] text-primary/80 bg-secondary/30 p-3 rounded-xl border-l-2 border-accent">
                             「逝かされる」ではなく「逝ってしまう」という、貴女中心の性感オイルマッサージです。
                         </p>
                     </div>
@@ -260,31 +262,31 @@
     </section>
 
     <!-- 5. 安全の約束 -->
-    <section class="py-14 bg-secondary/40 px-4 border-y border-primary/5">
-        <div class="full-width-container">
-            <div class="section-header mb-8 reveal">
+    <section class="py-12 bg-secondary/40 border-y border-primary/5">
+        <div class="content-width">
+            <div class="section-header text-center mb-8 reveal">
                 <span class="tag">Safety Policy</span>
                 <h2>貴女の「境界線」を<br>100%遵守します</h2>
             </div>
 
-            <div class="bg-white p-7 rounded-[2.5rem] reveal shadow-sm border border-primary/5">
+            <div class="bg-white p-7 rounded-[2.5rem] reveal shadow-sm border border-primary/10">
                 <div class="flex flex-col items-center text-center gap-4 mb-6">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shadow-inner">
                         <i data-lucide="shield-check" class="text-primary w-6 h-6"></i>
                     </div>
-                    <h3 class="font-serif text-lg font-bold text-primary italic">粘膜同士の接触NGでも、<br>全く問題ありません。</h3>
+                    <h3 class="font-serif text-[17px] font-bold text-primary leading-snug">粘膜同士の接触NGでも、<br>全く問題ありません。</h3>
                 </div>
                 
                 <ul class="space-y-4 text-[13px] leading-relaxed text-foreground/70">
-                    <li class="flex gap-3">
-                        <i data-lucide="check-circle-2" class="text-primary w-5 h-5 shrink-0 mt-0.5"></i>
+                    <li class="flex gap-3 items-start">
+                        <i data-lucide="check-circle-2" class="text-primary w-4 h-4 shrink-0 mt-0.5"></i>
                         <p>NGプレイがあれば事前にお伝えください。必ず守ります。</p>
                     </li>
-                    <li class="flex gap-3">
-                        <i data-lucide="check-circle-2" class="text-primary w-5 h-5 shrink-0 mt-0.5"></i>
+                    <li class="flex gap-3 items-start">
+                        <i data-lucide="check-circle-2" class="text-primary w-4 h-4 shrink-0 mt-0.5"></i>
                         <p>「ここまではOK」「ここはNG」という貴女のルールを最優先します。</p>
                     </li>
-                    <li class="flex gap-3">
+                    <li class="flex gap-3 items-start">
                         <i data-lucide="check-circle-2" class="text-primary w-4 h-4 shrink-0 mt-0.5"></i>
                         <p>ここでのやり取りは、貴女と私だけの秘密です。</p>
                     </li>
@@ -294,51 +296,43 @@
     </section>
 
     <!-- 6. 実務詳細 -->
-    <section class="py-14 bg-background px-4">
-        <div class="full-width-container">
-            <div class="section-header mb-8 reveal">
-                <span class="tag">Service Info</span>
+    <section class="py-12 bg-background">
+        <div class="content-width">
+            <div class="section-header text-center mb-8 reveal">
+                <span class="tag">Information</span>
                 <h2>実務詳細</h2>
             </div>
 
-            <div class="space-y-3 reveal">
+            <div class="grid grid-cols-1 gap-3 reveal">
+                <!-- Area -->
                 <div class="bg-white p-5 rounded-2xl border border-primary/5 shadow-sm">
                     <div class="flex items-center gap-2 mb-2">
                         <i data-lucide="map-pin" class="text-primary w-4 h-4"></i>
-                        <span class="text-[12px] font-bold text-primary uppercase tracking-widest">Area</span>
+                        <span class="text-[11px] font-bold text-primary uppercase tracking-widest">Area</span>
                     </div>
-                    <p class="text-[15px] font-bold text-foreground">大阪市内・堺</p>
-                    <p class="text-[11px] text-foreground/40 mt-1.5 leading-relaxed">
-                        十三・梅田・難波・京橋・天王寺など<br class="br-sp">JR環状線沿線
-                    </p>
+                    <p class="text-[14px] font-bold text-foreground mb-1 leading-none">大阪市内・堺</p>
+                    <p class="text-[11px] text-foreground/40 leading-snug">大阪市内（十三・梅田・難波・京橋・天王寺などJR環状線沿線）・堺</p>
                 </div>
 
+                <!-- Cost -->
                 <div class="bg-white p-5 rounded-2xl border border-primary/5 shadow-sm">
                     <div class="flex items-center gap-2 mb-2">
                         <i data-lucide="coins" class="text-primary w-4 h-4"></i>
-                        <span class="text-[12px] font-bold text-primary uppercase tracking-widest">Cost</span>
+                        <span class="text-[11px] font-bold text-primary uppercase tracking-widest">Cost</span>
                     </div>
-                    <p class="text-[15px] font-bold text-foreground">費用は一切頂きません</p>
-                    <p class="text-[11px] text-foreground/40 mt-1.5 leading-relaxed italic">
-                        ※施術費、材料（オイル）代などは無料です。場所代をご負担頂ける場合はお申し出ください。
-                    </p>
+                    <p class="text-[14px] font-bold text-foreground mb-1 leading-none">費用は一切頂きません</p>
+                    <p class="text-[11px] text-foreground/40 leading-snug">施術費、材料（オイル）代などの費用は一切頂きません。※場所代をご負担頂ける場合はお申し出ください。</p>
                 </div>
 
+                <!-- Horizontal info -->
                 <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-white p-5 rounded-2xl border border-primary/5 shadow-sm">
-                        <div class="flex items-center gap-2 mb-1">
-                            <i data-lucide="clock" class="text-primary w-3.5 h-3.5"></i>
-                            <span class="text-[10px] font-bold text-primary uppercase tracking-widest">Duration</span>
-                        </div>
-                        <p class="text-[14px] font-bold">2〜3時間</p>
-                        <p class="text-[9px] text-foreground/40 mt-0.5 italic">非日常体験</p>
+                    <div class="bg-white p-4 rounded-2xl border border-primary/5 shadow-sm">
+                        <p class="text-[10px] text-primary font-bold uppercase tracking-widest mb-1">Duration</p>
+                        <p class="text-[13px] font-bold">2時間〜3時間</p>
                     </div>
-                    <div class="bg-white p-5 rounded-2xl border border-primary/5 shadow-sm">
-                        <div class="flex items-center gap-2 mb-1">
-                            <i data-lucide="users" class="text-primary w-3.5 h-3.5"></i>
-                            <span class="text-[10px] font-bold text-primary uppercase tracking-widest">Stance</span>
-                        </div>
-                        <p class="text-[12px] font-bold leading-tight">貴女のペース、<br>貴女の願望で</p>
+                    <div class="bg-white p-4 rounded-2xl border border-primary/5 shadow-sm">
+                        <p class="text-[10px] text-primary font-bold uppercase tracking-widest mb-1">Stance</p>
+                        <p class="text-[13px] font-bold">貴女のペースで</p>
                     </div>
                 </div>
             </div>
@@ -346,35 +340,30 @@
     </section>
 
     <!-- 7. Closing / CTA -->
-    <section id="form" class="py-20 px-6 bg-background text-center relative border-t border-primary/10">
-        <div class="full-width-container">
+    <section id="form" class="py-16 px-6 bg-background text-center relative border-t border-primary/10">
+        <div class="max-w-md mx-auto relative z-10">
             <div class="reveal mb-10 space-y-5">
-                <i data-lucide="heart" class="text-primary w-10 h-10 mx-auto mb-2 animate-pulse opacity-40"></i>
-                <h3 class="serif-title text-xl leading-relaxed">
+                <i data-lucide="heart" class="text-primary w-10 h-10 mx-auto mb-2 animate-pulse"></i>
+                <h3 class="serif-title text-[20px] leading-relaxed">
                     「私、ゾクゾク、ビクビクが止まらない」<br>
                     180分の非日常。
                 </h3>
-                <div class="text-[14px] leading-loose text-foreground/70 text-justify px-1 space-y-4">
-                    <p>やさしく触れられ、貴女の身体の奥に眠った感覚を呼び起こされる。<br>これからの性体験のきっかけに。</p>
-                    <p class="text-center font-bold text-accent italic">一度しかないイマ、このまま過ごしますか？</p>
-                    <p class="text-[12px] text-foreground/40 text-center italic mt-4 px-4 leading-relaxed">
-                        会って良かったと思って貰えるような<br>出会いになれればと思います。
-                    </p>
+                <div class="text-[14px] leading-[1.8] text-foreground/70 space-y-5 text-justify px-2">
+                    <p>やさしく触れられ、貴女の身体の奥に眠った感覚を呼び起こされる。</p>
+                    <p>これからの性体験のきっかけに。<br>
+                    <span class="text-accent font-bold italic underline underline-offset-4 decoration-primary/30">一度しかないイマ、このまま過ごしますか？</span></p>
+                    <p class="text-[12px] text-foreground/50 text-center italic mt-4">会って良かったと思って貰えるような<br>出会いになれればと思います。</p>
                 </div>
             </div>
 
-            <div class="reveal space-y-5">
-                <div class="bg-secondary/50 p-6 rounded-3xl border border-primary/10">
-                    <p class="text-[12px] text-primary font-bold uppercase tracking-widest mb-4">Reservation Form</p>
-                    <a href="https://forms.gle/92rN3obmELxtDM5M9" target="_blank" class="cta-button-compact">
-                        性感オイルマッサージを依頼する
-                    </a>
-                    <p class="text-[10px] text-foreground/40 mt-3 italic">
-                        ※少し面倒ですが入力お願いします（2〜3分）
-                    </p>
-                </div>
+            <div class="reveal space-y-4 px-2">
+                <p class="text-[11px] text-primary font-bold uppercase tracking-widest">それでは少し面倒ですが入力お願いします。</p>
+                <a href="https://forms.gle/92rN3obmELxtDM5M9" target="_blank" class="block w-full bg-primary text-white text-center py-5 rounded-xl font-bold text-lg shadow-xl active:scale-95 transition-all">
+                    予約フォームへ進む
+                </a>
+                <p class="text-[10px] text-foreground/30 italic">所要時間 2〜3分</p>
                 
-                <a href="https://body-care-orpin.vercel.app/" target="_blank" class="block pt-2 text-[11px] font-bold text-foreground/30 underline underline-offset-8 decoration-primary/40">
+                <a href="https://body-care-orpin.vercel.app/" target="_blank" class="block pt-4 text-[11px] font-bold text-foreground/30 underline underline-offset-8 decoration-primary/30 active:text-primary transition-colors">
                     自分で身体を開発してみたい方はこちら
                 </a>
             </div>
@@ -382,44 +371,45 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 bg-darkNav text-white/30 text-center px-6">
-        <div class="full-width-container space-y-6">
-            <div class="flex items-center justify-center gap-2 opacity-30 mb-4">
+    <footer class="py-12 bg-darkNav text-white/20 text-center px-6">
+        <div class="max-w-md mx-auto space-y-6">
+            <div class="flex items-center justify-center gap-2 opacity-30">
                 <i data-lucide="sparkles" class="text-primary w-4 h-4"></i>
                 <span class="font-serif font-bold text-[10px] uppercase tracking-widest text-accent">Neuro Body Hack</span>
             </div>
-            <div class="text-[10px] leading-relaxed max-w-[280px] mx-auto opacity-40">
-                深層フェムケア・身体開発プログラム<br>
-                大阪市内・堺エリア | 監修：Yuji
+            <div class="text-[9px] uppercase tracking-[0.4em] font-medium leading-loose">
+                Deep Femcare & Body Development<br>
+                Osaka / Sakai Area | Therapist Yuji
             </div>
-            <p class="text-[9px] tracking-[0.4em] uppercase opacity-20 pt-4">© 2026 YUJI NEURO BODY HACK.</p>
+            <p class="text-[8px] tracking-[0.2em] uppercase">© 2026 YUJI NEURO BODY HACK.</p>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script>
-        // Lucideアイコン
+        // Lucideアイコンの初期化
         lucide.createIcons();
 
         // 脊髄反射（微細な震動）アニメーション
-        // GSAPを使用してターゲットをランダムに高速で小刻みに揺らす
         gsap.to("#vibrate-target", {
-            x: () => (Math.random() - 0.5) * 8, // 横揺れ幅
-            y: () => (Math.random() - 0.5) * 8, // 縦揺れ幅
-            rotation: () => (Math.random() - 0.5) * 1.5, // 微細な回転
-            duration: 0.04, // 高速
+            x: () => (Math.random() - 0.5) * 6,
+            y: () => (Math.random() - 0.5) * 6,
+            rotation: () => (Math.random() - 0.5) * 1,
+            duration: 0.05,
             repeat: -1,
             yoyo: true,
             ease: "none"
         });
 
-        // スクロール時のふわっとした表示（GSAP ScrollTrigger）
+        // GSAP & ScrollTrigger設定
         gsap.registerPlugin(ScrollTrigger);
+
+        // 基本のフェードイン表示
         document.querySelectorAll('.reveal').forEach((el) => {
             gsap.to(el, {
                 scrollTrigger: {
                     trigger: el,
-                    start: "top 94%",
+                    start: "top 95%",
                     toggleActions: "play none none none"
                 },
                 opacity: 1,
@@ -429,7 +419,21 @@
             });
         });
 
-        // スマホ向けタップ時の視覚的フィードバック
+        // チェックリストのアニメーション：読み進めるとドンと出てチェックされる
+        const checkItems = document.querySelectorAll('.check-item');
+        checkItems.forEach((item, index) => {
+            gsap.to(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 90%",
+                    onEnter: () => item.classList.add('active'),
+                    toggleActions: "play none none none"
+                },
+                delay: index * 0.05 // 少しだけずらしてリズムを出す
+            });
+        });
+
+        // ナビゲーションの白文字ボタンのタップフィードバック
         document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('touchstart', () => { el.style.opacity = '0.7'; });
             el.addEventListener('touchend', () => { el.style.opacity = '1'; });
