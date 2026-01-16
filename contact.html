@@ -145,42 +145,43 @@
         </div>
     </nav>
 
-    <!-- Header Section -->
-    <header class="relative min-h-[95vh] flex flex-col items-center justify-center bg-darkNav overflow-hidden">
-        <!-- 背景レイヤー -->
-        <img src="https://images.unsplash.com/photo-1534120247760-c44c3e4a62f1?q=80&w=1500&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-20 blur-3xl scale-110">
+    <!-- 1. Main Visual (Header) -->
+    <header class="relative min-h-screen flex flex-col items-center justify-center bg-darkNav overflow-hidden">
+        <!-- 多重レイヤー背景（ぼかし） -->
+        <img src="https://images.unsplash.com/photo-1534120247760-c44c3e4a62f1?q=80&w=1500&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-25 blur-3xl scale-110">
         <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-transparent z-10"></div>
         
         <div class="relative z-30 w-full text-center px-6">
-            <!-- メインメッセージ -->
+            <!-- メインメッセージ：画面中央付近に配置 -->
             <div class="reveal mb-12">
-                <p class="font-serif text-accent tracking-[0.4em] text-[11px] mb-6 uppercase font-bold">Beyond Experience</p>
-                <h1 class="font-serif text-white text-[26px] md:text-4xl font-bold leading-[1.8]">
+                <p class="font-serif text-accent tracking-[0.4em] text-[11px] mb-6 uppercase font-black">Beyond Sensibility</p>
+                <h1 class="font-serif text-white text-[28px] md:text-5xl font-bold leading-[1.8] tracking-widest">
                     貴方がまだ知らない<br>
                     身体のうずき<br>
-                    <span class="text-[38px] md:text-5xl mt-2 block italic drop-shadow-xl">その先へ。</span>
+                    <span class="text-[42px] md:text-6xl mt-4 block italic text-white drop-shadow-2xl">その先へ。</span>
                 </h1>
             </div>
 
-            <!-- 震えるメイン画像 -->
+            <!-- 震える画像：脊髄反射アニメーション -->
             <div class="relative mb-12 reveal max-w-[280px] mx-auto">
-                <div class="rounded-[2.5rem] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.6)] border border-white/10 aspect-[4/5] bg-black">
-                    <img id="vibrate-target" src="https://images.unsplash.com/photo-1516575150278-77180fe215a7?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-90">
+                <div class="rounded-[3rem] overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.8)] border border-white/10 aspect-[4/5] bg-black">
+                    <img id="vibrate-target" src="https://images.unsplash.com/photo-1516575150278-77180fe215a7?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover opacity-80">
                 </div>
             </div>
 
             <div class="reveal space-y-4">
-                <p class="text-[14px] leading-relaxed text-white/70 font-medium">
+                <p class="text-[15px] leading-relaxed text-white/70 font-medium">
                     画面越しに見た「あの感覚」は、<br>
                     貴女の中にも実在する。
                 </p>
-                <p class="text-[16px] font-bold text-accent tracking-[0.1em]">
+                <p class="text-[17px] font-bold text-accent tracking-[0.15em] drop-shadow-md">
                     思考を止め、ただの歓喜に還る180分。
                 </p>
             </div>
         </div>
 
-        <div class="header-gradient-end"></div>
+        <!-- 下部セクションへのスムーズなフェードアウト -->
+        <div class="header-end-scrim"></div>
     </header>
 
     <!-- 2. 共感セクション -->
