@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Yuji | 深層フェムケア・身体開発 セッション予約</title>
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YNTM2PZTYC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-YNTM2PZTYC');
+    </script>
+
     <!-- ==========================================
          FONTS & LIBRARIES (CDN)
     =========================================== -->
@@ -67,7 +76,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
         }
         
-        /* 余白改善 */
         .content-safe-area {
             width: 100%;
             max-width: 500px;
@@ -76,6 +84,7 @@
             padding-right: 14px;
         }
 
+        /* 通常のフェードイン */
         .reveal { opacity: 0; transform: translateY(20px); }
 
         .section-header {
@@ -99,7 +108,7 @@
             color: #3f3835;
         }
 
-        /* FV背景：ガタつき防止 */
+        /* FV背景 */
         .header-viewport {
             position: relative;
             height: 100vh; 
@@ -125,7 +134,6 @@
             opacity: 0.65;
         }
         
-        /* テキストブロック背面のベール */
         .readable-veil {
             background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 75%, transparent 100%);
             padding: 1.5rem 1rem;
@@ -143,13 +151,13 @@
             z-index: 5;
         }
         
-        /* 震えるテキスト */
         #vibrate-text-target { 
             will-change: transform; 
             display: block; 
             transform-origin: center;
         }
 
+        /* ★「ドン！」と出るアニメーション用の設定 */
         .animated-check-card {
             background: white;
             border-radius: 12px;
@@ -159,12 +167,14 @@
             align-items: flex-start;
             gap: 10px;
             font-size: 14px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-        cssですりどんな意味？
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
             
+            /* 初期状態：縮小して透明 */
             opacity: 0;
+            transform: scale(0.6) translateY(20px);
             margin-bottom: 8px;
             width: 100%;
+            will-change: transform, opacity;
         }
         .animated-check-card i {
             color: #e5e7eb;
@@ -172,14 +182,18 @@
             transform: scale(0.6);
             margin-top: 3px;
         }
+        /* JSでactiveクラスが付与された時の挙動 */
         .animated-check-card.active {
-            transform: scale(1);
             opacity: 1;
+            transform: scale(1) translateY(0);
             border-color: rgba(141, 81, 74, 0.2);
+            transition: 
+                opacity 0.3s ease-out, 
+                transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .animated-check-card.active i {
             color: #8d514a;
-            transform: scale(1);
+            transform: scale(1.1);
         }
 
         .cta-action-btn {
@@ -227,11 +241,9 @@
         
         <div class="relative z-30 w-full px-4">
             <div class="readable-veil text-center">
-                
-                
-                    <p class="font-serif text-accent tracking-[0.4em] text-[10px] mb-3 uppercase font-black italic">Inner Sensuality</p>
-                    <div id="vibrate-text-target">
-                <h1 class="font-serif text-white text-[26px] md:text-5xl font-black leading-[1.3]">
+                <p class="font-serif text-accent tracking-[0.4em] text-[10px] mb-3 uppercase font-black italic">Inner Sensuality</p>
+                <div id="vibrate-text-target">
+                    <h1 class="font-serif text-white text-[26px] md:text-5xl font-black leading-[1.3]">
                         貴方がまだ知らない<br>
                         身体のうずき<br>
                         <span class="text-[34px] md:text-6xl mt-1 block italic opacity-95">その先へ。</span>
@@ -240,14 +252,12 @@
 
                 <div class="h-8"></div>
 
-                <!-- 1. スマホを触る手 画像挿入 -->
                 <div class="reveal flex justify-center mb-6">
                     <div class="w-60 h-40 rounded-2xl overflow-hidden border border-white/20 shadow-lg rotate-3">
                         <img src="https://images.unsplash.com/photo-1724747780338-b3b4fb9ede47?q=80&w=1170&auto=format" class="w-full h-full object-cover" alt="Smartphone Use">
                     </div>
                 </div>
 
-                <!-- サブコピー：サイズ強化と改行修正 -->
                 <div class="space-y-5 px-2 reveal">
                     <p class="text-[16px] md:text-xl leading-relaxed text-white/95 font-medium tracking-wide">
                         画面越しに見た「あの感覚」は、<br>
@@ -255,7 +265,7 @@
                     </p>
                     <div class="h-[1px] w-8 bg-accent/40 mx-auto"></div>
                     <p class="text-[19px] md:text-[24px] font-black text-accent tracking-widest drop-shadow-lg leading-snug">
-                        思考を止め、<br><!-- 2. 改行挿入 -->
+                        思考を止め、<br>
                         ただの歓喜に還る180分。
                     </p>
                 </div>
@@ -299,7 +309,6 @@
     <section class="py-14 bg-secondary/30 relative overflow-hidden border-y border-primary/5">
         <div class="content-safe-area text-center relative z-10">
             <div class="reveal">
-                <!-- 3. 文字サイズ拡大 -->
                 <h3 class="font-serif text-[24px] md:text-[32px] text-primary font-black leading-relaxed mb-10 px-2">
                     その「物足りなさ」は、<br>
                     貴女が自分の身体を<br>
@@ -312,7 +321,6 @@
                 
                 <p>100人以上の施術実践と物理法則と解剖学に基づき、眠っていた神経の通り道を、一つひとつ丁寧に拓いていきます。</p>
                 
-                <!-- 4. 改行、配色反転、パディング調整 -->
                 <div class="bg-primary p-4 rounded-2xl shadow-lg text-center mt-10 border border-white/20">
                     <p class="font-black text-white text-[17px] leading-snug">
                         難しいことは<br>
@@ -334,7 +342,6 @@
             
             <div class="bg-white p-6 rounded-[2rem] shadow-xl shadow-primary/5 border border-primary/5 reveal">
                 <div class="flex items-center gap-4 mb-6">
-                    <!-- SNSアイコンスタイル：コンパクトな円形 -->
                     <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shrink-0 shadow-md">
                         <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover" alt="Therapist Yuji">
                     </div>
@@ -345,7 +352,7 @@
                 </div>
 
                 <div class="space-y-5">
-                    <!-- スペック表示 -->
+                    <!-- スペック表示も「ドン！」と出したい場合はここにクラス追加可 -->
                     <div class="flex flex-wrap gap-2 pb-4 border-b border-primary/5">
                         <span class="bg-secondary/50 px-3 py-1.5 rounded-lg text-primary font-black text-[12px]">身長 177cm</span>
                         <span class="bg-secondary/50 px-3 py-1.5 rounded-lg text-primary font-black text-[12px]">体重 64kg</span>
@@ -386,6 +393,7 @@
                     </h3>
                 </div>
                 
+                <!-- ここも画面中央で「ドン！」と出るアニメーション対象 -->
                 <div class="space-y-2.5" id="safety-checklist">
                     <div class="animated-check-card"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>NGプレイがあれば事前にお伝えください。必ず守ります。</div>
                     <div class="animated-check-card"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>「ここまではOK」「ここはNG」という貴女のルールを最優先します。</div>
@@ -406,6 +414,7 @@
             </div>
 
             <div class="grid grid-cols-1 gap-3 reveal">
+                <!-- 実務詳細のカードにも適用可能ですが、まずは箇条書きを優先しています -->
                 <div class="bg-white p-5 rounded-2xl border border-primary/5 shadow-sm">
                     <div class="flex items-center gap-2 mb-2">
                         <i data-lucide="map-pin" class="text-primary w-4 h-4"></i>
@@ -441,9 +450,8 @@
             </div>
         </div>
     </section>
-
     <!-- ==========================================
-         7. CLOSING / CALL TO ACTION (修正版)
+         7. CLOSING / CALL TO ACTION
     =========================================== -->
     <section id="form" class="py-20 px-6 bg-background text-center relative border-t border-primary/10">
         <div class="absolute inset-0 bg-primary/[0.02] pointer-events-none"></div>
@@ -451,8 +459,7 @@
             <div class="reveal mb-10 space-y-6">
                 <i data-lucide="heart" class="text-primary w-10 h-10 mx-auto mb-4 animate-pulse opacity-40"></i>
                 
-                <!-- 5. 文字サイズ拡大 -->
-                <h3 class="serif-title text-[24px] md:text-[32px] font-black leading-relaxed">
+                <h3 class="font-serif text-[24px] md:text-[32px] font-black leading-relaxed">
                     「私、ゾクゾク、ビクビクが<br>
                     止まらない」<br>
                     180分の非日常。
@@ -468,7 +475,7 @@
             <!-- 申し込みエリア -->
             <div class="reveal space-y-6 px-1">
                 <div class="bg-white/80 p-6 rounded-[2.5rem] border border-primary/10 shadow-2xl">
-                    <p class="text-[11px] text-primary font-black uppercase tracking-ultra mb-4">Registration</p>
+                    <p class="text-[11px] text-primary font-black uppercase tracking-widest mb-4">Registration</p>
                     <a href="https://forms.gle/92rN3obmELxtDM5M9" target="_blank" class="cta-action-btn active:scale-95 transition-all">
                         性感オイルマッサージを依頼する
                     </a>
@@ -505,14 +512,16 @@
     </footer>
 
     <!-- ==========================================
-         SCRIPTS
+         SCRIPTS (ANIMATION LOGIC)
     =========================================== -->
     <script>
-        // 1. Lucideアイコンの初期化
+        // 1. アイコン初期化
         lucide.createIcons();
 
-        // 2. メインコピーの「ビクビク（微震動）」アニメーション
-        // モバイルの描画負荷を考慮しつつ、生命力を感じる震えを演出
+        // 2. GSAP & ScrollTrigger 登録
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+        // 3. FVの震えるテキストアニメーション
         gsap.to("#vibrate-text-target", {
             x: () => (Math.random() - 0.5) * 4,
             y: () => (Math.random() - 0.5) * 4,
@@ -523,28 +532,24 @@
             ease: "none"
         });
 
-        // 3. GSAP & ScrollTrigger 登録
-        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-        // 4. 背景画像のパララックス（ガタつき防止：Y軸のみ）
+        // 4. 背景画像のパララックス
         gsap.to(".header-bg-img", {
             scrollTrigger: {
                 trigger: "header",
                 start: "top top",
                 end: "bottom top",
-                scrub: 0.5,
-                invalidateOnRefresh: true
+                scrub: 0.5
             },
             y: "15%",
             ease: "none"
         });
 
-        // 5. 基本のフェードイン表示 (reveal)
+        // 5. 通常のフェードイン表示 (reveal)
         document.querySelectorAll('.reveal').forEach((el) => {
             gsap.to(el, {
                 scrollTrigger: {
                     trigger: el,
-                    start: "top 95%",
+                    start: "top 90%",
                     toggleActions: "play none none none"
                 },
                 opacity: 1,
@@ -554,27 +559,46 @@
             });
         });
 
-        // 6. チェックリストのアニメーション：【画面の中央付近】で発火
+        /**
+         * 6. 重要：チェックリストの「ドン！」アニメーション
+         * 画面の「中央 (50%)」に要素が来た時に発火するように設定
+         */
         const checkItems = document.querySelectorAll('.animated-check-card');
-        checkItems.forEach((item) => {
+        checkItems.forEach((item, index) => {
             gsap.to(item, {
                 scrollTrigger: {
                     trigger: item,
-                    start: "top 65%",
-                    onEnter: () => item.classList.add('active'),
-                    toggleActions: "play none none none"
+                    // 画面の50%（中央）に要素の上が来たら発火
+                    start: "top 60%", 
+                    onEnter: () => {
+                        item.classList.add('active');
+                        // 振動のようなインパクトをGSAPでも追加（任意）
+                        gsap.fromTo(item, 
+                            { scale: 0.8 }, 
+                            { scale: 1, duration: 0.5, ease: "elastic.out(1, 0.5)" }
+                        );
+                    },
+                    // 一度だけ実行
+                    once: true 
                 }
             });
         });
 
-        // 7. スマホ向けインタラクション
+        // 7. スマホ向けタップインタラクション
         document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('touchstart', () => { 
-                gsap.to(el, { scale: 0.98, opacity: 0.8, duration: 0.1 });
+                gsap.to(el, { scale: 0.98, opacity: 0.9, duration: 0.1 });
             });
             el.addEventListener('touchend', () => { 
                 gsap.to(el, { scale: 1, opacity: 1, duration: 0.2 });
             });
+        });
+
+        // 8. スムーススクロール（予約ボタン用）
+        document.querySelector('a[href^="#"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            gsap.to(window, { duration: 1, scrollTo: href, ease: "power4.inOut" });
         });
     </script>
 </body>
