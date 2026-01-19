@@ -210,6 +210,24 @@
             box-shadow: 0 8px 20px -5px rgba(141, 81, 74, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* Flow Timeline */
+        .flow-step {
+            position: relative;
+            padding-left: 2rem;
+            padding-bottom: 1.5rem;
+            border-left: 2px dashed rgba(141, 81, 74, 0.2);
+        }
+        .flow-step::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: #8d514a;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden bg-texture">
@@ -345,7 +363,6 @@
                     <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shrink-0 shadow-md">
                         <img src="https://pbs.twimg.com/profile_images/2012316162789654528/PLlKMgAu.jpg" class="w-full h-full object-cover" alt="Therapist Yuji">
                     </div>
-                    </div>
                     <div class="min-w-0">
                         <h3 class="font-serif text-xl font-black tracking-widest text-foreground">Yuji</h3>
                         <p class="text-[10px] text-primary font-bold uppercase tracking-widest leading-none">Body Development</p>
@@ -353,7 +370,6 @@
                 </div>
 
                 <div class="space-y-5">
-                    <!-- スペック表示も「ドン！」と出したい場合はここにクラス追加可 -->
                     <div class="flex flex-wrap gap-2 pb-4 border-b border-primary/5">
                         <span class="bg-secondary/50 px-3 py-1.5 rounded-lg text-primary font-black text-[12px]">身長 177cm</span>
                         <span class="bg-secondary/50 px-3 py-1.5 rounded-lg text-primary font-black text-[12px]">体重 64kg</span>
@@ -371,6 +387,81 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         NEW: 180分の過ごし方 (SESSION FLOW)
+    =========================================== -->
+    <section class="py-12 bg-background relative z-30 border-t border-primary/5">
+        <div class="content-safe-area">
+            <div class="section-header reveal">
+                <span class="tag">Session Flow</span>
+                <h2>180分の非日常、その内訳</h2>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-primary/5 reveal">
+                <div class="space-y-2">
+                    <div class="flow-step">
+                        <h4 class="font-black text-primary text-[15px]">カウンセリング・お着替え</h4>
+                        <p class="text-[13px] text-foreground/60">体調や、触れてほしくない箇所などを丁寧にお伺いします。</p>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="flex items-center gap-2 mb-1">
+                            <h4 class="font-black text-primary text-[15px]">全身オイルマッサージ</h4>
+                            <span class="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold">60〜90分</span>
+                        </div>
+                        <p class="text-[13px] text-foreground/60">まずは身体の緊張を完全に解きます。これだけで寝落ちする方も多い、極上のリラックスタイムです。</p>
+                    </div>
+
+                    <div class="flow-step">
+                        <div class="flex items-center gap-2 mb-1">
+                            <h4 class="font-black text-primary text-[15px]">性感オイルマッサージ</h4>
+                            <span class="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold">30〜60分</span>
+                        </div>
+                        <p class="text-[13px] text-foreground/60">感度が高まった状態の身体へ、優しく。貴女のペースに合わせ、深い感覚を呼び起こします。</p>
+                    </div>
+
+                    <div class="flow-step" style="border-left: none; padding-bottom: 0;">
+                        <h4 class="font-black text-primary text-[15px]">アフターティー・お着替え</h4>
+                        <p class="text-[13px] text-foreground/60">余韻を楽しみながら、ゆっくりと現実に戻る準備を整えます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         NEW: 無料オプション (OPTIONS)
+    =========================================== -->
+    <section class="py-12 bg-secondary/20 relative z-30">
+        <div class="content-safe-area">
+            <div class="section-header reveal">
+                <span class="tag">Free Options</span>
+                <h2>さらに、心身を緩めるために</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 reveal">
+                <div class="bg-white p-5 rounded-2xl border border-primary/5 shadow-md text-center">
+                    <div class="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i data-lucide="brain" class="text-primary w-5 h-5"></i>
+                    </div>
+                    <p class="text-[11px] font-black text-primary uppercase tracking-widest mb-1">Option 01</p>
+                    <p class="text-[14px] font-bold text-foreground">ヘッドマッサージ</p>
+                    <p class="text-[18px] font-black text-primary mt-1">0<span class="text-[10px] ml-0.5">円</span></p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-primary/5 shadow-md text-center">
+                    <div class="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i data-lucide="unfold-horizontal" class="text-primary w-5 h-5"></i>
+                    </div>
+                    <p class="text-[11px] font-black text-primary uppercase tracking-widest mb-1">Option 02</p>
+                    <p class="text-[14px] font-bold text-foreground">肩甲骨はがし</p>
+                    <p class="text-[18px] font-black text-primary mt-1">0<span class="text-[10px] ml-0.5">円</span></p>
+                </div>
+            </div>
+            <p class="text-[11px] text-center text-foreground/40 mt-6 font-medium">※当日のヒアリング時に、お気軽にお申し付けください。</p>
         </div>
     </section>
 
@@ -394,7 +485,6 @@
                     </h3>
                 </div>
                 
-                <!-- ここも画面中央で「ドン！」と出るアニメーション対象 -->
                 <div class="space-y-2.5" id="safety-checklist">
                     <div class="animated-check-card"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>NGプレイがあれば事前にお伝えください。必ず守ります。</div>
                     <div class="animated-check-card"><i data-lucide="check-circle-2" class="w-5 h-5 shrink-0"></i>「ここまではOK」「ここはNG」という貴女のルールを最優先します。</div>
@@ -403,7 +493,6 @@
             </div>
         </div>
     </section>
-
     <!-- ==========================================
          6. 実務詳細 (SERVICE INFO)
     =========================================== -->
@@ -415,7 +504,6 @@
             </div>
 
             <div class="grid grid-cols-1 gap-3 reveal">
-                <!-- 実務詳細のカードにも適用可能ですが、まずは箇条書きを優先しています -->
                 <div class="bg-white p-5 rounded-2xl border border-primary/5 shadow-sm">
                     <div class="flex items-center gap-2 mb-2">
                         <i data-lucide="map-pin" class="text-primary w-4 h-4"></i>
@@ -451,6 +539,7 @@
             </div>
         </div>
     </section>
+
     <!-- ==========================================
          7. CLOSING / CALL TO ACTION
     =========================================== -->
