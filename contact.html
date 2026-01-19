@@ -131,11 +131,11 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            opacity: 0.6;
+            opacity: 0.45; /* 高級感を出すため、より暗めに設定 */
         }
         
         .readable-veil {
-            background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 80%, transparent 100%);
+            background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 80%, transparent 100%);
             padding: 1.5rem 0.5rem;
             width: 100%;
             max-width: 96%;
@@ -147,7 +147,7 @@
         .header-scrim-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 50%, #fdfaf7 100%);
+            background: linear-gradient(to bottom, transparent 40%, #fdfaf7 100%);
             z-index: 5;
         }
         
@@ -253,7 +253,7 @@
     =========================================== -->
     <header class="header-viewport">
         <div class="header-bg-img">
-            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=1200" alt="Sensual Oil Massage">
+            <img src="https://images.unsplash.com/photo-1540365118882-946449a2ce17?auto=format&fit=crop&q=80&w=1200" alt="Sophisticated Spa Background">
         </div>
         <div class="header-scrim-overlay"></div>
         
@@ -271,8 +271,8 @@
                 <div class="h-8"></div>
 
                 <div class="reveal flex justify-center mb-6">
-                    <div class="w-full max-w-[400px] h-44 rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover" alt="Oil Massage Context">
+                    <div class="w-full max-w-[420px] h-48 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover" alt="Oil Massage Scene">
                     </div>
                 </div>
 
@@ -320,7 +320,6 @@
             </div>
         </div>
     </section>
-    
     <!-- ==========================================
          3. メッセージセクション (MESSAGE)
     =========================================== -->
@@ -434,6 +433,15 @@
                         <h4 class="font-black text-primary text-[15px]">お着替え、解散</h4>
                         <p class="text-[13px] text-foreground/60">施術後、身支度を整えていただき終了となります。</p>
                     </div>
+                </div>
+
+                <!-- ぶつ切り感を解消するブリッジメッセージ -->
+                <div class="mt-10 pt-8 border-t border-primary/5 text-center">
+                    <p class="text-[13px] text-foreground/40 leading-relaxed italic">
+                        この180分間は、日常の役割を脱ぎ捨て、<br>
+                        一人の女性として自分を慈しむための聖域。<br>
+                        呼吸が深まり、細胞が目覚めていく感覚を味わってください。
+                    </p>
                 </div>
             </div>
         </div>
@@ -669,13 +677,12 @@
                     start: "top 60%", 
                     onEnter: () => {
                         item.classList.add('active');
-                        // 振動のようなインパクトをGSAPでも追加（任意）
+                        // 振動のようなインパクトをGSAPでも追加
                         gsap.fromTo(item, 
                             { scale: 0.8 }, 
                             { scale: 1, duration: 0.5, ease: "elastic.out(1, 0.5)" }
                         );
                     },
-                    // 一度だけ実行
                     once: true 
                 }
             });
