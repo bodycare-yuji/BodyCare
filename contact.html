@@ -131,12 +131,12 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            opacity: 0.45; /* 高級感を出すため、より暗めに設定 */
+            opacity: 0.45; 
         }
         
         .readable-veil {
-            background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 80%, transparent 100%);
-            padding: 1.5rem 0.5rem;
+            background: radial-gradient(circle, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 85%, transparent 100%);
+            padding: 2rem 0.5rem;
             width: 100%;
             max-width: 96%;
             margin: 0 auto;
@@ -147,7 +147,7 @@
         .header-scrim-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 40%, #fdfaf7 100%);
+            background: linear-gradient(to bottom, transparent 30%, #fdfaf7 100%);
             z-index: 5;
         }
         
@@ -253,7 +253,7 @@
     =========================================== -->
     <header class="header-viewport">
         <div class="header-bg-img">
-            <img src="https://images.unsplash.com/photo-1540365118882-946449a2ce17?auto=format&fit=crop&q=80&w=1200" alt="Sophisticated Spa Background">
+            <img src="https://images.unsplash.com/photo-1642123476661-ebe8a3d09153?q=80&w=1200&auto=format&fit=crop" alt="Luxury Body Care Background">
         </div>
         <div class="header-scrim-overlay"></div>
         
@@ -270,19 +270,19 @@
 
                 <div class="h-8"></div>
 
-                <div class="reveal flex justify-center mb-6">
+                <div class="reveal flex justify-center mb-8">
                     <div class="w-full max-w-[420px] h-48 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                         <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover" alt="Oil Massage Scene">
                     </div>
                 </div>
 
-                <div class="space-y-5 px-2 reveal">
+                <div class="space-y-6 px-4 reveal">
                     <p class="text-[17px] md:text-2xl leading-relaxed text-white/95 font-medium tracking-wide">
                         画面越しに見た「あの感覚」は、<br>
                         貴女の中にも実在する。
                     </p>
-                    <div class="h-[1px] w-12 bg-accent/40 mx-auto"></div>
-                    <p class="text-[20px] md:text-[28px] font-black text-accent tracking-widest drop-shadow-lg leading-snug">
+                    <div class="h-[1px] w-16 bg-accent/60 mx-auto"></div>
+                    <p class="text-[21px] md:text-[32px] font-black text-white tracking-[0.15em] leading-snug drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
                         思考を止め、<br>
                         ただの歓喜に還る180分。
                     </p>
@@ -291,6 +291,29 @@
         </div>
     </header>
 
+    <!-- ==========================================
+         NEW: リード文 (BRIDGE SECTION)
+    =========================================== -->
+    <section class="py-16 bg-background relative z-30">
+        <div class="content-safe-area">
+            <div class="reveal text-center space-y-8 px-2">
+                <div class="inline-block px-4 py-1 border-y border-primary/20">
+                    <p class="text-[12px] font-bold text-primary tracking-[0.3em] uppercase">The Awakening</p>
+                </div>
+                <h3 class="font-serif text-[20px] md:text-[26px] leading-relaxed font-black text-foreground">
+                    思考が静まり、五感が研ぎ澄まされる。<br>
+                    そこには、言葉にできないほど純粋な<br>
+                    身体の衝動が眠っています。
+                </h3>
+                <div class="w-1 h-12 bg-gradient-to-bottom from-primary/40 to-transparent mx-auto"></div>
+                <p class="text-[15px] leading-relaxed text-foreground/60 font-medium">
+                    日々の役割や「正解」を一度手放し、<br>
+                    ただ自分の感受性だけと向き合う時間。<br>
+                    今、その衝動に耳を傾けてみませんか？
+                </p>
+            </div>
+        </div>
+    </section>
     <!-- ==========================================
          2. 共感セクション (RELEASE)
     =========================================== -->
@@ -320,6 +343,7 @@
             </div>
         </div>
     </section>
+
     <!-- ==========================================
          3. メッセージセクション (MESSAGE)
     =========================================== -->
@@ -391,7 +415,7 @@
     </section>
 
     <!-- ==========================================
-         NEW: 180分の過ごし方 (SESSION FLOW)
+         SESSION FLOW & OPTIONS
     =========================================== -->
     <section class="py-12 bg-background relative z-30 border-t border-primary/5">
         <div class="content-safe-area">
@@ -435,7 +459,6 @@
                     </div>
                 </div>
 
-                <!-- ぶつ切り感を解消するブリッジメッセージ -->
                 <div class="mt-10 pt-8 border-t border-primary/5 text-center">
                     <p class="text-[13px] text-foreground/40 leading-relaxed italic">
                         この180分間は、日常の役割を脱ぎ捨て、<br>
@@ -448,7 +471,7 @@
     </section>
 
     <!-- ==========================================
-         NEW: 無料オプション (OPTIONS)
+         FREE OPTIONS
     =========================================== -->
     <section class="py-12 bg-secondary/20 relative z-30">
         <div class="content-safe-area">
@@ -476,7 +499,6 @@
                     <p class="text-[18px] font-black text-primary mt-1">0<span class="text-[10px] ml-0.5">円</span></p>
                 </div>
             </div>
-            <p class="text-[11px] text-center text-foreground/40 mt-6 font-medium">※当日のヒアリング時に、お気軽にお申し付けください。</p>
         </div>
     </section>
 
@@ -508,7 +530,7 @@
             </div>
         </div>
     </section>
-    <!-- ==========================================
+<!-- ==========================================
          6. 実務詳細 (SERVICE INFO)
     =========================================== -->
     <section class="py-12 bg-background relative z-30">
@@ -665,19 +687,16 @@
         });
 
         /**
-         * 6. 重要：チェックリストの「ドン！」アニメーション
-         * 画面の「中央 (50%)」に要素が来た時に発火するように設定
+         * 6. チェックリストの「ドン！」アニメーション
          */
         const checkItems = document.querySelectorAll('.animated-check-card');
         checkItems.forEach((item, index) => {
             gsap.to(item, {
                 scrollTrigger: {
                     trigger: item,
-                    // 画面の50%（中央）に要素の上が来たら発火
                     start: "top 60%", 
                     onEnter: () => {
                         item.classList.add('active');
-                        // 振動のようなインパクトをGSAPでも追加
                         gsap.fromTo(item, 
                             { scale: 0.8 }, 
                             { scale: 1, duration: 0.5, ease: "elastic.out(1, 0.5)" }
@@ -698,7 +717,7 @@
             });
         });
 
-        // 8. スムーススクロール（予約ボタン用）
+        // 8. スムーススクロール
         document.querySelector('a[href^="#"]').addEventListener('click', function(e) {
             e.preventDefault();
             const href = this.getAttribute('href');
@@ -706,4 +725,4 @@
         });
     </script>
 </body>
-</html>
+</html>    
