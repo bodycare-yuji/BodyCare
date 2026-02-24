@@ -11,7 +11,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-YNTM2PZTYC');
     </script>
 
@@ -54,7 +53,7 @@
             color: #3f3835; 
             -webkit-text-size-adjust: 100%;
             line-height: 1.6;
-            font-size: 16px; /* 文字サイズ拡大 */
+            font-size: 16px;
         }
         
         .glass { background: rgba(253, 250, 247, 0.95); backdrop-filter: blur(10px); }
@@ -91,6 +90,27 @@
             width: 50%;
             height: 2px;
             background: #8d514a;
+        }
+
+        /* サブセクションタイトル */
+        .sub-section-header {
+            text-align: center;
+            margin-bottom: 1.2rem;
+        }
+        .sub-section-header .sub-tag {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            font-weight: 800;
+            color: #c4a484;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+        .sub-section-header h3 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            line-height: 1.3;
         }
 
         /* ぼかし・ロック関連 */
@@ -135,10 +155,181 @@
         .table-container { overflow-x: auto; border-radius: 12px; border: 1px solid rgba(141, 81, 74, 0.1); margin: 1rem 0; }
         table { width: 100%; border-collapse: collapse; background: white; font-size: 14px; }
         th { background: #f2eae4; color: #8d514a; padding: 10px; text-align: left; font-weight: 700; }
-        td { padding: 10px; border-top: 1px solid #f2eae4; }
+        td { padding: 10px; border-top: 1px solid #f2eae4; vertical-align: top; }
+
+        /* 星評価 */
+        .star-row { display: flex; gap: 2px; }
+        .star { width: 10px; height: 10px; border-radius: 50%; background: #c4a484; display: inline-block; }
+        .star.empty { background: #e8ddd8; }
+
+        /* ステップインジケーター */
+        .step-badge {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: #8d514a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        /* コラプシブル */
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .collapsible-content.open {
+            max-height: 3000px;
+        }
+        .collapsible-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 1rem 1.25rem;
+            background: white;
+            border-radius: 1rem;
+            border: 1px solid rgba(141, 81, 74, 0.1);
+            font-weight: 700;
+            font-size: 15px;
+            color: #3f3835;
+            transition: background 0.2s;
+        }
+        .collapsible-btn:active { background: #f2eae4; }
+        .collapsible-arrow { transition: transform 0.3s; }
+        .collapsible-btn.open .collapsible-arrow { transform: rotate(180deg); }
+
+        /* タブ */
+        .tab-btn {
+            padding: 8px 14px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #8d514a;
+            background: #f2eae4;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .tab-btn.active {
+            background: #8d514a;
+            color: white;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ハイライトカード */
+        .highlight-card {
+            background: linear-gradient(135deg, #fdfaf7 0%, #f2eae4 100%);
+            border-left: 4px solid #8d514a;
+            padding: 1rem 1.25rem;
+            border-radius: 0 1rem 1rem 0;
+            margin: 1rem 0;
+        }
+
+        /* 神経経路ビジュアル */
+        .spine-node {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+        }
+        .spine-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #8d514a;
+            flex-shrink: 0;
+        }
+        .spine-line {
+            width: 2px;
+            height: 24px;
+            background: linear-gradient(to bottom, #8d514a, #c4a484);
+            margin-left: 5px;
+        }
+
+        /* フェーズバッジ */
+        .phase-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #8d514a;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 白黒反転セクション内のセクションヘッダー調整 */
+        .dark-section .section-header .tag { color: #c4a484; }
+        .dark-section .section-header h2 { color: white; }
+        .dark-section .section-header h2::after { background: #c4a484; }
 
         .br-sp { display: block; }
         @media (min-width: 768px) { .br-sp { display: inline; } }
+
+        /* スクロールインジケーター */
+        @keyframes bounceY {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+        .bounce-y { animation: bounceY 1.5s ease-in-out infinite; }
+
+        /* グロー効果 */
+        .glow-primary { box-shadow: 0 0 20px -5px rgba(141, 81, 74, 0.3); }
+
+        /* 進捗タイムライン */
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+            padding-bottom: 1.5rem;
+        }
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #8d514a, #f2eae4);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 24px;
+            height: 24px;
+            background: #8d514a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        /* セクション区切り装飾 */
+        .ornament {
+            text-align: center;
+            color: #c4a484;
+            opacity: 0.5;
+            letter-spacing: 0.5em;
+            font-size: 14px;
+            margin: 0.5rem 0;
+        }
     </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden">
@@ -156,31 +347,33 @@
         </div>
     </nav>
 
-    <!-- Header (Sunset Yoga) -->
+    <!-- Header -->
     <header class="relative min-h-[75vh] flex flex-col items-center justify-center px-6 text-white text-center">
         <div class="absolute inset-0 z-0">
-            <!-- 夕日にヨガポーズの画像 -->
             <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=1200" alt="Sunset Yoga" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black/30"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-[#fdfaf7] via-transparent to-transparent"></div>
         </div>
 
         <div class="relative z-10 w-full max-w-md pt-10">
-            <span class="text-[12px] font-bold tracking-[0.3em] uppercase mb-2 block reveal">Master Guide 2026</span>
+            <span class="text-[12px] font-bold tracking-[0.3em] uppercase mb-2 block reveal">Master Guide 2026 ── 完全保存版</span>
             <h1 class="font-serif text-3xl font-bold leading-tight mb-4 reveal">
                 「感じる身体」を育てる<br>
                 <span class="text-4xl block mt-1">体質改善<br>マスターガイド</span>
             </h1>
-            <p class="text-[15px] font-medium text-white/90 mb-8 leading-relaxed reveal">
-                生理・骨格・脳の仕組みを整え、<br>
-                一生ものの感受性を手に入れる：完全保存版
+            <p class="text-[14px] font-medium text-white/90 mb-2 leading-relaxed reveal">
+                生理学・骨格学・神経生理学・性科学・性心理学の知見を統合した<br>
+                一生ものの感受性を科学的に育てる完全プログラム
             </p>
-            <div class="reveal px-4">
+            <div class="reveal px-4 mt-6">
                 <div class="text-[14px] font-bold text-white mb-2 text-center drop-shadow-md">＼ そんなことより ／</div>
                 <a href="https://body-care-orpin.vercel.app/contact.html" target="_blank" class="cta-button">
                     「性感オイルマッサージ興味ある」
                 </a>
             </div>
+        </div>
+        <div class="absolute bottom-6 left-0 right-0 flex justify-center z-10 bounce-y">
+            <i data-lucide="chevron-down" class="text-white/60 w-6 h-6"></i>
         </div>
     </header>
 
@@ -193,41 +386,38 @@
             </div>
             
             <div class="space-y-4 text-foreground/80 mb-6 reveal">
-                <p>「自分は感じにくいのではないか」「もっと深く楽しみたいのに、身体がついてこない」「私だけ、何かが欠けているのではないか」……。もしあなたがそう感じているなら、それは決してあなたのせいではありません。</p>
-                <p class="font-bold text-primary border-l-4 border-primary pl-3 py-1">結論から言えば、あなたの身体という「お花」が、正しく咲くための環境を整えられていないだけなのです。</p>
+                <p class="text-[15px] leading-relaxed">「自分は感じにくいのではないか」「もっと深く楽しみたいのに、身体がついてこない」「私だけ、何かが欠けているのではないか」……。もしあなたがそう感じているなら、それは決してあなたのせいではありません。</p>
+                <p class="font-bold text-primary border-l-4 border-primary pl-3 py-1 text-[15px] leading-relaxed">結論から言えば、あなたの身体はまだ、正しく咲くための環境が整えられていないだけです。</p>
+                <p class="text-[14px] leading-relaxed text-foreground/70">感受性は先天的な才能ではなく、血流・骨格・神経・脳の仕組みを正しく整えることで、誰でも育てることができる「体質」です。</p>
             </div>
 
-            <!-- Elements Grid (2列) -->
-            <div class="bg-white p-5 rounded-2xl shadow-sm border border-primary/5 reveal">
-                <h3 class="font-bold text-[15px] mb-4 flex items-center gap-2">
-                    <i data-lucide="flower" class="text-primary w-5 h-5"></i>
-                    お花を咲かせるための4要素
-                </h3>
-                <div class="grid grid-cols-2 gap-2 text-[13px]">
-                    <div class="p-3 bg-secondary/30 rounded-xl">
-                        <p class="text-primary font-bold mb-1">1.温め（生理）</p>
-                        <p class="text-[11px] leading-tight text-foreground/60">冷たい土を温める</p>
-                    </div>
-                    <div class="p-3 bg-secondary/30 rounded-xl">
-                        <p class="text-primary font-bold mb-1">2.整え（骨格）</p>
-                        <p class="text-[11px] leading-tight text-foreground/60">茎の折れ曲がりを直す</p>
-                    </div>
-                    <div class="p-3 bg-secondary/30 rounded-xl">
-                        <p class="text-primary font-bold mb-1">3.太陽（興奮）</p>
-                        <p class="text-[11px] leading-tight text-foreground/60">エネルギーを浴びる</p>
-                    </div>
-                    <div class="p-3 bg-secondary/30 rounded-xl">
-                        <p class="text-primary font-bold mb-1">4.接続（脳）</p>
-                        <p class="text-[11px] leading-tight text-foreground/60">光を力に変える</p>
-                    </div>
+            <!-- 4学術領域バッジ -->
+            <div class="grid grid-cols-2 gap-2 mb-6 reveal">
+                <div class="p-3 bg-white rounded-xl border border-primary/10 text-center">
+                    <i data-lucide="heart-pulse" class="text-primary w-5 h-5 mx-auto mb-1"></i>
+                    <p class="text-[12px] font-bold text-primary">性科学</p>
+                    <p class="text-[10px] text-foreground/50">セクソロジー</p>
                 </div>
-                <p class="mt-4 text-[13px] italic leading-relaxed text-foreground/60 border-t pt-3 border-primary/5">
-                    本ガイドでは、情緒的な例え話に留まらず、科学的根拠に基づいた「身体の取説」として、あなたの感受性を根本から作り変える方法を解説します。
-                </p>
+                <div class="p-3 bg-white rounded-xl border border-primary/10 text-center">
+                    <i data-lucide="activity" class="text-primary w-5 h-5 mx-auto mb-1"></i>
+                    <p class="text-[12px] font-bold text-primary">女性生殖生理学</p>
+                    <p class="text-[10px] text-foreground/50">Physiology</p>
+                </div>
+                <div class="p-3 bg-white rounded-xl border border-primary/10 text-center">
+                    <i data-lucide="zap" class="text-primary w-5 h-5 mx-auto mb-1"></i>
+                    <p class="text-[12px] font-bold text-primary">神経生理学</p>
+                    <p class="text-[10px] text-foreground/50">Neuroscience</p>
+                </div>
+                <div class="p-3 bg-white rounded-xl border border-primary/10 text-center">
+                    <i data-lucide="brain" class="text-primary w-5 h-5 mx-auto mb-1"></i>
+                    <p class="text-[12px] font-bold text-primary">性心理学</p>
+                    <p class="text-[10px] text-foreground/50">Sexual Psychology</p>
+                </div>
             </div>
         </div>
     </section>
-    <!-- Locked Content Controller -->
+
+    <!-- Locked Content -->
     <div id="locked-content-area">
         
         <!-- Keyword UI -->
@@ -237,8 +427,6 @@
                     <i data-lucide="lock" class="text-primary w-8 h-8"></i>
                 </div>
                 <h3 class="font-serif text-lg font-bold text-primary mb-3 italic">Secret Knowledge</h3>
-                
-                <!-- 修正箇所：キーワード案内を強調 -->
                 <div class="bg-primary/5 p-4 rounded-xl border border-primary/10 mb-6">
                     <p class="text-[15px] text-primary font-bold leading-relaxed">
                         閲覧キーワードは無料でDM配布しています。<br>
@@ -246,7 +434,6 @@
                         閲覧キーワードをお伝えしています。
                     </p>
                 </div>
-                
                 <div class="space-y-4">
                     <input type="text" id="keyword-field" placeholder="キーワードを入力..." class="w-full px-5 py-4 rounded-xl bg-muted border-2 border-transparent focus:border-primary outline-none text-center font-bold text-primary text-lg transition-all shadow-inner">
                     <button onclick="checkUnlock()" class="w-full bg-primary text-white py-4 rounded-xl font-bold shadow-lg shadow-primary/20 active:scale-95 transition-all text-[15px]">
@@ -265,33 +452,48 @@
                 <div class="max-w-md mx-auto">
                     <div class="section-header">
                         <span class="tag">Overview</span>
-                        <h2>美しく咲き続けるための<br>「快感のサイクル」</h2>
+                        <h2>【全体像】快感のサイクル 5段階</h2>
                     </div>
                     
                     <p class="text-[15px] text-foreground/70 leading-relaxed mb-6 text-center">
                         各ステップは独立しているのではなく、円を描くように繋がっています。このサイクルが回り始めることで、感度は「らせん状」に高まっていきます。
                     </p>
-                    <!-- Cycle Items Grid (2列レイアウト) -->
-                    <div class="grid grid-cols-2 gap-3 mb-8">
-                        <div class="p-4 bg-secondary/20 rounded-xl border border-primary/5">
-                            <span class="text-primary font-bold text-xs block mb-1">Phase 01</span>
-                            <h4 class="font-bold text-[14px] leading-tight">【温める】<br>生理学</h4>
+
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center gap-4 p-4 bg-secondary/20 rounded-xl border border-primary/5">
+                            <div class="step-badge shrink-0">01</div>
+                            <div>
+                                <p class="font-bold text-[14px] text-primary">【温める】生理学</p>
+                                <p class="text-[12px] text-foreground/60">血流を整え、感覚の冬眠を解く</p>
+                            </div>
                         </div>
-                        <div class="p-4 bg-secondary/20 rounded-xl border border-primary/5">
-                            <span class="text-primary font-bold text-xs block mb-1">Phase 02</span>
-                            <h4 class="font-bold text-[14px] leading-tight">【整える】<br>構造学</h4>
+                        <div class="flex items-center gap-4 p-4 bg-secondary/20 rounded-xl border border-primary/5">
+                            <div class="step-badge shrink-0">02</div>
+                            <div>
+                                <p class="font-bold text-[14px] text-primary">【整える】構造学</p>
+                                <p class="text-[12px] text-foreground/60">神経の伝送路をまっすぐにする</p>
+                            </div>
                         </div>
-                        <div class="p-4 bg-secondary/20 rounded-xl border border-primary/5">
-                            <span class="text-primary font-bold text-xs block mb-1">Phase 03</span>
-                            <h4 class="font-bold text-[14px] leading-tight">【鍛える】<br>習慣</h4>
+                        <div class="flex items-center gap-4 p-4 bg-secondary/20 rounded-xl border border-primary/5">
+                            <div class="step-badge shrink-0">03</div>
+                            <div>
+                                <p class="font-bold text-[14px] text-primary">【鍛える】習慣</p>
+                                <p class="text-[12px] text-foreground/60">骨盤底筋＋オキシトシン感覚を育てる</p>
+                            </div>
                         </div>
-                        <div class="p-4 bg-secondary/20 rounded-xl border border-primary/5">
-                            <span class="text-primary font-bold text-xs block mb-1">Phase 04</span>
-                            <h4 class="font-bold text-[14px] leading-tight">【興奮する】<br>心理学</h4>
+                        <div class="flex items-center gap-4 p-4 bg-secondary/20 rounded-xl border border-primary/5">
+                            <div class="step-badge shrink-0">04</div>
+                            <div>
+                                <p class="font-bold text-[14px] text-primary">【興奮する】心理学</p>
+                                <p class="text-[12px] text-foreground/60">脳の着火システムを稼働させる</p>
+                            </div>
                         </div>
-                        <div class="p-4 bg-secondary/20 rounded-xl border border-primary/5 col-span-2">
-                            <span class="text-primary font-bold text-xs block mb-1">Phase 05</span>
-                            <h4 class="font-bold text-[14px] leading-tight">【つなぐ】（脳科学）：脳と身体を直結させて快感を増幅する。</h4>
+                        <div class="flex items-center gap-4 p-4 bg-primary/5 rounded-xl border border-primary/10 glow-primary">
+                            <div class="step-badge shrink-0">05</div>
+                            <div>
+                                <p class="font-bold text-[14px] text-primary">【つなぐ】脳科学</p>
+                                <p class="text-[12px] text-foreground/60">脳と身体を直結させて快感を増幅する</p>
+                            </div>
                         </div>
                     </div>
 
@@ -303,45 +505,56 @@
                 </div>
             </section>
 
-            <!-- 第1段階：温める -->
-            <section id="phase1" class="py-10 bg-white px-6">
+            <!-- ================================ -->
+            <!-- Phase 1: 温める -->
+            <!-- ================================ -->
+            <section id="phase1" class="py-12 bg-background px-6 border-t border-primary/5">
                 <div class="max-w-md mx-auto">
                     <div class="section-header">
                         <span class="tag">Phase 01</span>
                         <h2>【温める】<br>生理学による「土壌の準備」</h2>
                     </div>
                     
-                    <div class="bg-primary/5 border-l-4 border-primary p-4 rounded-r-xl mb-6">
+                    <div class="highlight-card mb-6">
                         <h3 class="text-[16px] font-bold text-primary leading-snug">「あなたは、手足やお腹の奥に『冷え』を感じていませんか？」</h3>
                     </div>
 
-                    <p class="text-[16px] text-foreground/80 leading-relaxed mb-6">「不感」の最大の敵は冷えです。冷たい血液が滞っているのは、まるで「氷水」が骨盤周りの大切な神経を冷やし続けているようなもの。まずは身体の核心部である「子宮」を温め、感覚の冬眠を解くことから始めます。</p>
+                    <p class="text-[15px] text-foreground/80 leading-relaxed mb-6">不感の最大の敵は、身体の冷えです。特に足元は心臓から最も遠いため、重力の影響で血液が滞りやすく、最も冷えが進行しやすい場所です。冷え切った血液が骨盤周りの神経を冷やし続けると、どんなに刺激を与えても神経のスイッチは入りません。</p>
 
                     <div class="space-y-4 mb-8">
-                        <div class="p-5 bg-secondary/20 rounded-xl">
-                            <h4 class="font-bold text-[16px] mb-2 text-primary">1.1 最優先：仙骨シャワー</h4>
-                            <p class="text-[15px] leading-relaxed mb-2"><span class="bg-primary text-white px-2 py-0.5 rounded text-[11px] mr-1 font-bold">方法</span> お尻の真ん中にある平らな骨（仙骨）に、40〜42℃の少し熱めのシャワーを垂直に1分間以上当てます。</p>
-                            <p class="text-[13px] text-foreground/60 italic leading-snug"><span class="font-bold">理由：</span> 仙骨はリラックスと快感を司る副交感神経の大きな出口。ここを直接温めることで、骨盤内の血管が一気に広がり、子宮や膣の深部まで熱が届きます。</p>
+                        <div class="p-5 bg-white rounded-xl shadow-sm border border-primary/5">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full">最優先</span>
+                                <h4 class="font-bold text-[16px] text-primary">1.1 仙骨シャワー</h4>
+                            </div>
+                            <p class="text-[15px] leading-relaxed mb-3">お尻の真ん中にある平らな骨（仙骨）に、<strong class="text-primary">40〜42℃</strong>の少し熱めのシャワーを垂直に<strong class="text-primary">1分間以上</strong>当てます。</p>
+                            <div class="bg-secondary/30 p-3 rounded-lg">
+                                <p class="text-[12px] text-foreground/60 italic leading-relaxed"><span class="font-bold text-foreground/80">理由：</span>仙骨は副交感神経（S2-S4）の大きな出口です。ここを直接温めることで骨盤内の血管が拡張し、子宮や膣の深部まで熱が届きます。お腹の奥がじんわり温かくなれば成功です。</p>
+                            </div>
                         </div>
 
-                        <div class="p-5 bg-secondary/20 rounded-xl">
+                        <div class="p-5 bg-white rounded-xl shadow-sm border border-primary/5">
                             <h4 class="font-bold text-[16px] mb-2 text-primary">1.2 補強：内くるぶしシャワー</h4>
-                            <p class="text-[15px] leading-relaxed mb-2"><span class="bg-primary text-white px-2 py-0.5 rounded text-[11px] mr-1 font-bold">方法</span> 両足の内くるぶしを左右1分ずつ、丁寧に温めます。</p>
-                            <p class="text-[13px] text-foreground/60 italic leading-snug"><span class="font-bold">理由：</span> 内くるぶし周辺には、子宮や卵巣に直結する血管やツボが集中。ここを温めることで、足元から「温かい血流」のルートが完全に開通します。</p>
+                            <p class="text-[15px] leading-relaxed mb-3">両足の内くるぶしを左右<strong class="text-primary">1分ずつ</strong>、丁寧に温めます。</p>
+                            <div class="bg-secondary/30 p-3 rounded-lg">
+                                <p class="text-[12px] text-foreground/60 italic leading-relaxed"><span class="font-bold text-foreground/80">理由：</span>内くるぶし周辺には子宮・卵巣に直結する重要な血管と経絡が集中しており、足元から「温かい血流」のルートを完全に開通させます。</p>
+                            </div>
                         </div>
 
-                        <div class="p-5 bg-secondary/20 rounded-xl">
+                        <div class="p-5 bg-white rounded-xl shadow-sm border border-primary/5">
                             <h4 class="font-bold text-[16px] mb-2 text-primary">1.3 循環：かかとの上げ下げ</h4>
-                            <p class="text-[15px] leading-relaxed mb-2"><span class="bg-primary text-white px-2 py-0.5 rounded text-[11px] mr-1 font-bold">方法</span> お風呂上がりに、ふくらはぎを意識して、ゆっくりと30回上げ下げします。</p>
-                            <p class="text-[13px] text-foreground/60 italic leading-snug"><span class="font-bold">理由：</span> 「第二の心臓」を使い、得た熱を脳と骨盤へ強力に循環させます。温めるだけでなく「巡らせる」ことで身体を感じやすい状態で安定させます。</p>
+                            <p class="text-[15px] leading-relaxed mb-3">お風呂上がりに、ふくらはぎを意識してゆっくりと<strong class="text-primary">30回</strong>上げ下げします。</p>
+                            <div class="bg-secondary/30 p-3 rounded-lg">
+                                <p class="text-[12px] text-foreground/60 italic leading-relaxed"><span class="font-bold text-foreground/80">理由：</span>「第二の心臓」であるふくらはぎを動かし、シャワーで得た熱をポンプのように押し上げ、脳と骨盤へ強力に循環させます。</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="table-container shadow-sm mb-6">
+                    <div class="table-container shadow-sm">
                         <table>
                             <thead><tr><th>項目</th><th>方法</th><th>目的</th></tr></thead>
                             <tbody>
-                                <tr><td class="font-bold">仙骨</td><td>40-42℃/1分間</td><td>神経を解凍</td></tr>
+                                <tr><td class="font-bold">仙骨シャワー</td><td>40-42℃ / 1分間</td><td>副交感神経（S2-S4）を解凍</td></tr>
                                 <tr><td class="font-bold">内くるぶし</td><td>各1分間以上</td><td>血流ルート開通</td></tr>
                                 <tr><td class="font-bold">かかと上げ下げ</td><td>30回</td><td>血液を脳と骨盤へ</td></tr>
                             </tbody>
@@ -350,157 +563,567 @@
                 </div>
             </section>
 
-            <!-- 第2段階：整える -->
-            <section id="phase2" class="py-10 bg-secondary/20 px-6">
+            <!-- ================================ -->
+            <!-- Phase 2: 整える -->
+            <!-- ================================ -->
+            <section id="phase2" class="py-12 bg-white px-6 border-t border-primary/5">
                 <div class="max-w-md mx-auto">
                     <div class="section-header">
                         <span class="tag">Phase 02</span>
                         <h2>【整える】<br>構造学による「伝送路の構築」</h2>
                     </div>
 
-                    <div class="bg-white p-5 rounded-2xl shadow-sm mb-6 border border-primary/5">
-                        <h3 class="text-[16px] font-bold text-primary leading-tight text-center mb-4">「その姿勢が、信号の通行止めになっているかも？」</h3>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="bg-background p-3 rounded-xl">
-                                <p class="text-primary font-bold text-[14px] mb-1">反り腰</p>
-                                <p class="text-[11px] leading-relaxed text-foreground/70">腰の神経が圧迫され、下半身の感覚が脳へ登るのを阻止します。</p>
-                            </div>
-                            <div class="bg-background p-3 rounded-xl">
-                                <p class="text-primary font-bold text-[14px] mb-1">猫背</p>
-                                <p class="text-[11px] leading-relaxed text-foreground/70">脳へのメインパイプを折り曲げ、興奮が伝わるのを邪魔します。</p>
-                            </div>
+                    <div class="highlight-card mb-6">
+                        <h3 class="text-[16px] font-bold text-primary leading-snug">「無意識に腰が反ってしまう『反り腰』や、背中が丸まる『猫背』が気になりませんか？」</h3>
+                    </div>
+
+                    <p class="text-[14px] text-foreground/70 leading-relaxed mb-4">血流がたっぷりあっても、情報の通り道である「骨格」が崩れていては、感覚は脳まで届きません。骨盤底筋からの求心性神経信号は、脊髄を通って脳へ上行します。その道が物理的に圧迫されていると、信号は途中で遮断されてしまいます。</p>
+
+                    <div class="grid grid-cols-2 gap-3 mb-6">
+                        <div class="bg-background p-4 rounded-xl border border-primary/5">
+                            <p class="text-primary font-bold text-[14px] mb-2">反り腰</p>
+                            <p class="text-[12px] leading-relaxed text-foreground/60">骨盤が前に倒れすぎている状態。腰の神経が圧迫され、下半身の感覚が脳へ登る「通行止め」になります。</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-xl border border-primary/5">
+                            <p class="text-primary font-bold text-[14px] mb-2">猫背</p>
+                            <p class="text-[12px] leading-relaxed text-foreground/60">背骨が丸まり胸が閉じた状態。脳へのメインパイプを折り曲げているようなもの。</p>
                         </div>
                     </div>
 
-                    <div class="space-y-6">
-                        <div class="bg-white p-6 rounded-2xl shadow-md">
-                            <h4 class="font-bold text-[17px] mb-3 text-primary">2.1 骨格の自己修正「かかと出し切り」</h4>
-                            <p class="text-[14px] mb-4 leading-relaxed italic border-l-2 border-accent pl-3">仰向け足踏み・フルストローク</p>
-                            <ol class="text-[15px] space-y-3 mb-4 list-decimal pl-5">
+                    <div class="space-y-5">
+                        <div class="bg-background p-6 rounded-2xl border border-primary/5">
+                            <h4 class="font-bold text-[17px] mb-2 text-primary">2.1 骨格の自己修正「かかと出し切り」</h4>
+                            <p class="text-[14px] mb-4 leading-relaxed italic border-l-2 border-accent pl-3 text-foreground/70">仰向け足踏み・フルストローク</p>
+                            <ol class="text-[14px] space-y-3 mb-4 list-decimal pl-5">
                                 <li>仰向けに寝て脚を伸ばします。</li>
-                                <li>片方のかかとを、<strong class="text-primary font-bold">「これ以上は1ミリも動かない」という限界まで</strong>グーッと突き出します。</li>
-                                <li>同時に反対側の腰を引き上げ（骨格を上下に揺らすイメージ）、左右交互に50回行います。</li>
+                                <li>片方のかかとを<strong class="text-primary">「これ以上は1ミリも動かない」という限界まで</strong>グーッと遠くに突き出します。</li>
+                                <li>同時に反対側の腰を引き上げます（骨格を上下に揺らすイメージ）。</li>
+                                <li>これを左右交互に<strong class="text-primary">50回</strong>行います。</li>
                             </ol>
-                            <p class="text-[13px] text-foreground/50 bg-secondary/30 p-3 rounded-lg leading-relaxed"><span class="font-bold">理由：</span> 大腰筋を正常に働かせ、ゆがんだ骨盤を正しい位置へリセット。情報を運ぶ道をまっすぐにする作業です。</p>
+                            <div class="bg-secondary/30 p-3 rounded-lg">
+                                <p class="text-[12px] text-foreground/60 leading-relaxed italic"><span class="font-bold text-foreground/80">神経生理学的根拠：</span>かかとを限界まで出し切ることで、反り腰の原因となるお腹の奥の筋肉（大腰筋）を正常に働かせ、歪んだ骨盤を物理的に正しい位置へリセット。仙骨孔（S2-S4の神経根の出口）周囲の緊張が解け、骨盤内臓神経の伝導効率が上がります。</p>
+                            </div>
                         </div>
 
-                        <div class="bg-white p-6 rounded-2xl shadow-md">
-                            <h4 class="font-bold text-[17px] mb-3 text-primary">2.2 背骨の柔軟性を高める</h4>
-                            <p class="text-[14px] mb-4 leading-relaxed italic border-l-2 border-accent pl-3">肘立て上体倒し（30往復）</p>
-                            <ol class="text-[15px] space-y-3 mb-4 list-decimal pl-5">
+                        <div class="bg-background p-6 rounded-2xl border border-primary/5">
+                            <h4 class="font-bold text-[17px] mb-2 text-primary">2.2 背骨の柔軟性を高める</h4>
+                            <p class="text-[14px] mb-4 leading-relaxed italic border-l-2 border-accent pl-3 text-foreground/70">肘立て上体倒し（30往復）</p>
+                            <ol class="text-[14px] space-y-3 mb-4 list-decimal pl-5">
                                 <li>うつ伏せで肘を立て、片膝をカエル足のように横に曲げます。</li>
                                 <li>上体を左右に大きく捻って、肩を床に近づけるように沈み込みます。</li>
+                                <li><strong class="text-primary">30往復</strong>繰り返します。</li>
                             </ol>
-                            <p class="text-[13px] text-foreground/50 bg-secondary/30 p-3 rounded-lg leading-relaxed"><span class="font-bold">理由：</span> 背骨の根元（仙腸関節）から背中全体の硬直を解き、情報の通り道を「開通」させます。しなやかな身体こそが快感の土台です。</p>
+                            <div class="bg-secondary/30 p-3 rounded-lg">
+                                <p class="text-[12px] text-foreground/60 leading-relaxed italic"><span class="font-bold text-foreground/80">理由：</span>背骨の根元（仙腸関節）から背中全体の硬直を解き、猫背などで閉じていた情報の通り道を開通させます。しなやかな身体こそが、快感を脳へ響かせるための土台となります。</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 第3段階：鍛える -->
-            <section id="phase3" class="py-10 bg-white px-6">
+            <!-- ================================ -->
+            <!-- Phase 3: 鍛える -->
+            <!-- ================================ -->
+            <section id="phase3" class="py-12 bg-secondary/10 px-6 border-t border-primary/5">
                 <div class="max-w-md mx-auto">
                     <div class="section-header">
                         <span class="tag">Phase 03</span>
-                        <h2>【鍛える】<br>自発的な「快感のエンジン」作り</h2>
+                        <h2>【鍛える】<br>骨盤底筋とオキシトシン感覚を育てる</h2>
                     </div>
 
-                    <div class="bg-primary/5 p-5 rounded-xl mb-8">
-                        <p class="text-[16px] font-bold text-primary leading-snug text-center mb-2">「身体の奥が他人事のように静まり返っていませんか？」</p>
-                        <p class="text-[14px] text-foreground/70 leading-relaxed text-center">いざという時に身体が脈打ち、快感を受け止められる状態を体質として作っておくための大切なケアです。</p>
+                    <div class="bg-primary/5 p-5 rounded-xl mb-8 border border-primary/10">
+                        <p class="text-[16px] font-bold text-primary leading-snug text-center mb-2">「気持ちが高まっているはずなのに、身体の奥が他人事のように静まり返っていることはありませんか？」</p>
+                        <p class="text-[13px] text-foreground/70 leading-relaxed text-center">いざという時に身体が反応してくれないのは、骨盤底筋群（エンジン）が眠っており、スイッチが入っても動かない状態だからです。このトレーニングは「脳が興奮した時に、身体の奥が自発的に脈打ち、快感を受け止められる状態」を体質として作っておくための大切なケアです。</p>
                     </div>
 
-                    <div class="space-y-4 mb-10">
-                        <h4 class="font-bold text-[17px] text-primary border-b-2 border-primary/10 pb-1">3.1 ドローイン膣トレの 4ステップ</h4>
+                    <!-- 3.A ふわっとした感覚の正体 -->
+                    <div class="mb-6">
+                        <button class="collapsible-btn" onclick="toggleCollapsible(this)">
+                            <div class="flex items-center gap-3">
+                                <span class="text-primary text-[12px] font-bold uppercase tracking-wider">3.A</span>
+                                <span>「ふわっとした感覚」の正体：神経生理学的解析</span>
+                            </div>
+                            <i data-lucide="chevron-down" class="text-primary w-5 h-5 shrink-0 collapsible-arrow"></i>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="bg-white rounded-b-2xl border border-t-0 border-primary/10 p-5 space-y-4">
+                                <p class="text-[13px] text-foreground/70 leading-relaxed">膣締めドローイン＋骨盤後傾の動作後に感じる「ふわっとした感覚」は、単一のオキシトシン分泌ではなく、3つの神経・内分泌反応の複合体です。</p>
+                                
+                                <div class="space-y-3">
+                                    <div class="border-l-2 border-accent pl-4">
+                                        <p class="font-bold text-[14px] text-primary mb-1">反応① 骨盤底筋の随意収縮 → 骨盤神経の発火</p>
+                                        <p class="text-[12px] text-foreground/60 leading-relaxed">骨盤底筋（恥骨尾骨筋・腸骨尾骨筋など）を意識的に収縮させると、陰部神経・骨盤内臓神経のメカノレセプターが活性化し、仙髄後角を経由して脊髄を上行する信号が生じます。</p>
+                                    </div>
+                                    <div class="border-l-2 border-accent pl-4">
+                                        <p class="font-bold text-[14px] text-primary mb-1">反応② 大腰筋リリース → 副交感神経（S2-S4）優位シフト</p>
+                                        <p class="text-[12px] text-foreground/60 leading-relaxed">ドローイン（腹横筋の収縮）と同時に行う腰椎前弯の軽減は、慢性的に緊張していた大腰筋に付着する交感神経節後線維への圧迫を解放。骨盤内臓器への血流が増加し、局所充血と血管拡張が始まります。</p>
+                                    </div>
+                                    <div class="border-l-2 border-accent pl-4">
+                                        <p class="font-bold text-[14px] text-primary mb-1">反応③ 視床下部 → 下垂体後葉 → オキシトシン放出</p>
+                                        <p class="text-[12px] text-foreground/60 leading-relaxed">骨盤神経からの累積した求心性信号が視床下部室傍核（PVN）・視索上核（SON）へ到達し、オキシトシンニューロンが活性化。「不安軽減・報酬感・温かみのある弛緩感」を生じさせます。</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-primary/5 p-4 rounded-xl border border-primary/10">
+                                    <p class="text-[13px] font-bold text-primary text-center leading-relaxed">結論：「ふわっとした感覚」は<br>骨盤神経の活性化 → 副交感神経優位 → オキシトシン拍動性分泌、という連鎖反応の末端に生まれる、<strong>安心感＋温かさ＋軽い浮遊感の複合体</strong>です。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3.B 言葉で知る -->
+                    <div class="mb-6">
+                        <button class="collapsible-btn" onclick="toggleCollapsible(this)">
+                            <div class="flex items-center gap-3">
+                                <span class="text-primary text-[12px] font-bold uppercase tracking-wider">3.B</span>
+                                <span>「ふわっとした感覚」を言葉で知る</span>
+                            </div>
+                            <i data-lucide="chevron-down" class="text-primary w-5 h-5 shrink-0 collapsible-arrow"></i>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="bg-white rounded-b-2xl border border-t-0 border-primary/10 p-5 space-y-5">
+                                <div>
+                                    <p class="text-[12px] font-bold uppercase tracking-widest text-accent mb-3">誰でもわかる言葉で</p>
+                                    <p class="text-[14px] leading-relaxed text-foreground/80">あなたのお腹の奥、骨盤の中心に、温かい光の玉が一個あると思ってください。普段その光はとても小さく、あまり気づきません。でも、ゆっくり息を吐いてお腹をそっと凹ませた瞬間、その光の玉が「あ、呼ばれた」と感じて、ふわっと温かく膨らむのです。</p>
+                                    <p class="text-[14px] leading-relaxed text-foreground/70 mt-2">この感覚は熱さでも痛さでもなく、温かい飲み物を飲んだ直後に、お腹にじわじわと温かさが広がる感覚に似ています。ただしそれが喉ではなく、骨盤の中心から始まります。</p>
+                                </div>
+
+                                <div class="bg-primary/5 p-4 rounded-xl">
+                                    <p class="text-[12px] font-bold uppercase tracking-widest text-accent mb-3">比喩なし：身体の中に起きることの直接描写</p>
+                                    <p class="text-[13px] leading-relaxed text-foreground/70">息をゆっくり吐き始めた瞬間、お腹の奥の筋肉が薄く内側へ引き込まれます。その動きに引っ張られるように、骨盤の底にある筋肉が、自分では意識していないのに微かに上に向かって引き上がります。</p>
+                                    <p class="text-[13px] leading-relaxed text-foreground/70 mt-2">温度が上がるにつれて、その場所に「存在感」が生まれます。普段は意識しない骨盤の中心が、ほのかに自分の存在を主張し始める感覚です。主張といっても痛みではなく、重さでもなく、ただそこに何かが「ある」という感覚です。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3.C 3段階ステップ -->
+                    <div class="mb-6">
+                        <div class="sub-section-header mt-6 mb-4">
+                            <span class="sub-tag">3.C</span>
+                            <h3>「ふわっとした感覚」を育てる 3段階ステップ</h3>
+                        </div>
+
+                        <p class="text-[13px] text-foreground/60 text-center mb-4 italic">この感覚は要素分解でき、段階的に習得・再現が可能です。数日かけて感覚を掴んでいきましょう。</p>
+
                         <div class="space-y-4">
-                            <div class="flex gap-4 items-start bg-background p-4 rounded-xl border border-primary/5">
-                                <span class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">S1</span>
-                                <div><h5 class="font-bold text-[15px] mb-1">お腹の凹ませ（基礎）</h5><p class="text-[13px] text-foreground/60 leading-tight">息を8秒かけて「ふぅ〜〜〜っ」と吐ききり、おへそを背中にくっつけるイメージでお腹をペタンコにします。</p></div>
+                            <!-- STEP 1 -->
+                            <div class="bg-white p-5 rounded-2xl border border-primary/5">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="step-badge">1</div>
+                                    <div>
+                                        <p class="font-bold text-[15px] text-primary">感覚の入口を開ける</p>
+                                        <p class="text-[11px] text-foreground/50 uppercase tracking-wider">骨盤底筋のメカノレセプター活性化フェーズ</p>
+                                    </div>
+                                </div>
+                                <div class="bg-secondary/20 p-3 rounded-lg mb-3">
+                                    <p class="text-[12px] font-bold text-primary mb-1">【身体でやること】</p>
+                                    <p class="text-[13px] leading-relaxed text-foreground/70">息を細くゆっくり吐きながら（6〜8秒）、腹横筋のみを収縮させてお腹を薄く凹ませます。この時、<strong class="text-foreground">お尻に力を入れないことが重要</strong>です。</p>
+                                </div>
+                                <div class="bg-primary/5 p-3 rounded-lg">
+                                    <p class="text-[12px] font-bold text-primary mb-1">【感じるべき感覚の目印】</p>
+                                    <p class="text-[13px] leading-relaxed text-foreground/70">膣の入口よりも奥、骨盤の中心あたりが「じわっと存在感を増す」感じ。痛みでも快感でもなく、「あ、そこにあった」という発見に近い感覚です。</p>
+                                </div>
                             </div>
-                            <div class="flex gap-4 items-start bg-background p-4 rounded-xl border border-primary/5">
-                                <span class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">S2</span>
-                                <div><h5 class="font-bold text-[15px] mb-1">前側の引き上げ（膣締め）</h5><p class="text-[13px] text-foreground/60 leading-tight">お腹を凹ませながら、ストローでお水を吸い上げるように膣を上へギュッと引き上げます。</p></div>
+
+                            <!-- STEP 2 -->
+                            <div class="bg-white p-5 rounded-2xl border border-primary/5">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="step-badge">2</div>
+                                    <div>
+                                        <p class="font-bold text-[15px] text-primary">信号を強くする</p>
+                                        <p class="text-[11px] text-foreground/50 uppercase tracking-wider">仙骨副交感神経の賦活フェーズ</p>
+                                    </div>
+                                </div>
+                                <div class="bg-secondary/20 p-3 rounded-lg mb-3">
+                                    <p class="text-[12px] font-bold text-primary mb-1">【身体でやること】</p>
+                                    <p class="text-[13px] leading-relaxed text-foreground/70">STEP 1の状態を保ちながら、腰椎の前弯をわずかに減らします（骨盤をごく軽く後傾させる）。膣の内側を「吸い上げる」のではなく、「内側から薄い膜が優しく引き上がる」程度の最小限の力で収縮させます。</p>
+                                </div>
+                                <div class="bg-primary/5 p-3 rounded-lg">
+                                    <p class="text-[12px] font-bold text-primary mb-1">【感じるべき感覚の目印】</p>
+                                    <p class="text-[13px] leading-relaxed text-foreground/70">骨盤の中が「温かくなってくる」感覚、または「少し重みが増す」感覚。これが副交感神経優位シフトのサインです。この状態を<strong class="text-foreground">10〜15秒そのまま保持</strong>します。急がないことが重要です。</p>
+                                </div>
                             </div>
-                            <div class="flex gap-4 items-start bg-background p-4 rounded-xl border border-accent/30 shadow-sm">
-                                <span class="w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">S3</span>
-                                <div><h5 class="font-bold text-[15px] mb-1 text-primary">後ろ側の引き上げ（仙骨締め）</h5><p class="text-[13px] text-foreground/70 font-bold leading-tight italic">しっぽの骨を前に巻き込むように、仙骨を内側へ。左右の坐骨を中央に寄せるイメージです。</p></div>
-                            </div>
-                            <div class="flex gap-4 items-start bg-primary/5 p-4 rounded-xl border-2 border-primary/10">
-                                <span class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">S4</span>
-                                <div><h5 class="font-bold text-[15px] mb-1">360度密閉（統合）</h5><p class="text-[13px] font-bold leading-tight">3点を同時に行うことで骨盤内が密閉され、脳へ送られる電気信号の強度が最大化されます。</p></div>
+
+                            <!-- STEP 3 -->
+                            <div class="bg-white p-5 rounded-2xl border-2 border-primary/15 glow-primary">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="step-badge" style="background: #c4a484;">3</div>
+                                    <div>
+                                        <p class="font-bold text-[15px] text-primary">ふわっとを受け取る</p>
+                                        <p class="text-[11px] text-foreground/50 uppercase tracking-wider">オキシトシン・β-エンドルフィン放出フェーズ</p>
+                                    </div>
+                                </div>
+                                <div class="bg-secondary/20 p-3 rounded-lg mb-3">
+                                    <p class="text-[12px] font-bold text-primary mb-1">【身体でやること】</p>
+                                    <p class="text-[13px] leading-relaxed text-foreground/70">STEP 2の骨盤内の温かさを感じながら、意識的に全身の力を抜きます。特に<strong class="text-foreground">顎・肩・手の指の力を抜くことが重要</strong>です（これらは交感神経緊張のセンサーとして機能するため）。その状態で、骨盤底筋の収縮を「ゆっくりと解放」します。</p>
+                                </div>
+                                <div class="bg-primary/5 p-3 rounded-lg">
+                                    <p class="text-[12px] font-bold text-primary mb-1">【感じるべき感覚の目印】</p>
+                                    <p class="text-[13px] leading-relaxed text-foreground/70">骨盤の中から、温かい何かが「広がろうとしている」感覚。これがオキシトシン拍動性分泌の体感です。抵抗せず、ただ受け取ります。この「ふわっと」が感じられたら、STEP 1〜3の習得が完了です。</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-6 bg-foreground text-white rounded-2xl mb-10 text-center">
-                        <h4 class="font-bold text-[16px] text-accent mb-4 italic">3.2 呼吸は「吸う時？吐く時？」どちらが正解？</h4>
-                        <div class="grid grid-cols-1 gap-4 text-left">
-                            <div class="bg-white/5 p-3 rounded-lg border border-white/10">
-                                <p class="text-accent font-bold text-[14px]">● 吐きながら（初心者・トレーニング向き）</p>
-                                <p class="text-[12px] opacity-70 leading-tight mt-1">息を吐くとお腹を凹ませる力を最大に発揮できるため、最も強く、深く締められます。</p>
-                            </div>
-                            <div class="bg-white/5 p-3 rounded-lg border border-white/10">
-                                <p class="text-accent font-bold text-[14px]">● 吸いながら（実戦・応用向き）</p>
-                                <p class="text-[12px] opacity-70 leading-tight mt-1">外部エネルギーを吸い込む感覚と一致するため、性的興奮とリンクしやすいのが特徴です。</p>
-                            </div>
-                        </div>
-                        <p class="text-[12px] text-white/40 mt-4 italic">どちらも正解。最終的にはあなたが「心地よい方」をあなたの正解にしてください。</p>
                     </div>
 
-                    <div class="p-6 bg-accent/5 rounded-[2rem] border-2 border-accent/20">
-                        <h4 class="font-bold text-[16px] text-center mb-6 italic uppercase tracking-wider">【ワーク】あなたのルーティンを決めよう</h4>
-                        <div class="space-y-3">
-                            <label class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm">
-                                <input type="checkbox" class="w-6 h-6 accent-primary border-primary/20">
-                                <span class="text-[15px] font-medium leading-tight">朝、歯を磨いている時</span>
-                            </label>
-                            <label class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm">
-                                <input type="checkbox" class="w-6 h-6 accent-primary border-primary/20">
-                                <span class="text-[15px] font-medium leading-tight">電車を待っている時</span>
-                            </label>
-                            <label class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm">
-                                <input type="checkbox" class="w-6 h-6 accent-primary border-primary/20">
-                                <span class="text-[15px] font-medium leading-tight">信号待ちをしている時</span>
-                            </label>
+                    <!-- 3.D 全身に広げる経路 -->
+                    <div class="mb-6">
+                        <button class="collapsible-btn" onclick="toggleCollapsible(this)">
+                            <div class="flex items-center gap-3">
+                                <span class="text-primary text-[12px] font-bold uppercase tracking-wider">3.D</span>
+                                <span>「ふわっとした感覚」を全身に広げる経路</span>
+                            </div>
+                            <i data-lucide="chevron-down" class="text-primary w-5 h-5 shrink-0 collapsible-arrow"></i>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="bg-white rounded-b-2xl border border-t-0 border-primary/10 p-5 space-y-5">
+                                <div>
+                                    <p class="font-bold text-[14px] text-primary mb-3">経路① 脊髄を通る「縦の経路」（神経経路）</p>
+                                    
+                                    <!-- 伝達速度の比較 -->
+                                    <div class="table-container mb-4">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>線維の種類</th>
+                                                    <th>伝達速度</th>
+                                                    <th>感覚の質</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="font-bold">Aβ線維（有髄・速い）</td>
+                                                    <td>30〜70 m/s<br><span class="text-[11px] text-foreground/50">（約0.05秒で骨盤→脳）</span></td>
+                                                    <td>触覚・圧覚・振動<br><span class="text-[11px] text-foreground/50">「そこにある」という感覚</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="font-bold">C線維（無髄・遅い）</td>
+                                                    <td>0.5〜2 m/s<br><span class="text-[11px] text-foreground/50">（5〜10秒かけて骨盤→脳）</span></td>
+                                                    <td>温覚・内臓感覚<br><span class="text-[11px] text-foreground/50">「ふわっとした温かさ」</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl mb-4">
+                                        <p class="text-[13px] font-bold text-amber-700 mb-2">⚠️ 急いで確認しようとしてはいけない理由</p>
+                                        <p class="text-[12px] text-amber-600 leading-relaxed">「ふわっとした温かさ」はC線維（無髄神経）で伝わります。この信号は、骨盤底筋を収縮させてから<strong>5〜10秒後</strong>にはじめて脳に届きます。動作をしてすぐに感じようとするのは、まだ信号が届いていないタイミングを探していることになります。「待つ」が最も重要なスキルです。</p>
+                                    </div>
+
+                                    <div class="space-y-2">
+                                        <p class="text-[12px] font-bold text-primary">意識の向け方（縦ルート）——各部位で5〜10秒待つ</p>
+                                        <div class="space-y-1 pl-2">
+                                            <div class="timeline-item">
+                                                <div class="timeline-dot">1</div>
+                                                <p class="text-[12px] text-foreground/70">尾骨の先端に意識を置き、5秒待つ</p>
+                                            </div>
+                                            <div class="timeline-item">
+                                                <div class="timeline-dot">2</div>
+                                                <p class="text-[12px] text-foreground/70">仙骨全体（S1〜S5）に意識を移し、5〜10秒待つ</p>
+                                            </div>
+                                            <div class="timeline-item">
+                                                <div class="timeline-dot">3</div>
+                                                <p class="text-[12px] text-foreground/70">腰椎5つ（L5→L1）を一段ずつ、各3〜5秒かけて通過</p>
+                                            </div>
+                                            <div class="timeline-item">
+                                                <div class="timeline-dot">4</div>
+                                                <p class="text-[12px] text-foreground/70">胸椎12つ（T12→T1）を背中全体が温まるイメージで通過</p>
+                                            </div>
+                                            <div class="timeline-item">
+                                                <div class="timeline-dot">5</div>
+                                                <p class="text-[12px] text-foreground/70">頸椎7つ（C7→C1）を経て後頭部へ</p>
+                                            </div>
+                                            <div class="timeline-item">
+                                                <div class="timeline-dot">★</div>
+                                                <p class="text-[12px] font-bold text-primary">頭頂部が「ゾワッ」とする感覚を待つ——これが信号到達のサイン</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p class="font-bold text-[14px] text-primary mb-3">経路② 血流を通る「横の経路」（循環経路）</p>
+                                    <div class="table-container">
+                                        <table>
+                                            <thead>
+                                                <tr><th>段階</th><th>目安時間</th><th>何が起きているか</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td class="font-bold">①</td><td>0〜30秒</td><td>骨盤内が温まり、下腹部全体に広がる</td></tr>
+                                                <tr><td class="font-bold">②</td><td>30秒〜1分</td><td>腹部がわずかに「ゆるむ」感覚（腸管弛緩）</td></tr>
+                                                <tr><td class="font-bold">③</td><td>1〜2分</td><td>横隔膜の緊張が解け、呼吸が自然に深くなる</td></tr>
+                                                <tr><td class="font-bold text-primary">④</td><td>2〜3分</td><td class="text-primary font-medium">横隔膜フィードバックループ完成——ふわっとした感覚が増幅されて骨盤に戻ってくる</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- 3.E 5体勢別メソッド -->
+                    <div class="mb-6">
+                        <div class="sub-section-header mt-8 mb-4">
+                            <span class="sub-tag">3.E</span>
+                            <h3>ドローイン膣トレ：5つの体勢別メソッド</h3>
+                        </div>
+
+                        <p class="text-[13px] text-foreground/60 text-center mb-4">体勢は難易度だけでは評価できません。5つの独立した軸から最適な体勢を選びましょう。</p>
+
+                        <!-- 評価軸の説明 -->
+                        <div class="bg-white p-4 rounded-xl border border-primary/5 mb-4">
+                            <p class="text-[12px] font-bold text-primary mb-2">体勢を評価する5つの軸</p>
+                            <div class="grid grid-cols-1 gap-2">
+                                <div class="flex items-center gap-2 text-[12px]"><span class="shrink-0">🔍</span><span><strong>感覚の繊細さ</strong>——「ふわっと」をどれだけ静かに受け取れるか</span></div>
+                                <div class="flex items-center gap-2 text-[12px]"><span class="shrink-0">🌀</span><span><strong>腰の動かしやすさ</strong>——骨盤・腰椎を自発的に動かせるか</span></div>
+                                <div class="flex items-center gap-2 text-[12px]"><span class="shrink-0">🧠</span><span><strong>想像とのリンク</strong>——性的イメージと現在の身体感覚が結びつきやすいか</span></div>
+                                <div class="flex items-center gap-2 text-[12px]"><span class="shrink-0">💪</span><span><strong>骨盤底筋への負荷</strong>——引き上げる強度（筋力・持久力向上）</span></div>
+                                <div class="flex items-center gap-2 text-[12px]"><span class="shrink-0">📅</span><span><strong>日常習慣化のしやすさ</strong>——日常に取り入れやすいか</span></div>
+                            </div>
+                        </div>
+
+                        <!-- タブ切り替え -->
+                        <div class="overflow-x-auto pb-2 mb-4">
+                            <div class="flex gap-2 w-max" id="pose-tabs">
+                                <button class="tab-btn active" onclick="switchTab('pose1')">仰向け</button>
+                                <button class="tab-btn" onclick="switchTab('pose2')">うつ伏せ</button>
+                                <button class="tab-btn" onclick="switchTab('pose3')">騎乗位</button>
+                                <button class="tab-btn" onclick="switchTab('pose4')">四つん這い</button>
+                                <button class="tab-btn" onclick="switchTab('pose5')">座り</button>
+                            </div>
+                        </div>
+
+                        <div id="pose1" class="tab-content active">
+                            <div class="bg-white p-5 rounded-2xl border border-primary/5">
+                                <h5 class="font-bold text-[15px] text-primary mb-3">体勢① 仰向け</h5>
+                                <div class="grid grid-cols-5 gap-1 mb-4">
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🔍感覚</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🌀腰動き</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🧠想像</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">💪負荷</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">📅習慣</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                </div>
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-3 mb-3">
+                                    <p class="text-[11px] font-bold text-green-700">🎯 感覚の初習得に最適</p>
+                                </div>
+                                <p class="text-[13px] leading-relaxed text-foreground/70 mb-3">膝を立てて仰向けに寝ます。腰と床の間に手一枚分のすき間ができる自然なカーブを保ちます。重力が背面にかかるため、骨盤底筋が自然に「ゆるんだ状態」から始まります。お腹を凹ませると、骨盤底筋の引き上がりを最も繊細に感じやすい体勢です。</p>
+                                <p class="text-[12px] italic text-foreground/50">就寝前・起床直後に取り入れやすい。感覚が来るのをただ「待つ」構えを作りやすいため、初期習得に最適。</p>
+                            </div>
+                        </div>
+
+                        <div id="pose2" class="tab-content">
+                            <div class="bg-white p-5 rounded-2xl border border-primary/5">
+                                <h5 class="font-bold text-[15px] text-primary mb-3">体勢② うつ伏せ</h5>
+                                <div class="grid grid-cols-5 gap-1 mb-4">
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🔍感覚</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🌀腰動き</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🧠想像</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">💪負荷</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">📅習慣</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                </div>
+                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
+                                    <p class="text-[11px] font-bold text-blue-700">🎯 仙骨締め習得・感覚の「観察」モードに向く</p>
+                                </div>
+                                <p class="text-[13px] leading-relaxed text-foreground/70 mb-3">おでこにタオルを当てて顔を床に向け、腕は体の横に自然に置きます。お腹が床に接した状態で腹横筋を収縮させると、膣の引き上がりの感覚が後ろ（仙骨側）に集中します。仙骨締め（ステップ3）の感覚を掴むのに最適です。</p>
+                                <p class="text-[12px] italic text-foreground/50">「肘立て上体倒し（背骨柔軟化）」の直後にこの体勢で膣締めを行うと、脊髄の通り道が開いた状態で縦の経路（3.D）を練習できます。</p>
+                            </div>
+                        </div>
+
+                        <div id="pose3" class="tab-content">
+                            <div class="bg-white p-5 rounded-2xl border border-primary/5">
+                                <h5 class="font-bold text-[15px] text-primary mb-3">体勢③ 騎乗位（跨り座り）</h5>
+                                <div class="grid grid-cols-5 gap-1 mb-4">
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🔍感覚</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🌀腰動き</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🧠想像</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">💪負荷</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">📅習慣</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                </div>
+                                <div class="bg-purple-50 border border-purple-200 rounded-lg p-3 mb-3">
+                                    <p class="text-[11px] font-bold text-purple-700">🎯 想像×動きの連結——脳と末梢の双方向リンク練習に最適</p>
+                                </div>
+                                <p class="text-[13px] leading-relaxed text-foreground/70 mb-3">椅子や丸めた布団をまたぐように座り、坐骨で座面をしっかり捉えます。恥骨を前下方向にわずかに向けるイメージで骨盤を立て、膣を引き上げます。腰を前後・左右・円を描くように動かしながら、どの方向の動きの瞬間に「ふわっとした感覚」が最も強まるかを探します。</p>
+                                <div class="bg-secondary/20 p-3 rounded-lg">
+                                    <p class="text-[12px] font-bold text-primary mb-1">性心理学的ポイント</p>
+                                    <p class="text-[12px] text-foreground/60 leading-relaxed">腰を自ら動かす能動感（agency）は、性心理学において感受性を高める重要な要因です。「身体が先行して脳を引き込む」と「脳が先行して身体が反応する」の両方の回路が同時に働き、快感の増幅が最も起きやすい状態になります。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="pose4" class="tab-content">
+                            <div class="bg-white p-5 rounded-2xl border border-primary/5">
+                                <h5 class="font-bold text-[15px] text-primary mb-3">体勢④ 四つん這い</h5>
+                                <div class="grid grid-cols-5 gap-1 mb-4">
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🔍感覚</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🌀腰動き</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🧠想像</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">💪負荷</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">📅習慣</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                </div>
+                                <div class="bg-orange-50 border border-orange-200 rounded-lg p-3 mb-3">
+                                    <p class="text-[11px] font-bold text-orange-700">🎯 負荷最大——感覚のエンジンを強くするフェーズ</p>
+                                </div>
+                                <p class="text-[13px] leading-relaxed text-foreground/70 mb-3">手は肩の真下、膝は腰の真下に置きます。腰を前後に動かす（反らす・丸める）を加えることで、骨盤底筋の伸縮と脊髄信号が連動するリズムを作れます。<strong>腰を丸めた瞬間に膣を引き上げ、腰を反らせた瞬間に緩める</strong>リズムで繰り返します。</p>
+                                <p class="text-[12px] italic text-foreground/50">重力が骨盤底筋を最も強く下方に引く体勢。筋力・持久力トレーニングとして最も効果的。</p>
+                            </div>
+                        </div>
+
+                        <div id="pose5" class="tab-content">
+                            <div class="bg-white p-5 rounded-2xl border border-primary/5">
+                                <h5 class="font-bold text-[15px] text-primary mb-3">体勢⑤ 座り（椅子・床）</h5>
+                                <div class="grid grid-cols-5 gap-1 mb-4">
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🔍感覚</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🌀腰動き</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">🧠想像</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">💪負荷</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div></div>
+                                    <div class="text-center"><p class="text-[9px] text-foreground/50 mb-1">📅習慣</p><div class="flex justify-center gap-0.5"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div></div>
+                                </div>
+                                <div class="bg-teal-50 border border-teal-200 rounded-lg p-3 mb-3">
+                                    <p class="text-[11px] font-bold text-teal-700">🎯 日常習慣化——継続・定着の軸で最も優秀</p>
+                                </div>
+                                <p class="text-[13px] leading-relaxed text-foreground/70 mb-3">椅子に浅く腰掛け、左右の坐骨で座面を均等に捉えます。足は床に平らに置きます。膣と仙骨を「座面から1ミリ浮かせる」イメージで引き上げます。デスクワーク・電車・食事中など、あらゆる「座る場面」でトレーニングに変えられます。</p>
+                            </div>
+                        </div>
+
+                        <!-- 推奨習得順 -->
+                        <div class="bg-primary/5 p-4 rounded-xl border border-primary/10 mt-4">
+                            <p class="text-[12px] font-bold text-primary mb-2 text-center">推奨する習得順</p>
+                            <div class="flex items-center justify-center flex-wrap gap-1 text-[11px]">
+                                <span class="bg-white px-2 py-1 rounded-full border border-primary/10 font-bold">仰向け</span>
+                                <span class="text-foreground/40">→</span>
+                                <span class="bg-white px-2 py-1 rounded-full border border-primary/10 font-bold">座り</span>
+                                <span class="text-foreground/40">→</span>
+                                <span class="bg-white px-2 py-1 rounded-full border border-primary/10 font-bold">騎乗位</span>
+                                <span class="text-foreground/40">→</span>
+                                <span class="bg-white px-2 py-1 rounded-full border border-primary/10 font-bold">四つん這い</span>
+                                <span class="text-foreground/40">→</span>
+                                <span class="bg-white px-2 py-1 rounded-full border border-primary/10 font-bold">うつ伏せ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3.F 呼吸 -->
+                    <div class="mb-6 bg-foreground text-white p-6 rounded-2xl">
+                        <div class="sub-section-header mb-4">
+                            <span class="sub-tag !text-accent">3.F</span>
+                            <h3 class="!text-white">呼吸との関係</h3>
+                        </div>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                                <p class="text-accent font-bold text-[14px] mb-2">● 吐きながら引き上げる（初心者向き）</p>
+                                <p class="text-[13px] text-white/70 leading-relaxed">息を吐くとお腹を凹ませる力を最大に発揮できるため、最も強く、深く締められます。まずはこの方法で練習します。</p>
+                            </div>
+                            <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                                <p class="text-accent font-bold text-[14px] mb-2">● 吸いながら引き上げる（実戦・応用向き）</p>
+                                <p class="text-[13px] text-white/70 leading-relaxed">外部からのエネルギーを「身体の中へ吸い込む」という感覚と一致するため、性的興奮とリンクしやすい。実戦的なシーンでは自然とこの動きになる人が多い。</p>
+                            </div>
+                        </div>
+                        <p class="text-[12px] text-white/40 mt-4 italic text-center">どちらも正解です。最終的には、あなたが意識せずとも「身体が自然に行える方」を選んでください。</p>
+                    </div>
+
+                    <!-- 3.G 日常編 -->
+                    <div class="mb-4">
+                        <div class="sub-section-header mb-4">
+                            <span class="sub-tag">3.G</span>
+                            <h3>【日常編】あらゆるシーンを自分磨きに変える</h3>
+                        </div>
+                        
+                        <div class="p-6 bg-accent/5 rounded-[2rem] border-2 border-accent/20">
+                            <div class="space-y-3 mb-5">
+                                <div class="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                    <i data-lucide="train" class="text-primary w-5 h-5 shrink-0 mt-0.5"></i>
+                                    <div>
+                                        <p class="font-bold text-[14px]">立ち姿勢（電車待ち・料理中など）</p>
+                                        <p class="text-[12px] text-foreground/60 mt-1">頭のてっぺんが吊られているように立ち、膣と仙骨を軽く引き上げます。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                    <i data-lucide="monitor" class="text-primary w-5 h-5 shrink-0 mt-0.5"></i>
+                                    <div>
+                                        <p class="font-bold text-[14px]">座り姿勢（デスクワークなど）</p>
+                                        <p class="text-[12px] text-foreground/60 mt-1">左右の坐骨で座面を捉え、膣と仙骨を「座面から1ミリ浮かせる」イメージで引き上げます。</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                    <i data-lucide="sparkles" class="text-primary w-5 h-5 shrink-0 mt-0.5"></i>
+                                    <div>
+                                        <p class="font-bold text-[14px]">気づいた瞬間はすべてチャンス</p>
+                                        <p class="text-[12px] text-foreground/60 mt-1">朝の歯磨き、信号待ち、デスクワークの一区切り——どんな瞬間でも「ふわっとした感覚」を呼び起こす練習に変えられます。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4 class="font-bold text-[15px] text-center mb-3 italic uppercase tracking-wider">【ワーク】あなたのルーティンを決めよう</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                    <input type="checkbox" class="w-5 h-5 accent-primary">
+                                    <span class="text-[14px] font-medium leading-tight">朝、歯を磨いている時</span>
+                                </label>
+                                <label class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                    <input type="checkbox" class="w-5 h-5 accent-primary">
+                                    <span class="text-[14px] font-medium leading-tight">電車を待っている時</span>
+                                </label>
+                                <label class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                    <input type="checkbox" class="w-5 h-5 accent-primary">
+                                    <span class="text-[14px] font-medium leading-tight">信号待ちをしている時</span>
+                                </label>
+                                <label class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                    <input type="checkbox" class="w-5 h-5 accent-primary">
+                                    <span class="text-[14px] font-medium leading-tight">仕事の合間の休憩中</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
-            <!-- 第4段階：興奮する -->
-            <section id="phase4" class="py-12 bg-foreground text-white px-6 relative overflow-hidden">
-                <div class="max-w-md mx-auto">
+            <!-- ================================ -->
+            <!-- Phase 4: 興奮する -->
+            <!-- ================================ -->
+            <section id="phase4" class="py-12 bg-foreground text-white px-6 border-t border-white/5">
+                <div class="max-w-md mx-auto dark-section">
                     <div class="section-header">
                         <span class="tag !text-accent">Phase 04</span>
-                        <h2 class="!text-white border-accent">【興奮する】<br>心理と神経を一致させ、着火する</h2>
+                        <h2 class="!text-white">【興奮する】<br>心理と神経を一致させ、着火する</h2>
                     </div>
 
                     <div class="p-6 bg-white/5 border border-white/10 rounded-2xl mb-8 text-center">
-                        <p class="text-[16px] leading-relaxed italic text-accent font-bold mb-4">「過去の再現作業に、脳が置き去りになっていませんか？」</p>
-                        <p class="text-[14px] text-white/70 leading-relaxed">脳という発電所が動いていなければ光は灯りません。「あの時は……」という過去のログだけを頼りにしても身体に新しい光が灯ることはありません。</p>
+                        <p class="text-[15px] leading-relaxed italic text-accent font-bold mb-3">「過去の再現作業に、脳が置き去りになっていませんか？」</p>
+                        <p class="text-[13px] text-white/70 leading-relaxed">「あの時はあそこを触ったら気持ちよかったから、今もそうすればいいはず」と、過去の成功体験をなぞるだけの「再現作業」に入ってしまうことがあります。脳という発電所が「今」発電していないのに、過去の記録だけを頼りにスイッチを連打しても、身体に新しい光が灯ることはありません。</p>
                     </div>
 
                     <div class="space-y-6">
-                        <div class="text-left">
+                        <div>
                             <h4 class="font-bold text-[17px] mb-3 text-accent italic">4.1 「触れて興奮する」のではなく「興奮して触れる」</h4>
-                            <p class="text-[16px] leading-relaxed text-white/90 border-l-4 border-accent pl-4">
+                            <p class="text-[15px] leading-relaxed text-white/90 border-l-4 border-accent pl-4">
                                 順番は、<strong class="text-accent underline underline-offset-4">まず脳を興奮の状態に放り込み、その溢れたエネルギーを自分の身体で確認する</strong>。身体が「早く触れてほしい」と切望するまであえて身体には触れません。それが、神経が最も研ぎ澄まされる瞬間です。
                             </p>
                         </div>
 
-                        <div class="bg-white/10 p-6 rounded-2xl space-y-6">
-                            <h4 class="text-[15px] font-bold text-accent text-center border-b border-white/10 pb-2 uppercase tracking-widest">脳の予熱プロセス</h4>
-                            <div class="space-y-6">
+                        <div class="bg-white/10 p-6 rounded-2xl space-y-5">
+                            <h4 class="text-[14px] font-bold text-accent text-center border-b border-white/10 pb-2 uppercase tracking-widest">4.2 脳の予熱プロセス</h4>
+                            <div class="space-y-5">
                                 <div class="flex gap-4">
-                                    <span class="text-2xl font-serif font-black text-accent opacity-50 shrink-0">1</span>
-                                    <div><h5 class="text-[15px] font-bold mb-1">記憶を燃料にする</h5><p class="text-[13px] text-white/60">過去に最高に気持ちよかった情景を思い出します（ガソリン）。</p></div>
+                                    <span class="text-3xl font-serif font-black text-accent opacity-40 shrink-0 leading-none">1</span>
+                                    <div>
+                                        <h5 class="text-[15px] font-bold mb-1">記憶を燃料にする</h5>
+                                        <p class="text-[13px] text-white/60 leading-relaxed">過去に最高に気持ちよかった情景や感触を思い出します（これがガソリンです）。</p>
+                                    </div>
                                 </div>
                                 <div class="flex gap-4">
-                                    <span class="text-2xl font-serif font-black text-accent opacity-50 shrink-0">2</span>
-                                    <div><h5 class="text-[15px] font-bold mb-1">今に反映させる</h5><p class="text-[13px] text-white/60">それを「今、ここで起きていること」として脳内で再生。呼吸が深くなったり下腹部が熱くなるのを待ちます（興奮）。</p></div>
+                                    <span class="text-3xl font-serif font-black text-accent opacity-40 shrink-0 leading-none">2</span>
+                                    <div>
+                                        <h5 class="text-[15px] font-bold mb-1">今に反映させる</h5>
+                                        <p class="text-[13px] text-white/60 leading-relaxed">その記憶を「今、ここで起きていること」として脳内で再生し、喉が渇いたり、呼吸が深くなったり、下腹部がじわっと熱くなるのを待ちます（これが興奮です）。</p>
+                                    </div>
                                 </div>
                                 <div class="flex gap-4">
-                                    <span class="text-2xl font-serif font-black text-accent opacity-50 shrink-0">3</span>
-                                    <div><h5 class="text-[15px] font-bold mb-1">飢餓感を待つ</h5><p class="text-[13px] text-white/60">義務感ではなく、今の興奮を「開放したい」という欲求が勝るまで、あえて触れません。</p></div>
+                                    <span class="text-3xl font-serif font-black text-accent opacity-40 shrink-0 leading-none">3</span>
+                                    <div>
+                                        <h5 class="text-[15px] font-bold mb-1">飢餓感を待つ</h5>
+                                        <p class="text-[13px] text-white/60 leading-relaxed">過去を再現したいという「義務感」ではなく、今の興奮を「解放したい」という欲求が勝るまで、あえて身体には触れません。</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -508,43 +1131,173 @@
                 </div>
             </section>
 
-            <!-- 第5段階：つなぐ -->
-            <section id="phase5" class="py-12 bg-white px-6">
+            <!-- ================================ -->
+            <!-- Phase 5: つなぐ -->
+            <!-- ================================ -->
+            <section id="phase5" class="py-12 bg-background px-6 border-t border-primary/5">
                 <div class="max-w-md mx-auto">
                     <div class="section-header">
                         <span class="tag">Phase 05</span>
                         <h2>【つなぐ】<br>脳と感覚を一致させ、増幅させる</h2>
                     </div>
 
-                    <div class="bg-primary/5 p-6 rounded-xl mb-8 border border-primary/10">
-                        <h3 class="text-[16px] font-bold text-primary mb-3 text-center">「快感の最中に、明日の仕事を思い出していませんか？」</h3>
-                        <p class="text-[14px] text-foreground/70 leading-relaxed text-center italic">脳が身体と接続されていないと、快感はキャンセルされます。脳を「増幅器（アンプ）」にする最終技術です。</p>
+                    <div class="highlight-card mb-6">
+                        <h3 class="text-[15px] font-bold text-primary leading-snug">「快感の最中に『明日の仕事』を思い出したり、無意識に『歯を食いしばって』いませんか？」</h3>
+                        <p class="text-[13px] text-foreground/70 leading-relaxed mt-2">もしそうなら、あなたの脳は身体と「接続」されておらず、せっかくの感覚を脳がキャンセルしてしまっています。</p>
                     </div>
 
-                    <div class="space-y-8 mb-10">
-                        <div class="text-left">
-                            <h4 class="font-bold text-[17px] mb-3 text-primary">5.1 実戦：脳と筋肉を連動させる</h4>
-                            <p class="text-[16px] leading-relaxed text-foreground/80 italic border-l-4 border-accent pl-4">（実戦ドローイン）</p>
-                            <p class="text-[15px] leading-relaxed text-foreground/70 mt-3">興奮を感じている最中に、第3段階で鍛えた<strong class="text-primary font-bold">「引き上げ（お腹・膣・仙骨）」</strong>を行います。これにより、神経信号の密度が一気に高まり、脳へ鮮烈な情報を届け、快感を何倍にも増幅させます。</p>
+                    <!-- 5.0 快感が逃げる4つのパターン -->
+                    <div class="sub-section-header mb-4">
+                        <span class="sub-tag">5.0</span>
+                        <h3>性心理学が解明した「快感が逃げる4つのパターン」</h3>
+                    </div>
+                    <p class="text-[13px] text-foreground/60 text-center mb-5">感覚を脳に繋ぐ際の最大の障害は、物理的な問題ではなく「心理的な構え」です。</p>
+
+                    <div class="space-y-4 mb-8">
+                        <!-- パターン1 -->
+                        <div class="bg-white rounded-2xl border border-primary/5 overflow-hidden">
+                            <button class="collapsible-btn rounded-none border-none" onclick="toggleCollapsible(this)">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-7 h-7 bg-primary text-white rounded-full text-[11px] font-bold flex items-center justify-center shrink-0">①</span>
+                                    <span class="text-left">気持ちよさを「追いかける」と逃げていく</span>
+                                </div>
+                                <i data-lucide="chevron-down" class="text-primary w-5 h-5 shrink-0 collapsible-arrow"></i>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="px-5 pb-5 space-y-3">
+                                    <div class="bg-rose-50 border border-rose-100 p-3 rounded-lg">
+                                        <p class="text-[11px] font-bold text-rose-600 mb-1">【性心理学的メカニズム】</p>
+                                        <p class="text-[12px] text-rose-700 leading-relaxed">「気持ちよくなりたい」という指向的注意は前頭前野を活性化させます。前頭前野は評価・判断・計画を司る領域であり、活性化すると感覚皮質への注意が相対的に減少します。つまり「気持ちよさを探そうとする」行為そのものが、感覚を処理する脳領域の働きを弱めます。</p>
+                                    </div>
+                                    <div class="bg-green-50 border border-green-100 p-3 rounded-lg">
+                                        <p class="text-[11px] font-bold text-green-700 mb-1">【正しい構え】</p>
+                                        <p class="text-[12px] text-green-800 leading-relaxed">気持ちよさは「探すもの」ではなく、「そこにあるものとして気づくもの」です。センサーのスイッチをONにして、信号が来るのをただ待つ——これが正しい脳の使いかたです。</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="space-y-4">
-                            <h4 class="font-bold text-[17px] mb-4 italic text-primary">5.2 脳と身体を直結させる「3つの動作」</h4>
-                            <div class="grid grid-cols-1 gap-4">
-                                <div class="p-4 bg-secondary/30 rounded-xl flex items-center gap-4">
-                                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="smile" class="text-primary w-7 h-7"></i></div>
-                                    <div><h5 class="font-bold text-[15px] mb-1">1. 顎（あご）の力を抜く</h5><p class="text-[12px] text-foreground/50 leading-tight">脱力することで骨盤周りも開き、脳の警戒モードが解除されます。</p></div>
+                        <!-- パターン2 -->
+                        <div class="bg-white rounded-2xl border border-primary/5 overflow-hidden">
+                            <button class="collapsible-btn rounded-none border-none" onclick="toggleCollapsible(this)">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-7 h-7 bg-primary text-white rounded-full text-[11px] font-bold flex items-center justify-center shrink-0">②</span>
+                                    <span class="text-left">「期待する」と逃げていく</span>
                                 </div>
-                                <div class="p-4 bg-secondary/30 rounded-xl flex items-center gap-4">
-                                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shrink-0 shadow-sm"><i data-lucide="eye" class="text-primary w-7 h-7"></i></div>
-                                    <div><h5 class="font-bold text-[15px] mb-1">2. 目を閉じ、上を見る</h5><p class="text-[12px] text-foreground/50 leading-tight">視線をまぶたの裏（上方向）に固定。脳を特殊なトランス状態へ導きます。</p></div>
-                                </div>
-                                <div class="p-5 bg-secondary/40 rounded-xl border-2 border-primary/10 shadow-lg">
-                                    <div class="flex items-center gap-3 mb-2">
-                                        <i data-lucide="radio" class="text-primary w-6 h-6"></i>
-                                        <h5 class="font-bold text-[15px] text-primary">3. 能動的感覚サーチ</h5>
+                                <i data-lucide="chevron-down" class="text-primary w-5 h-5 shrink-0 collapsible-arrow"></i>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="px-5 pb-5 space-y-3">
+                                    <div class="bg-rose-50 border border-rose-100 p-3 rounded-lg">
+                                        <p class="text-[11px] font-bold text-rose-600 mb-1">【性心理学的メカニズム】</p>
+                                        <p class="text-[12px] text-rose-700 leading-relaxed">期待は「予測誤差（prediction error）」を生み出します。脳は期待通りの結果を受け取ると、ドーパミン放出が予測値以下になり、むしろ「がっかり感」に近い神経化学的反応が起きます。</p>
                                     </div>
-                                    <p class="text-[13px] text-foreground/70 leading-relaxed font-medium">「今、どこが波打っているか？」を脳のアンテナで探しに行きます。脳天の「ゾワッ」を見つけ、イメージで鮮やかに育てます。これが「接続」です。</p>
+                                    <div class="bg-green-50 border border-green-100 p-3 rounded-lg">
+                                        <p class="text-[11px] font-bold text-green-700 mb-1">【正しい構え】</p>
+                                        <p class="text-[12px] text-green-800 leading-relaxed">「どんな感覚がくるかな」という好奇心の構えが、期待の代わりになります。アンテナは立てながら、「どんな感覚が来てもよい」という受容が重要です。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- パターン3 -->
+                        <div class="bg-white rounded-2xl border border-primary/5 overflow-hidden">
+                            <button class="collapsible-btn rounded-none border-none" onclick="toggleCollapsible(this)">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-7 h-7 bg-primary text-white rounded-full text-[11px] font-bold flex items-center justify-center shrink-0">③</span>
+                                    <span class="text-left">興奮が高まって「刺激を強める」と逃げていく</span>
+                                </div>
+                                <i data-lucide="chevron-down" class="text-primary w-5 h-5 shrink-0 collapsible-arrow"></i>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="px-5 pb-5 space-y-3">
+                                    <div class="bg-rose-50 border border-rose-100 p-3 rounded-lg">
+                                        <p class="text-[11px] font-bold text-rose-600 mb-1">【性心理学的メカニズム】</p>
+                                        <p class="text-[12px] text-rose-700 leading-relaxed">感覚が高まってきた時に刺激を強めると、感覚皮質に過大な入力が入り「感覚飽和（sensory saturation）」が生じます。受容器の適応（adaptation）と呼ばれる現象で、神経が同じ刺激強度に慣れた後さらに強い刺激を受けると、受容器が感度を下げる自己防衛反応を起こします。</p>
+                                    </div>
+                                    <div class="bg-green-50 border border-green-100 p-3 rounded-lg">
+                                        <p class="text-[11px] font-bold text-green-700 mb-1">【正しい構え】</p>
+                                        <p class="text-[12px] text-green-800 leading-relaxed">感覚が高まった時こそ、刺激を「増やす」のではなく「留まる」か「少し減らす」ことが、感覚をさらに深める近道です。快感の波は、ちょうど海の波と同じで、無理に押し込もうとすると崩れます。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- パターン4 -->
+                        <div class="bg-white rounded-2xl border border-primary/5 overflow-hidden">
+                            <button class="collapsible-btn rounded-none border-none" onclick="toggleCollapsible(this)">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-7 h-7 bg-primary text-white rounded-full text-[11px] font-bold flex items-center justify-center shrink-0">④</span>
+                                    <span class="text-left">「呼吸が浅くなる」と逃げていく</span>
+                                </div>
+                                <i data-lucide="chevron-down" class="text-primary w-5 h-5 shrink-0 collapsible-arrow"></i>
+                            </button>
+                            <div class="collapsible-content">
+                                <div class="px-5 pb-5 space-y-3">
+                                    <div class="bg-rose-50 border border-rose-100 p-3 rounded-lg">
+                                        <p class="text-[11px] font-bold text-rose-600 mb-1">【神経生理学的メカニズム】</p>
+                                        <p class="text-[12px] text-rose-700 leading-relaxed">呼吸の浅さは交感神経優位の最も強いシグナルです。浅い呼吸（胸式呼吸）は横隔膜の動きが小さくなることを意味し、第3段階で構築した「腹骨盤底canister（横隔膜↔骨盤底筋のフィードバックループ）」が機能不全に陥ります。</p>
+                                    </div>
+                                    <div class="bg-green-50 border border-green-100 p-3 rounded-lg">
+                                        <p class="text-[11px] font-bold text-green-700 mb-1">【正しい構え】</p>
+                                        <p class="text-[12px] text-green-800 leading-relaxed">呼吸が浅くなっていることに気づいたら、それはキャンセルボタンではありません。ただの「お知らせ」です。1回だけ、お腹が膨らむような深い呼吸を入れます。「深い呼吸が入ってきてもいい」と許可するだけで十分です。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 最重要原則 -->
+                    <div class="bg-primary p-6 rounded-2xl text-white text-center mb-8">
+                        <p class="text-[13px] font-bold uppercase tracking-widest text-white/60 mb-3">最も重要な原則</p>
+                        <h4 class="font-serif text-xl font-bold mb-3">「いけたか・いけなかったか」<br>を判断しない</h4>
+                        <p class="text-[13px] text-white/80 leading-relaxed">「自己評価的注意（self-evaluative attention）」は、性機能において最も研究が進んだ阻害要因の一つ（Masters & Johnson、Barlowの認知モデル）。判断の瞬間に、感覚皮質・辺縁系（快感・感情の中枢）への注意が断ち切られます。</p>
+                        <div class="mt-4 pt-4 border-t border-white/20">
+                            <p class="text-[14px] font-bold text-accent italic">あなたは快感を「起こす」のではなく、<br>快感が「起きていることに気づく」のです。</p>
+                        </div>
+                    </div>
+
+                    <!-- 5.1 実戦ドローイン -->
+                    <div class="mb-6">
+                        <h4 class="font-bold text-[17px] mb-3 text-primary">5.1 実戦ドローイン：脳と筋肉を連動させる</h4>
+                        <p class="text-[14px] leading-relaxed text-foreground/70 border-l-4 border-accent pl-4 mb-4">
+                            興奮を感じている最中に、第3段階で習得した「引き上げ（お腹・膣・仙骨）」と「ふわっとした感覚の意識」を、自分が自然だと感じる呼吸のタイミングで行います。これにより骨盤内の神経信号の密度が一気に高まり、脳へ「ここに強い刺激が来ている！」という鮮烈な情報を届け、快感を何倍にも増幅させます。
+                        </p>
+                    </div>
+
+                    <!-- 5.2 3つの動作 -->
+                    <div class="mb-6">
+                        <h4 class="font-bold text-[17px] mb-4 text-primary">5.2 脳と身体を直結させる「3つの動作」</h4>
+                        <div class="space-y-4">
+                            <div class="p-5 bg-white rounded-xl shadow-sm border border-primary/5 flex items-center gap-4">
+                                <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center shrink-0 shadow-sm">
+                                    <i data-lucide="smile" class="text-primary w-7 h-7"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-[15px] mb-1">動作1：顎（あご）の力を抜く</h5>
+                                    <p class="text-[12px] text-foreground/60 leading-relaxed">アゴをポカーンと脱力させ、上下の歯を離します。アゴがゆるむと、連動して骨盤周りも開き、脳の警戒モード（交感神経）が解除されます。ポリヴェーガル理論（Porges）の「社会的神経系の活性化」に対応する動作です。</p>
+                                </div>
+                            </div>
+                            <div class="p-5 bg-white rounded-xl shadow-sm border border-primary/5 flex items-center gap-4">
+                                <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center shrink-0 shadow-sm">
+                                    <i data-lucide="eye" class="text-primary w-7 h-7"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-[15px] mb-1">動作2：目を閉じ、上を見る</h5>
+                                    <p class="text-[12px] text-foreground/60 leading-relaxed">目を閉じ、視線をまぶたの裏（上方向）に向け、そのまま固定します。これにより脳が特殊なトランス状態（アルファ波優位）へと導かれ、内側の微細な感覚を拾いやすくなります。</p>
+                                </div>
+                            </div>
+                            <div class="p-5 bg-primary/5 rounded-xl border-2 border-primary/15 glow-primary">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center shrink-0 shadow-sm">
+                                        <i data-lucide="radio" class="text-white w-6 h-6"></i>
+                                    </div>
+                                    <h5 class="font-bold text-[15px] text-primary">動作3：能動的感覚サーチ</h5>
+                                </div>
+                                <p class="text-[13px] text-foreground/70 leading-relaxed mb-3">刺激を待つのではなく、「今、どこが波打っているか？」を脳のアンテナで自分から探しに行きます。</p>
+                                <div class="bg-white p-3 rounded-lg">
+                                    <p class="text-[12px] font-bold text-primary mb-1">探すべき感覚（比喩なし）</p>
+                                    <p class="text-[12px] text-foreground/60 leading-relaxed">仙骨（根元）から湧き上がった温かさが、背骨という一本の道を通って、<strong class="text-foreground">脳天まで突き抜ける瞬間</strong>を探してください。脳天が「ゾワッ」としびれる感覚を見つけたら、それを脳内で大きく、鮮やかに意識して育てます。これが「接続」の完成です。</p>
                                 </div>
                             </div>
                         </div>
@@ -552,19 +1305,67 @@
                 </div>
             </section>
 
+            <!-- ================================ -->
+            <!-- 学術的基盤 -->
+            <!-- ================================ -->
+            <section class="py-10 bg-white px-6 border-t border-primary/5">
+                <div class="max-w-md mx-auto">
+                    <div class="section-header">
+                        <span class="tag">Academic Foundation</span>
+                        <h2>学術的基盤</h2>
+                    </div>
+
+                    <p class="text-[13px] text-foreground/60 text-center mb-5">本ガイドは以下の学術領域の知見を統合しています：</p>
+
+                    <div class="space-y-2">
+                        <div class="flex items-start gap-3 p-3 bg-secondary/20 rounded-xl">
+                            <i data-lucide="book-open" class="text-primary w-4 h-4 shrink-0 mt-0.5"></i>
+                            <p class="text-[12px] text-foreground/70 leading-relaxed"><strong class="text-foreground">Masters & Johnson：</strong>性反応の4段階モデル（興奮期・持続期・オルガスム期・消退期）</p>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-secondary/20 rounded-xl">
+                            <i data-lucide="book-open" class="text-primary w-4 h-4 shrink-0 mt-0.5"></i>
+                            <p class="text-[12px] text-foreground/70 leading-relaxed"><strong class="text-foreground">Kaplan：</strong>3段階性反応モデル（欲求・興奮・オルガスム）</p>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-secondary/20 rounded-xl">
+                            <i data-lucide="book-open" class="text-primary w-4 h-4 shrink-0 mt-0.5"></i>
+                            <p class="text-[12px] text-foreground/70 leading-relaxed"><strong class="text-foreground">Komisaruk et al.：</strong>骨盤神経と性的感覚の神経科学（脊髄上行路の実証研究）</p>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-secondary/20 rounded-xl">
+                            <i data-lucide="book-open" class="text-primary w-4 h-4 shrink-0 mt-0.5"></i>
+                            <p class="text-[12px] text-foreground/70 leading-relaxed"><strong class="text-foreground">Kegel：</strong>骨盤底筋機能と感覚の関係</p>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-secondary/20 rounded-xl">
+                            <i data-lucide="book-open" class="text-primary w-4 h-4 shrink-0 mt-0.5"></i>
+                            <p class="text-[12px] text-foreground/70 leading-relaxed"><strong class="text-foreground">Carter：</strong>オキシトシンと社会的絆・身体感覚の神経生物学</p>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-secondary/20 rounded-xl">
+                            <i data-lucide="book-open" class="text-primary w-4 h-4 shrink-0 mt-0.5"></i>
+                            <p class="text-[12px] text-foreground/70 leading-relaxed"><strong class="text-foreground">Porges：</strong>ポリヴェーガル理論（副交感神経と安全・接続感覚）</p>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-secondary/20 rounded-xl">
+                            <i data-lucide="book-open" class="text-primary w-4 h-4 shrink-0 mt-0.5"></i>
+                            <p class="text-[12px] text-foreground/70 leading-relaxed"><strong class="text-foreground">腹骨盤底canister理論：</strong>横隔膜・骨盤底筋・腹横筋の統合的機能</p>
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] text-foreground/40 text-center mt-5 italic">監修：セクシャル・ウェルネス開発プログラム／脳科学・神経生理学・性科学に基づく体質改善メソッド</p>
+                </div>
+            </section>
+
             <!-- 結論 -->
             <section class="py-16 bg-background px-8 text-center relative border-t border-primary/5">
                 <div class="max-w-md mx-auto">
-                    <i data-lucide="heart" class="text-primary w-16 h-16 mx-auto mb-8 animate-pulse"></i>
-                    <h2 class="serif-title text-3xl font-bold mb-8 leading-tight">結論：<br>自ら咲く力を手に入れる</h2>
-                    <div class="space-y-6 text-[16px] text-foreground/70 leading-relaxed mb-12 text-justify">
-                        <p>環境（生理）、通り道（骨格）、エンジン（習慣）、着火（興奮）、接続。この5段階が揃ったとき、あなたの身体は無限の快感を生み出す存在へと変わります。</p>
-                        <p class="font-bold text-primary text-center italic">あなたは自ら快感という名の彩りを放つことができる、自由な「開拓者」なのです。</p>
+                    <i data-lucide="heart" class="text-primary w-14 h-14 mx-auto mb-6 animate-pulse"></i>
+                    <h2 class="font-serif text-3xl font-bold mb-6 leading-tight">結論：<br>自ら咲く力を手に入れる</h2>
+                    <div class="space-y-4 text-[15px] text-foreground/70 leading-relaxed mb-10 text-justify">
+                        <p>適切な環境（血流）、正しい通り道（骨格）、自発的に動くエンジン（骨盤底筋＋オキシトシン感覚の習慣）、心理的な着火（興奮）、そして脳の正しい使いかた（接続）。</p>
+                        <p>この5段階が揃ったとき、あなたの身体は無限の快感を生み出す存在へと変わります。あなたはもはや、刺激を待つだけ・受け取るだけの存在ではありません。</p>
+                        <p class="font-bold text-primary text-center italic">自らの身体を愛し、調律し、快感という名の彩りを自ら放つことができる、自由な「開拓者」なのです。</p>
                     </div>
                     
-                    <div class="bg-white p-10 rounded-[2.5rem] shadow-2xl border border-primary/10 mb-12">
-                        <h3 class="serif-title text-2xl text-primary font-black mb-4 italic">「気持ちいい！楽しい！が大正解」</h3>
-                        <p class="text-[14px] text-foreground/40 font-bold uppercase tracking-wider">Release Your Potential Now</p>
+                    <div class="bg-white p-10 rounded-[2.5rem] shadow-2xl border border-primary/10 mb-10 glow-primary">
+                        <h3 class="font-serif text-2xl text-primary font-black mb-3 italic">「気持ちいい！楽しい！が大正解」</h3>
+                        <p class="text-[13px] text-foreground/40 font-bold uppercase tracking-wider">Release Your Potential Now</p>
                     </div>
 
                     <a href="https://body-care-orpin.vercel.app/contact.html" target="_blank" class="cta-button py-6 text-xl">性感オイルマッサージはコチラ</a>
@@ -577,13 +1378,11 @@
     <!-- Footer -->
     <footer class="bg-foreground text-white py-12 px-8 text-center">
         <div class="max-w-md mx-auto">
-            <div class="flex items-center justify-center gap-2 mb-8">
+            <div class="flex items-center justify-center gap-2 mb-6">
                 <i data-lucide="flower-2" class="text-accent/60 w-6 h-6"></i>
                 <span class="font-serif font-black text-sm tracking-tighter uppercase">Neuro Body Hack</span>
             </div>
-            <p class="text-white/30 text-[12px] leading-relaxed mb-10">生理学・構造学・脳科学に基づいたセルフケアメソッド。あなたの身体を再起動し、一生ものの感受性を開発します。</p>
-            <div class="flex justify-center gap-8 text-[11px] font-bold text-white/40 tracking-widest uppercase mb-10">
-            </div>
+            <p class="text-white/30 text-[12px] leading-relaxed mb-8">生理学・構造学・脳科学に基づいたセルフケアメソッド。<br>あなたの身体を再起動し、一生ものの感受性を開発します。</p>
             <div class="text-[10px] text-white/20 font-bold tracking-widest uppercase">© 2026 BODY DEVELOPMENT MASTER GUIDE.</div>
         </div>
     </footer>
@@ -614,6 +1413,34 @@
             }
         }
 
+        // Enterキーでもアンロック
+        document.getElementById('keyword-field').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') checkUnlock();
+        });
+
+        // コラプシブル
+        function toggleCollapsible(btn) {
+            const content = btn.nextElementSibling;
+            const isOpen = content.classList.contains('open');
+            content.classList.toggle('open');
+            btn.classList.toggle('open');
+        }
+
+        // タブ切り替え
+        function switchTab(id) {
+            // すべてのタブコンテンツを非表示
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('#pose-tabs .tab-btn').forEach(el => el.classList.remove('active'));
+            
+            // 対象を表示
+            document.getElementById(id).classList.add('active');
+            
+            // ボタンのマッピング
+            const btnMap = { pose1: 0, pose2: 1, pose3: 2, pose4: 3, pose5: 4 };
+            const buttons = document.querySelectorAll('#pose-tabs .tab-btn');
+            if (buttons[btnMap[id]]) buttons[btnMap[id]].classList.add('active');
+        }
+
         // Reveal Animations
         document.querySelectorAll('.reveal').forEach((el) => {
             gsap.to(el, { scrollTrigger: { trigger: el, start: "top 95%" }, opacity: 1, y: 0, duration: 0.8, ease: "power2.out" });
@@ -621,4 +1448,3 @@
     </script>
 </body>
 </html>
-    
